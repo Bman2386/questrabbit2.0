@@ -1,0 +1,27 @@
+{
+    "name": "questrabbit",
+    "version": "1.0.0",
+    "description": "Finally! A place that easily connects adventurers to the people that need them. On Quest Rabit you can create a quest and directly hire an adventurer, making quest boards a thing of the past.",
+    "directories": {
+        "lib": "lib",
+        "test": "test"
+    },
+    "scripts": {
+        "build": "npm install --prefix frontend && npm run build --prefix frontend"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Bman2386/questrabbit2.0.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Bman2386/questrabbit2.0/issues"
+    },
+    "homepage": "https://github.com/Bman2386/questrabbit2.0#readme",
+    "engines": {
+        "node": "16.10.0",
+        "npm": "7.24.0"
+    }
+}
