@@ -1,4 +1,5 @@
-## Frontend Notes
-- move util actions to store
-- rails 7 doesn't use ajax
+## TODO:
+- rewrite index.js 
 - rewrite components to functional components
+- remove old code
+- test app
