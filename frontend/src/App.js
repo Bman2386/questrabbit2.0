@@ -1,18 +1,18 @@
 import React from "react";
 import { Route, Switch} from "react-router-dom";
-import NavBar from './components/nav_bar/nav_bar_container';
-import Category from './components/category/category_show_container'
-import Footer from './components/footer/footer'
-import Signup from './components/session/signup_container';
-import Login from './components/session/login_container';
-import Home from './components/home/home_container';
+import NavBar from './components/nav_bar';
+import Category from './components/category'
+import Footer from './components/footer'
+import Signup from './components/session';
+import Login from './components/session';
+import Home from './components/home';
 import Intermediary from './components/session/intermediary';
-import Profile from './components/profile/profile_container';
-import QuestForm from './components/questForm/create_quest_form_container';
-import QuestPage from './components/quest/quest_page_container';
-import EditQuest from './components/quest/edit_quest_container';
-import CancelQuest from './components/quest/cancel_quest_container';
-import Category from "./components/category/category_show";
+import Profile from './components/profile';
+import QuestForm from './components/questForm';
+import QuestPage from './components/page';
+import EditQuest from './components/edit';
+import CancelQuest from './components/cancel';
+import Category from "./components/category";
 
 function App(){
    return(

@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useEffect, useLocation } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";  
+import { fetchCategories } from '../../store/category';
 
-class Category extends React.Component {
-    constructor(props){
-        super(props)
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+function Category(){
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
+    const categoryId = location.pathname
 
-    componentDidMount(){
-        this.props.fetchCategories();
-    }
+    useEffect(() => {
+        dispatch(fetchCategories())
+    }, [dispatch]);
 
-    imageLogic(id) {
+    if (!categories) return '';
+    if (!categoryId) return (
+        <> Oops, categoryId didn't pass through</>
+    )
+
+    const imageLogic = (id) => {
         const slay = window.slay
         const craft = window.craft
         const escort = window.escort
@@ -29,17 +36,16 @@ class Category extends React.Component {
         }
     }
 
-    handleSubmit(category){
-        this.props.saveData(category); //saves category in redux state to be accessed by questForm Component
+   const handleSubmit = (category)=> {
+         //saves category in redux state to be accessed by questForm Component
     }
-    
-    render() {
-        const {categories} = this.props
-        const categoryId = this.props.match.params.categoryId //renders image and text dynamicly by category passed in from props
-        const dynamicImage = (
-           categories && categories.length > 1 && categoryId > 1? this.imageLogic(categoryId) : window.ftch
-        )
-        const category = categories[categoryId - 1]
+    // const { categories } = this.props
+    // const categoryId = this.props.match.params.categoryId //renders image and text dynamicly by category passed in from props
+    const dynamicImage = (
+        categories && categories.length > 1 && categoryId > 1 ? this.imageLogic(categoryId) : window.ftch
+    )
+    const category = categories[categoryId - 1]
+            
     return (    
         <div className="show-container">
             <img className="show-image" src={dynamicImage}/>
@@ -55,7 +61,6 @@ class Category extends React.Component {
                     }  
         </div> 
                 )
-            }         
-}
+}         
 
 export default Category
