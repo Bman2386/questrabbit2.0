@@ -5,6 +5,7 @@ import categoriesReducer from './category';
 import questsReducer from './quest';
 import adventurersReducer from './adventurer';
 import reviewsReducer from './review';
+import tempReducer from './temp';
 //reducers need to go here
 
 
@@ -13,7 +14,8 @@ export const rootReducer = combineReducers({
     categories: categoriesReducer,
     quests: questsReducer,
     adventurers: adventurersReducer,
-    reviews: reviewsReducer
+    reviews: reviewsReducer,
+    temp: tempReducer
 })
 
 

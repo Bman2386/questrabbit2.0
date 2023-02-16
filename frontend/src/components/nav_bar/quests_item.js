@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React from 'react'
+import React from 'react';
 
 const Quests = ({categories}) => {
 
@@ -15,7 +15,7 @@ const Quests = ({categories}) => {
             >{category.category_name}</Link>       
                 )} 
     </div>    
-  )
+  );
   return (
     <ul className='dd-container'
       style={{ position: 'relative'}}
@@ -23,8 +23,8 @@ const Quests = ({categories}) => {
       Quest Types
         { questButtonDisplay }
       </ul>   
-    )
-      }
+    );
+};
 
 export default Quests
 

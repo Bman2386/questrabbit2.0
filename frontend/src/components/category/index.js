@@ -2,6 +2,7 @@ import React, { useEffect, useLocation } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";  
 import { fetchCategories } from '../../store/category';
+import { recieveData } from '../../store/temp';
 
 function Category(){
     const dispatch = useDispatch();
@@ -35,17 +36,12 @@ function Category(){
             return ftch;
         }
     }
-
-   const handleSubmit = (category)=> {
-         //saves category in redux state to be accessed by questForm Component
-    }
-    // const { categories } = this.props
-    // const categoryId = this.props.match.params.categoryId //renders image and text dynamicly by category passed in from props
-    const dynamicImage = (
-        categories && categories.length > 1 && categoryId > 1 ? this.imageLogic(categoryId) : window.ftch
-    )
+ 
     const category = categories[categoryId - 1]
-            
+    const dynamicImage = (
+        categories && categories.length > 1 && categoryId > 1 ? imageLogic(categoryId) : window.ftch
+    )    
+    
     return (    
         <div className="show-container">
             <img className="show-image" src={dynamicImage}/>
@@ -56,11 +52,11 @@ function Category(){
                             <p className="show-p">Example Description: {category.ex_description}</p>
                             <Link 
                             to='/quest'
-                            className='show-button'onClick = {() => this.handleSubmit(category)}>Book a Quest in this Category</Link>
+                            className='show-button' onClick={dispatch(recieveData(category))}>Book a Quest in this Category</Link>
                         </div> :  ''
                     }  
         </div> 
-                )
+    )
 }         
 
 export default Category

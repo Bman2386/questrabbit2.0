@@ -1,8 +1,6 @@
 import React from 'react'
 
-class Footer extends React.Component {
-
-    render(){
+const Footer = () => {
         const linked = window.linked;
         const git = window.git
         return (
@@ -13,6 +11,5 @@ class Footer extends React.Component {
             </div>
         )
     }
-}
 
 export default Footer

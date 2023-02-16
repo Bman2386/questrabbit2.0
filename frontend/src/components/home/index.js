@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import {saveData} from '../../store/temp';
+import { useDispatch } from 'react-redux';
 
-const Home = ({saveData}) => {
-const [clicked, setClicked] = useState('');
-const [name, setName] = useState('');
+const Home = () => {
+  const dispatch = useDispatch();
+  const [clicked, setClicked] = useState('');
+  const [name, setName] = useState('');
 
 const setData = () => {
   const nameOfQuest = {
     name: name
   }
-  saveData(nameOfQuest)
+  dispatch(saveData(nameOfQuest))
 }
 
 const hero = window.hero;
