@@ -12,28 +12,18 @@ function NavBar(){
   const currentUser = useSelector(state => state.session.user ? state.session.user : '');
 
   useEffect(() => {
-    dispatch(fetchCategories())
+    dispatch(fetchCategories());
   }, [dispatch]);
-
-  const categoryDisplay =()=> {
-    if (!!categories) {
-      return (
-        <Quests categories={categories} />
-      );
-    } 
-      return '';
-  };
   
   const logo = window.logo;
 
-  const display =()=> {
-    if (!!currentUser) {
+    if (currentUser) {
       return (
         <div className="nav-bar">
           <Link to='/'>
             <img src={logo} className="logo" />
           </Link>
-          {categoryDisplay()}
+          {categories ? <Quests categories={categories} />: ''}
           <Link to='/quest'>Book a Quest</Link>
           <Link to='/quests'>My Quests</Link>
           <Link to='/user'>Account</Link>
@@ -41,18 +31,12 @@ function NavBar(){
       );
     };  
     return (
-          <div className="nav-bar">
-            <Link to='/'>
-              <img src={logo} className="logo"/>
-            </Link>
-            {categoryDisplay()}
-            <Link className="btn" to="/intermediary">Log in</Link>
-          </div>
-        );
-  };
-    return (
-      <div>
-        {display()}
+      <div className="nav-bar">
+        <Link to='/'>
+          <img src={logo} className="logo"/>
+        </Link>
+        {categories ? <Quests categories={categories} /> : ''}
+        <Link className="btn" to="/intermediary">Log in</Link>
       </div>
     );
   };
