@@ -3,10 +3,19 @@ import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAdventurer, updateAdventurer } from '../../store/adventurer';
 import { logout } from '../../store/session'
+import map from '../../images/map.png';
+import shield from '../../images/shield.png';
+import user from '../../images/user.png';
 
 function ProfileComponent(){
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
+    // user attributes
+    const name = useSelector(state => state.session.user ? state.session.user.username : '' );
+    const crest = useSelector(state => state.session.user ? state.session.user.familyCrest : '');
+    const rlm = useSelector(state => state.session.user ? state.session.user.realm : '');
+    const sign = useSelector(state => state.session.user ? state.session.user.starSign : '');
+    // for editing
     const [edit, setEdit] = useState(false);
     const [error, setError] = useState('');
     const [username, setUsername] = useState('');
@@ -14,25 +23,8 @@ function ProfileComponent(){
     const [realm, setRealm] = useState('');
     const [starSign, setStarSign] = useState('');
 
-    if (!currentUser) return <Redirect to='/' />
+    if (!currentUser) return <Redirect to='/' />   
 
-
-    useEffect(() => {
-        dispatch(fetchAdventurer(currentUser.id))
-    }, [dispatch])
-
-    if (!username || !familyCrest || !realm || !starSign){ 
-        // displaying current values to user, so they can make informed changes
-        const name = useSelector(state => state.adventurers.username);
-        setUsername(name);
-        const crest = useSelector(state => state.adventurers.family_crest);
-        setFamilyCrest(crest);
-        const rlm = useSelector(state => state.adventurers.realm);
-        setRealm(rlm);
-        const sign = useSelector(state => state.adventurers.star_sign);
-        setStarSign(sign);
-    }
-   
     const handleSubmit =() => {
         const user ={
             id: currentUser.id,
@@ -41,12 +33,11 @@ function ProfileComponent(){
             realm: realm,
             star_sign: starSign
         };
-
         if (!user || !familyCrest || !realm || !starSign){
              setError("Form must be complete");
              return;
         } 
-        if (username === 'Guest') { // We don't want Guest users to edit information here
+        if (name === 'Guest') { // We don't want Guest users to edit information here
             setError("You don't have permission to edit Guest User info");
             return;
         } 
@@ -54,38 +45,39 @@ function ProfileComponent(){
         setError('');
     }
 
+    const logoutUser = () => {
+        dispatch(logout())
+    }
+
   const formHandle = () => {
-        const user = window.user;
-        const shield = window.shield;
-        const map = window.map;
-        if (!edit){
+        if (edit === false){
             return ( //If user doesn't want to edit account show page
                 <div className='width'>
                    <div className='row'>
                     <h1 className='h1'>Account</h1>
-                    <button className='btn-6' id='right' onClick={setEdit(true)}>Edit</button>
+                    <button className='btn-6' id='right' onClick={()=> setEdit(true)}>Edit</button>
                    </div>
                  <hr className='hr'/>
                 <div className='p3'>
-                   <img src={user} className='icon1'></img>   Username: {`${username}`}  
+                   <img src={user} className='icon1'></img>   Username: {`${name}`}  
                 </div>
                 <div className='p3'>
-                    <img src={shield} className='icon1'/>   Family Crest: {`${familyCrest}`}
+                    <img src={shield} className='icon1'/>   Family Crest: {`${crest}`}
                 </div>
                 <div className='p3'>
-                    <img src={map} className='icon1'/>   Realm: {`${realm}`}
+                    <img src={map} className='icon1'/>   Realm: {`${rlm}`}
                 </div>
                 <div className='p4'>
-                    <div className='icon'>&#x2638;</div>   Star Sign: {`${starSign}`}
+                    <div className='icon'>&#x2638;</div>   Star Sign: {`${sign}`}
                 </div>
                 <br/>
                 <div className='row'>
-                    <Link onClick={logout} className='btn-5' to='/' id='margin'>Logout</Link>
+                    <button onClick={()=> logoutUser()} className='btn-5' to='/' id='margin'>Logout</button>
                 </div>
             </div> 
             );
-        };    
-         return (  // If user wants to edit - show edit menu
+        } else {
+            return (  // If user wants to edit - show edit menu
                 <div className='width'>
                     <h1 className='h1'>Update Account</h1>
                     <hr className='hr'/>
@@ -95,33 +87,33 @@ function ProfileComponent(){
                     <input 
                     type="text" 
                     value={username}
-                    onChange={() => setUsername(e.target.value)}
+                    onChange={e => setUsername(e.target.value)}
                     className='input3'
-                    placeholder={`${username}`}/>
+                    placeholder={`${name}`}/>
                    <div className='red'>{username ? '' : "username can't be blank" }</div>
                     <label className='p2'>Family Crest:</label>
                     <input 
                     type="text" 
                     value={familyCrest}
-                    onChange={()=>setFamilyCrest(e.target.value)}
+                    onChange={e=>setFamilyCrest(e.target.value)}
                     className='input3'
-                    placeholder={`${familyCrest}`}/>
+                    placeholder={`${crest}`}/>
                     <div className='red'>{familyCrest ? '' : "Family Crest can't be blank" }</div>
                     <label className='p2'>Realm: </label>
                     <input 
                     type="text" 
                     value={realm}
-                    onChange={()=> setRealm(e.target.value)}
+                    onChange={e=> setRealm(e.target.value)}
                     className='input3'
-                    placeholder={`${realm}`}/>
+                    placeholder={`${rlm}`}/>
                    <div className='red'>{realm ? '' : "Realm can't be blank" }</div>
                     <label className='p2'>Star Sign:</label>
                     <input 
                     type="text" 
                     value={starSign}
-                    onChange={()=>setStarSign(e.target.value)}
+                    onChange={e=>setStarSign(e.target.value)}
                     className='input3'
-                    placeholder={`${starSign}`}/>
+                    placeholder={`${sign}`}/>
                     <div className='red'>{starSign ? '' : "Star Sign can't be blank" }</div>
                      </div>
                     <div className='buttons'>   
@@ -130,6 +122,7 @@ function ProfileComponent(){
                     </div>
                 </div>
             );
+            };
         };
 
         return (

@@ -1,0 +1,111 @@
+.width{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#right{
+    align-self: flex-end;
+    margin: 8px;
+    
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: left;
+    width: 100%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 8px;
+}
+
+.btn-5{
+    color: grey;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    padding: 4px
+}
+
+.btn-5:hover{
+    color: black;
+    background-color: rgb(201, 196, 196);
+}
+
+.box{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 2px;
+    filter: drop-shadow(1px 1px 1px grey);
+    margin-top: 2rem;
+}
+
+.hr{
+    width: 99%;
+    margin-top: 0;
+}
+
+.input3{
+    align-self: center;
+    border: 1px solid gray;
+    border-radius: 2px;
+    color: black;
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+.p2{
+    color: grey;
+    align-self: center;
+    margin-bottom: .5rem;
+}
+
+.edit-user{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.btn-6 {
+    border: 1px solid green;
+    color: green;
+    border-radius: 2px;
+    padding: 4px;
+    margin-right: 16px;
+    background-color: white;
+}
+
+.btn-6:hover {
+    background-color: green;
+    color: white;
+}
+
+.p3{
+    color: black;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.p4{
+    display: flex;
+    align-items: baseline;
+    color: black;
+    margin-top: .5rem;
+    margin-left: 1rem;
+}
+
+.icon{
+    color: black;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-right: .2rem;
+    margin-top: 1rem;
+}

@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 
-const Quests = ({categories}) => {
 
+const Quests = ({categories}) => {
+  
   return (
     <ul className='dd-container'
       style={{ position: 'relative'}}> 
@@ -13,9 +14,8 @@ const Quests = ({categories}) => {
           <Link
             className="btn"
             key={category.id}
-            category={category}
             to={`/categories/${category.id}`}
-          >{category.category_name}</Link>
+          >{category.categoryName}</Link>
         )}
       </li>  
     </ul>   

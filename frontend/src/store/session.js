@@ -27,12 +27,21 @@ const storeCurrentUser = user => {
 }
 
 export const signup = (user) => async (dispatch) => {
-    const { username, password } = user;
+    const { username, password, adventurer, avg_rating, total_ratings,
+         elite, pitch, family_crest, realm, star_sign } = user;
     const response = await csrfFetch("/api/users", {
         method: "POST",
         body: JSON.stringify({
             username,
-            password
+            password,
+            adventurer,
+            avg_rating,
+            total_ratings,
+            elite,
+            pitch,
+            family_crest,
+            realm,
+            star_sign
         })
     });
     const data = await response.json();
@@ -68,7 +77,7 @@ export const logout = () => async (dispatch) => {
 export const restoreSession = () => async dispatch => { 
     const response = await csrfFetch("/api/session");
     storeCSRFToken(response);
-    const data = await response.json();
+    const data = await response.json(); 
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
     return response;

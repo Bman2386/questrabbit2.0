@@ -3,16 +3,16 @@ import { Route, Switch} from "react-router-dom";
 import NavBar from './components/nav_bar';
 import Category from './components/category'
 import Footer from './components/footer'
-import Signup from './components/session';
-import Login from './components/session';
+import Signup from './components/signup';
+import Login from './components/login';
 import Home from './components/home';
-import Intermediary from './components/session/intermediary';
+import Intermediary from './components/intermediary';
 import Profile from './components/profile';
-import QuestForm from './components/questForm';
-import QuestPage from './components/page';
-import EditQuest from './components/edit';
-import CancelQuest from './components/cancel';
-import Category from "./components/category";
+// import QuestForm from './components/questForm';
+// import QuestPage from './components/page';
+// import EditQuest from './components/edit';
+// import CancelQuest from './components/cancel';
+
 
 function App(){
    return(
@@ -42,24 +42,24 @@ function App(){
                 <Profile />
                 <Footer />
             </Route>
-            <Route path='/quest'>
+            {/* <Route path='/quest'>
                 <QuestForm />
-            </Route>
-            <Route path='/edit/:questId'>
+            </Route> */}
+            {/* <Route path='/edit/:questId'>
                 <NavBar />
                 <EditQuest />
                 <Footer />
-            </Route>
-            <Route path='/delete/:questId'>
+            </Route> */}
+            {/* <Route path='/delete/:questId'>
                 <NavBar />
                 <CancelQuest />
                 <Footer />
-            </Route>
-            <Route path='/quests'>
+            </Route> */}
+            {/* <Route path='/quests'>
                 <NavBar />
                 <QuestPage />
                 <Footer />
-            </Route>
+            </Route> */}
         </Switch>
     </>
    ) 

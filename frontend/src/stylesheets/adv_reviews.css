@@ -1,0 +1,18 @@
+.adv-info{
+    color: black;
+    width: 90%;
+    background-color:  rgb(250, 246, 246);
+}
+
+.hero-box{
+   width: fit-content;
+   border: 1px solid black;
+   border-radius: 2px;
+   padding: 8px;
+}
+
+.reviews{
+    color: black;
+    background-color: rgb(250, 246, 246);
+    margin-top: 8px;
+}

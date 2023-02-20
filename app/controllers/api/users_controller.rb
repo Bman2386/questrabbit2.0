@@ -2,6 +2,10 @@
 class Api::UsersController < ApplicationController
 
 
+    wrap_parameters include: User.attribute_names + ['password']
+
+    # before_action :require_logged_out, only: [:create]
+
     def index
       temp = User.all
       @users = temp.where(adventurer: true)
@@ -33,16 +37,6 @@ class Api::UsersController < ApplicationController
           render json: @user.errors.full_messages, status: 401
         end
     end
-
-    def destroy
-        @user = User.find(params[:id])
-        if @user
-          @user.destroy
-          redirect_to new_session_url
-        else
-          render json: ['Could not find user'], status: 400
-        end
-      end
 
     private
     def user_params

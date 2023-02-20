@@ -1,0 +1,100 @@
+import React, { useState } from 'react';
+import * as sessionActions from "../../store/session";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+function Signup(){
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.session.user);
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState('');
+  const adventurer = false;
+  const avg_rating = 0;
+  const total_ratings = 0;
+  const elite = false;
+  const pitch = null;
+  const [family_crest, setFamilyCrest] = useState('');
+  const [realm, setRealm] = useState('');
+  const [star_sign, setStarSign] = useState(''); 
+
+  if (currentUser) return <Redirect to='/' />;
+
+   const renderErrors=()=> {
+    if (errors.length === 0) return '';
+      return(
+        <ul>
+          {errors.map((error, i) => (
+            <li key={`error-${i}`} className="error">
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setErrors([]);
+    return dispatch(sessionActions.signup({ username, password, adventurer, 
+      avg_rating, total_ratings, elite, pitch, family_crest, realm, star_sign }))
+      .catch(async (res) => {
+        let data;
+        try {
+          // .clone() essentially allows you to read the response body twice
+          data = await res.clone().json();
+        } catch {
+          data = await res.text(); // Will hit this case if the server is down
+        }
+        if (data?.errors) setErrors(data.errors);
+        else if (data) setErrors([data]);
+        else setErrors([res.statusText]);
+      });
+      }
+
+      const logo = window.logo
+      const formPhoto = window.formPhoto
+
+        return (
+            <div className="session-form">
+             <img src={formPhoto} className="form-photo" />
+        <form className='inter-form'>
+        <Link to='/'>
+          <img src={logo} className="logo"/>
+        </Link>
+        {renderErrors()}
+            <input
+              value={username}
+              onChange={e => setUserName(e.target.value)}
+              placeholder="Username"
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={e=>setPassword(e.target.value)}
+              placeholder="Password"
+            />
+            <input 
+            value={family_crest}
+            onChange={e=> setFamilyCrest(e.target.value)}
+            placeholder="Family Crest ex, Smith "
+            />
+            <input 
+            value={realm}
+            onChange={e => setRealm(e.target.value)}
+            placeholder="Realm ex, Earth"
+            />
+            <input 
+            value={star_sign}
+            onChange={e => setStarSign(e.target.value)}
+            placeholder="Star Sign ex, Libra"
+            />
+            <button onClick={()=> handleSubmit()}>Create Account</button>
+        </form>
+      </div>
+        )
+}
+
+export default Signup;

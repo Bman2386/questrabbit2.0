@@ -1,62 +1,54 @@
-import React, { useEffect, useLocation } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";  
 import { fetchCategories } from '../../store/category';
 import { recieveData } from '../../store/temp';
+import slay from '../../images/slay.jpg';
+import craft from '../../images/craft.jpg';
+import escort from '../../images/escort.jpg';
+import ftch from '../../images/ftch.jpg';
 
 function Category(){
     const dispatch = useDispatch();
     const location = useLocation();
     const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
-    const categoryId = location.pathname
-
+    const locationPath = location.pathname;
+    const length = locationPath.length - 1;
+    const categoryId = parseInt(locationPath[length]); //grab the number from the location
+    
     useEffect(() => {
-        dispatch(fetchCategories())
+        dispatch(fetchCategories());
     }, [dispatch]);
-
-    if (!categories) return '';
+    
     if (!categoryId) return (
         <> Oops, categoryId didn't pass through</>
-    )
+    );
 
-    const imageLogic = (id) => {
-        const slay = window.slay
-        const craft = window.craft
-        const escort = window.escort
-        const ftch = window.ftch
-        //ftch = fetch, but couldn't be named 'fetch' as it is a keyword
-        switch (id) {
-            case "2":
-            return craft;
-            case "3": 
-            return escort;
-            case "4":
-            return slay;
-            default:
-            return ftch;
-        }
-    }
+    console.log(categories, 'list');
  
     const category = categories[categoryId - 1]
-    const dynamicImage = (
-        categories && categories.length > 1 && categoryId > 1 ? imageLogic(categoryId) : window.ftch
-    )    
+    const dynamicImage = (id) => {
+        if (id === 1) return <img className="show-image" src={ftch} />
+        if (id === 2) return <img className="show-image" src={craft} />
+        if (id === 3) return <img className="show-image" src={escort} />
+        if (id === 4) return <img className="show-image" src={slay} />
+    }
     
     return (    
         <div className="show-container">
-            <img className="show-image" src={dynamicImage}/>
+            {dynamicImage(categoryId)}
                     {
                         categories && categories.length > 1 ? 
                         <div className='show-block'>
-                            <h1 className="show-h1">Category Name: {category.category_name}</h1>
-                            <p className="show-p">Example Description: {category.ex_description}</p>
+                            <h1 className="show-h1">Category Name: {category.categoryName}</h1>
+                            <p className="show-p">Example Description: {category.exDescription}</p>
                             <Link 
                             to='/quest'
-                            className='show-button' onClick={dispatch(recieveData(category))}>Book a Quest in this Category</Link>
+                            className='show-button' onClick={() => dispatch(recieveData(category))}>Book a Quest in this Category</Link>
                         </div> :  ''
                     }  
         </div> 
-    )
-}         
+    );
+};        
 
-export default Category
+export default Category;

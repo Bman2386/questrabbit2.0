@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import {saveData} from '../../store/temp';
+import {recieveData} from '../../store/temp';
 import { useDispatch } from 'react-redux';
+import hero from '../../images/hero.jpg';
+import star from '../../images/star.png';
+import play from '../../images/play.png';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -12,12 +15,9 @@ const setData = () => {
   const nameOfQuest = {
     name: name
   };
-  dispatch(saveData(nameOfQuest));
+  dispatch(recieveData(nameOfQuest));
 };
 
-const hero = window.hero;
-const star = window.star;
-const play = window.play;
 const stars = <img src={star} className='star2'/>;
 
 const lastButton = () => {
@@ -32,7 +32,6 @@ const lastButton = () => {
       <form className="splash-form" id="form1">
         <h1>Help when you need it, at your fingertips</h1>
         <p>Get help from hundreds of trusted adventurers for everything from errands to slaying a dragon.</p>
-        <p>test</p>
         <div className="bar">
           <input 
             type="text"

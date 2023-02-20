@@ -1,0 +1,42 @@
+.linked, .linked2{
+    height: 2rem;
+    width: 2rem;
+    padding: 0.5rem;
+    background-color: rgb(130, 124, 160);
+    
+}
+
+.linked:hover{
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.linked2:hover{
+    padding-top: .2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.a{
+    margin: 0;
+    height: 100%;
+    background-color: rgb(130, 124, 160);
+}
+.footer {
+    display: flex;
+    align-items: row;
+    justify-content: center;
+    background-color: rgb(130, 124, 160);
+}
+
+.creator{
+    height: 2rem;
+    width: fit-content;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: rgb(130, 124, 160);
+    color: white;
+}
+
+.creator:hover{
+    text-decoration: underline;
+}
