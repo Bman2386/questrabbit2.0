@@ -19,7 +19,7 @@ export const fetchCategories = () => async dispatch => {
         const data = await response.json();
         dispatch(receiveCategories(data));
     } else {
-        console.log('error: unable to fetch categories');
+        throw response;
     };
 };
 
@@ -29,7 +29,7 @@ export const fetchCategory = (categoryId) => async dispatch => {
         const data = await response.json();
         dispatch(receiveCategory(data));
     } else {
-        console.log('error: unable to fetch category');
+        throw response;
     };
 }
 

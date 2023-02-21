@@ -52,7 +52,9 @@ function Login() {
       });
   }
 
-    const loginGuest=()=> {
+    const loginGuest=(e)=> {
+      e.preventDefault();
+      e.stopPropagation();
     const guest = {
       username: 'Guest',
       password: 'hunter12'

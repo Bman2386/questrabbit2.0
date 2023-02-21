@@ -19,7 +19,7 @@ export const fetchAdventurers = () => async dispatch => {
         const data = await response.json();
         dispatch(receiveAdventurers(data.adventurers));
     } else {
-        console.log('error: unable to fetch adventurers');
+        throw response;
     };
 };
 
@@ -29,7 +29,7 @@ export const fetchAdventurer = (userId) => async dispatch => {
         const data = response.json();
         dispatch(receiveAdventurer(data.adventurer));
     } else {
-        console.log('error: unable to fetch adventurer');
+        throw response;
     };
 };
 
@@ -46,7 +46,7 @@ export const updateAdventurer = (adventurer) => async dispatch => {
         const data = await response.json();
         dispatch(receiveAdventurer(data.adventurer))
     } else {
-        console.log('error: unable to update Adventurer')
+        throw response;
     };
 };
 

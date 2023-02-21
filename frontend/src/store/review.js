@@ -1,4 +1,4 @@
-import csrf from './csrf'
+import csrfFetch from './csrf'
 
 const RECEIVE_REVIEWS = 'reviews/recieveReviews';
 const RECEIVE_REVIEW = 'reviews/recieveReview';
@@ -19,7 +19,7 @@ export const fetchReviews = () => async dispatch => {
         const data = response.json();
         dispatch(receiveReviews(data.reviews));
     } else {
-        console.log('error: unable to fetch reviews');
+        throw response;
     };
 };
 
@@ -29,7 +29,7 @@ export const fetchReview = (reviewId) => async dispatch => {
         const data = response.json();
         dispatch(receiveReview(data.review));
     } else {
-        console.log('error: unable to fetch review')
+        throw response;
     };
 };
 
@@ -46,7 +46,7 @@ export const createReview = (review) => async dispatch => {
         const data = response.json();
         dispatch(receiveReview(data.review));
     } else {
-        console.log('error: unable to create review');
+        throw response;
     };
 };
 

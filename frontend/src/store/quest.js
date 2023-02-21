@@ -22,7 +22,7 @@ export const fetchQuests = (creatorId) => async dispatch => {
         const data = await response.json()
         dispatch(receiveQuests(data.quests));
     } else {
-        console.log('error: unable to fetch Quests');
+        throw response;
     };
 };
 
@@ -32,7 +32,7 @@ export const fetchQuest = (questId) => async dispatch => {
         const data = await response.json();
         dispatch(receiveQuest(data.quest));
     } else {
-        console.log("error: can't find Quest");
+        throw response;
     };
 };
 
@@ -49,7 +49,7 @@ export const createQuest = (quest) => async dispatch => {
         const data = await response.json();
         dispatch(receiveQuest(data.quest));
     } else {
-        console.log('error: cant create quest');
+        throw response;
     };
 };
 
@@ -66,7 +66,7 @@ export const updateQuest = (quest) => async dispatch => {
         const data = await response.json();
         dispatch(receiveQuest(data.quest));
     } else {
-        console.log(`error: unable to update quest`);
+        throw response;
     };
 };
 

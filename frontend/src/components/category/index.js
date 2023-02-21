@@ -23,8 +23,6 @@ function Category(){
     if (!categoryId) return (
         <> Oops, categoryId didn't pass through</>
     );
-
-    console.log(categories, 'list');
  
     const category = categories[categoryId - 1]
     const dynamicImage = (id) => {

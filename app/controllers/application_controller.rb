@@ -28,7 +28,6 @@ class ApplicationController < ActionController::API
     end
 
     def login!(user)
-        print('login!')
         session[:session_token] = user.reset_session_token!
     end
 
