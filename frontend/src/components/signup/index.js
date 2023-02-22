@@ -10,6 +10,7 @@ function Signup(){
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
+   const [loggingIn, setLoggingIn] = useState(false);
   const adventurer = false;
   const avg_rating = 0;
   const total_ratings = 0;
@@ -38,6 +39,7 @@ function Signup(){
       e.preventDefault();
       e.stopPropagation();
       setErrors([]);
+      setLoggingIn(true);
     return dispatch(sessionActions.signup({ username, password, adventurer, 
       avg_rating, total_ratings, elite, pitch, family_crest, realm, star_sign }))
       .catch(async (res) => {
@@ -51,6 +53,7 @@ function Signup(){
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
+        setLoggingIn(false);
       });
       }
 
@@ -91,7 +94,9 @@ function Signup(){
             onChange={e => setStarSign(e.target.value)}
             placeholder="Star Sign ex, Libra"
             />
+            {loggingIn ? <div>Logging In...</div> : 
             <button onClick={()=> handleSubmit()}>Create Account</button>
+            }
         </form>
       </div>
         )

@@ -89,8 +89,8 @@ function Login() {
             onChange={e=>setpassword(e.target.value)}
             placeholder="Password"
           />
-          {loggingIn ? <div>Logging In</div> : <button onClick={handleSubmit}>Log in</button>}
-          {loggingIn ? <div>Logging In</div>:  
+          {loggingIn ? <div>Logging In...</div> : <button onClick={handleSubmit}>Log in</button>}
+          {loggingIn ? <div>Logging In...</div>:  
           <button
             to="/"
             onClick={loginGuest}
