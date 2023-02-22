@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
@@ -46,11 +46,22 @@ const renderApplication = () => {
   );
 }
 
-if (
+async function tokenCheck(){
+  if (
   sessionStorage.getItem("currentUser") === null ||
   sessionStorage.getItem("X-CSRF-Token") === null
-) {
-  store.dispatch(sessionActions.restoreSession()).then(renderApplication());
-} else {
+  ) {
+ const session = await store.dispatch(sessionActions.restoreSession());
+    if (session.ok){
+      renderApplication();
+    } else {
+      tokenCheck();
+      }
+  } else {
   renderApplication();
-}
+  };
+};
+
+tokenCheck();
+
+

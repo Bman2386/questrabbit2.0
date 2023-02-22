@@ -90,7 +90,7 @@ function Login() {
             placeholder="Password"
           />
           {loggingIn ? <div>Logging In...</div> : <button onClick={handleSubmit}>Log in</button>}
-          {loggingIn ? <div>Logging In...</div>:  
+          {loggingIn ? '':  
           <button
             to="/"
             onClick={loginGuest}
