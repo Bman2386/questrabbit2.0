@@ -11,6 +11,8 @@ function Login() {
   const [username, setUserName] = useState('');
   const [password, setpassword] = useState('');
   const [errors, setErrors] = useState('');
+  const [loggingIn, setLoggingIn] = useState(false);
+
   const currentUser = useSelector(state => state.session.user);
 
   if (currentUser) return <Redirect to='/' />;
@@ -37,6 +39,7 @@ function Login() {
     e.preventDefault();
     e.stopPropagation();
     setErrors([]);
+    setLoggingIn(true);
     return dispatch(sessionActions.login({ username, password }))
       .catch(async (res) => {
         let data;
@@ -49,6 +52,7 @@ function Login() {
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
+        setLoggingIn(false);
       });
   }
 
@@ -59,6 +63,9 @@ function Login() {
       username: 'Guest',
       password: 'hunter12'
       };
+      setUserName(guest.username);
+      setpassword(guest.password);
+      setLoggingIn(true);
         return dispatch(sessionActions.login(guest));
     }
 
@@ -82,14 +89,14 @@ function Login() {
             onChange={e=>setpassword(e.target.value)}
             placeholder="Password"
           />
-           <button onClick={handleSubmit}>Log in</button>
-            <button
+          {loggingIn ? <div>Logging In</div> : <button onClick={handleSubmit}>Log in</button>}
+          {loggingIn ? <div>Logging In</div>:  
+          <button
             to="/"
             onClick={loginGuest}
             className="login-guest" >
             Demo as Guest
-          </button>
-          
+          </button>} 
       </form>
       </div>
     );
