@@ -35,7 +35,7 @@ export const fetchAdventurer = (userId) => async dispatch => {
 
 export const updateAdventurer = (adventurer) => async dispatch => {
     const response = await csrfFetch(`api/users/${adventurer.id}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"

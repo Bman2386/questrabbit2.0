@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
 
     def update
         @user =  User.find(params[:id])
-        if @user && @user.update_attributes(user_params)
+        if @user && @user.update!(user_params)
           render :show
         elsif !@user
           render json: ['Could not locate user'], status: 400

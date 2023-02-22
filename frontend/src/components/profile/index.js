@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdventurer, updateAdventurer } from '../../store/adventurer';
+import {  updateUser } from '../../store/session';
 import { logout } from '../../store/session'
 import map from '../../images/map.png';
 import shield from '../../images/shield.png';
@@ -18,32 +18,33 @@ function ProfileComponent(){
     // for editing
     const [edit, setEdit] = useState(false);
     const [error, setError] = useState('');
-    const [username, setUsername] = useState('');
     const [familyCrest, setFamilyCrest] = useState('');
     const [realm, setRealm] = useState('');
     const [starSign, setStarSign] = useState('');
 
     if (!currentUser) return <Redirect to='/' />   
 
-    const handleSubmit =() => {
+   const handleSubmit=(e)=>{
+       e.preventDefault();
+       e.stopPropagation();
         const user ={
             id: currentUser.id,
-            username: username,
+            username: name,
             family_crest: familyCrest,
             realm: realm,
             star_sign: starSign
         };
-        if (!user || !familyCrest || !realm || !starSign){
+        if ( !familyCrest || !realm || !starSign){
              setError("Form must be complete");
              return;
         } 
         if (name === 'Guest') { // We don't want Guest users to edit information here
             setError("You don't have permission to edit Guest User info");
             return;
-        } 
-        dispatch(updateAdventurer(user));      
-        setError('');
-    }
+        }; 
+        dispatch(updateUser(user));
+        setEdit(false);
+    };
 
     const logoutUser = () => {
         dispatch(logout())
@@ -83,14 +84,6 @@ function ProfileComponent(){
                     <hr className='hr'/>
                     <div className='edit-user'>
                         <div className='error'>{`${error}`}</div>
-                    <label className='p2'>Username: </label>
-                    <input 
-                    type="text" 
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    className='input3'
-                    placeholder={`${name}`}/>
-                   <div className='red'>{username ? '' : "username can't be blank" }</div>
                     <label className='p2'>Family Crest:</label>
                     <input 
                     type="text" 
@@ -118,7 +111,7 @@ function ProfileComponent(){
                      </div>
                     <div className='buttons'>   
                         <button className='btn-5' onClick={() => setEdit(false)}>Cancel</button>
-                        <button onClick={() => handleSubmit()}>Submit</button>
+                        <button onClick={handleSubmit}>Submit</button>
                     </div>
                 </div>
             );

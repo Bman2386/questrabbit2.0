@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as sessionActions from "../../store/session";
+import {signin} from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ function Signup(){
           {errors.map((error, i) => (
             <li key={`error-${i}`} className="error">
               {error}
-            </li>
+              </li>
           ))}
         </ul>
       );
@@ -42,8 +42,13 @@ function Signup(){
       e.stopPropagation();
       setErrors([]);
       setLoggingIn(true);
-    return dispatch(sessionActions.signup({ username, password, adventurer, 
-      avg_rating, total_ratings, elite, pitch, family_crest, realm, star_sign }))
+      const user = {
+        username: username, password:password, adventurer: adventurer,
+        avg_rating: avg_rating, total_ratings: total_ratings,
+        elite: elite, pitch: pitch, 
+        family_crest: family_crest, realm: realm, star_sign: star_sign
+      }
+    return dispatch(signin(user))
       .catch(async (res) => {
         let data;
         try {
@@ -93,7 +98,7 @@ function Signup(){
             placeholder="Star Sign ex, Libra"
             />
             {loggingIn ? <div>Logging In...</div> : 
-            <button onClick={()=> handleSubmit()}>Create Account</button>
+            <button onClick={handleSubmit}>Create Account</button>
             }
         </form>
       </div>

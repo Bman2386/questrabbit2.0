@@ -26,22 +26,42 @@ const storeCurrentUser = user => {
     else sessionStorage.removeItem("currentUser");
 }
 
-export const signup = (user) => async (dispatch) => {
+export const signin = (user) => async (dispatch) => {
     const { username, password, adventurer, avg_rating, total_ratings,
          elite, pitch, family_crest, realm, star_sign } = user;
     const response = await csrfFetch("/api/users", {
         method: "POST",
         body: JSON.stringify({
-            username,
-            password,
-            adventurer,
-            avg_rating,
-            total_ratings,
-            elite,
-            pitch,
-            family_crest,
-            realm,
-            star_sign
+            username: username,
+            password: password,
+            adventurer: adventurer,
+            avg_rating: avg_rating,
+            total_ratings: total_ratings,
+            elite: elite,
+            pitch: pitch,
+            family_crest: family_crest,
+            realm: realm,
+            star_sign: star_sign
+        })
+    });
+    const data = await response.json();
+    storeCurrentUser(data.user);
+    dispatch(setCurrentUser(data.user));
+    return response;
+};
+export const updateUser = (user) => async (dispatch) => {
+    const { id, username, family_crest, realm, star_sign } = user;
+    const response = await csrfFetch(`/api/users/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            username: username,
+            family_crest: family_crest,
+            realm: realm,
+            star_sign: star_sign
         })
     });
     const data = await response.json();
