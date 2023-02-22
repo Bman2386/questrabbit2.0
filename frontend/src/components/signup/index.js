@@ -3,6 +3,8 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import QuestRabbit from '../../images/QuestRabbit.jpg';
+import formphoto from '../../images/formphoto.jpg';
 
 function Signup(){
   const dispatch = useDispatch();
@@ -56,16 +58,12 @@ function Signup(){
         setLoggingIn(false);
       });
       }
-
-      const logo = window.logo
-      const formPhoto = window.formPhoto
-
         return (
             <div className="session-form">
-             <img src={formPhoto} className="form-photo" />
+             <img src={formphoto} className="form-photo" />
         <form className='inter-form'>
         <Link to='/'>
-          <img src={logo} className="logo"/>
+          <img src={QuestRabbit} className="logo"/>
         </Link>
         {renderErrors()}
             <input
