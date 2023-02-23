@@ -17,7 +17,7 @@ export const fetchReviews = () => async dispatch => {
     const response = await csrfFetch('api/reviews');
     if (response.ok){
         const data = response.json();
-        dispatch(receiveReviews(data.reviews));
+        dispatch(receiveReviews(data));
     } else {
         throw response;
     };

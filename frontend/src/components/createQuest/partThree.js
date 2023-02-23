@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import { fetchAdventurers } from '../../store/adventurer';
+import {createQuest} from '../../store/quest';
 
-function PartThree({step, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
+function PartThree({step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers): []);
     const [mini, setMini] = useState(1);
@@ -205,6 +206,18 @@ function PartThree({step, setStep,startTime, setStartTime, questName, adventurer
         return adv.username;
     }
 
+    const submit = () => {
+        const quest = {
+            quest_name: questName,
+            category_id: categoryId,
+            details: details,
+            adventurer_id: adventurerId,
+            start_time: startTime,
+            completed: false,
+            creator_id: creatorId
+        };
+        dispatch(createQuest(quest))
+    }
     const reviewQuest = () => {
         if (mini === 3) {
             return (

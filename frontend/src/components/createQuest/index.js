@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
-import {PartOne} from './partOne';
-import {PartTwo} from './partTwo';
-import {PartThree} from './partThree';
+import PartOne from './partOne';
+import PartTwo from './partTwo';
+import PartThree from './partThree';
 
 function CreateQuest(){
     const currentUser = useSelector(state => state.session.user ? state.session.user : '');
@@ -40,6 +40,7 @@ function CreateQuest(){
                     adventurerId={adventurerId}
                     categoryId={categoryId}
                     details={details}
+                    creatorId={currentUser.id}
                 />;
             default:
                 return <PartOne 

@@ -17,7 +17,8 @@ export const fetchAdventurers = () => async dispatch => {
     const response = await csrfFetch('api/users');
     if (response.ok){
         const data = await response.json();
-        dispatch(receiveAdventurers(data.adventurers));
+        debugger
+        dispatch(receiveAdventurers(data));
     } else {
         throw response;
     };
@@ -55,13 +56,9 @@ const initialState = {};
 const adventurersReducer = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_ADVENTURERS:
-            const adventurers = {};
-            action.adventurers.forEach(adventurer => {
-                adventurers[adventurer.id] = adventurer;
-            });
-            return adventurers;
+            return Object.assign({}, state, action.adventurers);
         case RECEIVE_ADVENTURER:
-            return Object.assign({}, action.adventurer);
+            return Object.assign({}, state, action.adventurer);
         default:
             return state;
     };

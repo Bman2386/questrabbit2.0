@@ -4,15 +4,14 @@ import { useSelector } from "react-redux";
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import pencil from '../../images/pencil.png';
 
-function PartOne({step, setStep, questName, 
-    setQuestName, details, setDetails, categoryId, setCategoryId}){
+function PartOne({step, setStep, questName, setQuestName, details, setDetails, categoryId, setCategoryId}){
         const [mini, setMini] = useState(0);
         const data = useSelector(state => state.temp ? state.temp : '');
 
-        if (data && parseInt(data) === NaN) setCategoryId(data);
-        if (data && parseInt(data) !== NaN) setDetails(data);
-
-    const questName = () => {
+    //     if (data && parseInt(data) === NaN) setCategoryId(data);
+    //     if (data && parseInt(data) !== NaN) setDetails(data);
+    // console.log(data)
+    const questStart = () => {
         if (mini === 0) {
             return (
                 <div className="quest-name">
@@ -140,7 +139,7 @@ function PartOne({step, setStep, questName,
                     <textarea
                         value={details}
                         className="textarea"
-                        onChange={()=> setDetails(e.target.value)}
+                        onChange={e => setDetails(e.target.value)}
                     />
                     {details === '' ? '' : <button
                         id='center'
@@ -187,7 +186,7 @@ function PartOne({step, setStep, questName,
                 </div>
                 <hr />
                 <div className="quest-form">
-                    {questName()}
+                    {questStart()}
                     {questCategory()}
                     {questDetails()}
                     <br />

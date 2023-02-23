@@ -1,11 +1,8 @@
 ## TODO:
 - rewrite components to functional components
-- add css files
 - remove old code
+- write reviews to seed
+- debug quest-form
 - test app
 
 
-## Test
-- server runs
-- backend <==> frontend
-- components inside components

@@ -12,21 +12,22 @@ import goblin_slayer from '../../images/goblin_slayer.jpg';
 function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setReview}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
-    const reviews = useSelector(state => state.reviews ? Object.values[state.reviews] : []);
+    // const reviews = useSelector(state => state.reviews ? Object.values[state.reviews] : []); // seed reviews
+    const reviews = [];
     const [adv, setAdv] = useState([]);
     const [isChecked, setIsChecked] = useState(false);
     const [selected, setSelected] = useState('');
 
     useEffect(() => {
         dispatch(fetchAdventurers());
-        dispatch(fetchReviews());
+        // dispatch(fetchReviews());
     }, [dispatch]);
 
-    if (!adventurers || !reviews) return <div>Loading...</div>;
-
+    if (adventurers.length < 1 ) return <div>Loading...</div>;
+    
     setAdv([...adventurers]);
 
-    const sortHelper = (type, arr=adv)=> {
+    const sortHelper =(type, arr=adv)=> {
         const first = arr[0];
         if (arr.length < 2) return arr;
         const func = (x,y) => {

@@ -43,7 +43,7 @@ function App(){
                 <Footer />
             </Route>
             <Route path='/quest'>
-                <QuestForm />
+                <CreateQuest />
             </Route>
             {/* <Route path='/edit/:questId'>
                 <NavBar />
