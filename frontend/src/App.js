@@ -8,7 +8,7 @@ import Login from './components/login';
 import Home from './components/home';
 import Intermediary from './components/intermediary';
 import Profile from './components/profile';
-// import QuestForm from './components/questForm';
+import CreateQuest from './components/createQuest';
 // import QuestPage from './components/page';
 // import EditQuest from './components/edit';
 // import CancelQuest from './components/cancel';
@@ -42,9 +42,9 @@ function App(){
                 <Profile />
                 <Footer />
             </Route>
-            {/* <Route path='/quest'>
+            <Route path='/quest'>
                 <QuestForm />
-            </Route> */}
+            </Route>
             {/* <Route path='/edit/:questId'>
                 <NavBar />
                 <EditQuest />
