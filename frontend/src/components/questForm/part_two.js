@@ -15,9 +15,7 @@ const PartTwo = props => {
                 <div className='award'>
                     <i className='fas fa-award' id='blue'></i>
                     <div id='blue'>Elite Adventurer</div>
-                    
                 </div>
-                
             )
         } else {
             return ''
@@ -63,17 +61,15 @@ const PartTwo = props => {
     const hero = (name) => {
         switch (name) {
             case 'Hercules':
-                return (
-                    <img src={hercules} className='adv-img'/>
-                )
+                return <img src={hercules} className='adv-img'/>;
             case 'Goblin Slayer':
-            return <img src={goblin_slayer} className='adv-img'/>
+            return <img src={goblin_slayer} className='adv-img'/>;
             case 'Isaac Newton':
-            return <img src={isaac_newton} className='adv-img' />
+            return <img src={isaac_newton} className='adv-img' />;
             default:
             return '';
-        }
-    }
+        };
+    };
 
     const sortBy = () => {
         if (values.review === 'false'){
