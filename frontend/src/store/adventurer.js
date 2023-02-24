@@ -17,7 +17,6 @@ export const fetchAdventurers = () => async dispatch => {
     const response = await csrfFetch('api/users');
     if (response.ok){
         const data = await response.json();
-        debugger
         dispatch(receiveAdventurers(data));
     } else {
         throw response;

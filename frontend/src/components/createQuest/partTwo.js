@@ -13,8 +13,8 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
     // const reviews = useSelector(state => state.reviews ? Object.values[state.reviews] : []); // seed reviews
-    const reviews = [];
     const [adv, setAdv] = useState([]);
+    const reviews = [];
     const [isChecked, setIsChecked] = useState(false);
     const [selected, setSelected] = useState('');
 
@@ -25,9 +25,10 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
 
     if (adventurers.length < 1 ) return <div>Loading...</div>;
     
-    setAdv([...adventurers]);
+    
+    const temp = [...adventurers];
 
-    const sortHelper =(type, arr=adv)=> {
+    const sortHelper =(type, arr=temp)=> {
         const first = arr[0];
         if (arr.length < 2) return arr;
         const func = (x,y) => {
@@ -41,10 +42,10 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
 
         return left.concat([first]).concat(right);
     };
+
     function sortAdv(e){
-        e.preventDefault();
         let sorted
-        switch (e.target.value) {
+        switch (e) {
             case 'reviews':
                 sorted = sortHelper('total_ratings');
                 setAdv(sorted)
@@ -66,11 +67,11 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
     };
 
     const sortBy = () => {
-        if (review === 'false') {
+        if (!review) {
             return (
                 <div className='sorting'>
                     <div className='sort'>Sort By:</div>
-                    <select onChange={(e) => sortAdv(e)} value='cat'>
+                    <select onChange={(e) => sortAdv(e.target.value)}>
                         <option value="">-</option>
                         <option value='recommended'>Best Value</option>
                         <option value="reviews">Most Reviewed</option>
@@ -80,6 +81,20 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
             );
         };
         return '';
+    };
+
+    const filterElite = (value)=> {
+        if (value){ // if true
+            const temp = [];
+            adventurers.forEach(ad => {
+                if (ad.elite) temp.push(ad)
+            });
+            setAdv(temp);
+            setIsChecked(true);
+        } else {
+            setAdv([...adventurers])
+            setIsChecked(false);
+        };
     };
 
     const checkBox = () => {  
@@ -92,7 +107,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
                             <button
                                 value='elite'
                                 className='check'
-                                onClick={() => setIsChecked(true)}></button>
+                                onClick={() => filterElite(true)}></button>
                             <label htmlFor="elite" className='p10'>Elite Only</label>
                         </div>
                     </div>
@@ -105,7 +120,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
                             <button
                                 className='check'
                                 value='elite'
-                                onClick={() => setIsChecked(false)}>
+                                onClick={() => filterElite(false)}>
                                 <i id='shrink'>&#x2713;</i>
                             </button>
                             <label htmlFor="elite" className='p10'>Elite Only</label>
@@ -179,6 +194,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
         setAdventurerId(id);
         setStep(3);
     };
+    if (adv.length === 0) setAdv([...adventurers]);
     const list = () => {
         const names = adv.map(ad =>
             <div className="hero-container" key={ad.id}>
@@ -194,8 +210,8 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
                         <p className="p">{ad.pitch}</p>
                     </div>
                 </div>
-                <button onClick={() => selectAdv(ad.id)}>See Reviews</button>
-                <button value={ad.adventurer_id} type="submit" className="select2" onClick={() => moveToNextStep(ad.id)}>Select and Continue</button>
+                <button value={ad.id} onClick={e => selectAdv(e.target.value)}>See Reviews</button>
+                <button value={ad.id} className="select2" onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
             </div>
         );
 
@@ -238,7 +254,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
                         <div className='p' id='margin'>{`${selected.username}`}</div>
                         <div className="p">{isElite(selected.elite)}</div>
                         <div className='p' id='margin'>{`${selected.pitch}`}</div>
-                        <button className="select2" onClick={() => moveToNextStep(selected.id)}>Select and Continue</button>
+                        <button value={selected.id} className="select2" onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
                         <button onClick={()=> setSelected('')}>Close Reviews</button>
                     </div>
                     <div className='reviews'>Reviews:</div>
@@ -272,7 +288,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
             </div>
             <hr />
             <div className='back'>
-                <button onClick={()=> setStep(1)}>Back</button>
+                <button value={1} onClick={e=> setStep(e.target.value)}>Back</button>
                 {sortBy()}
             </div>
             <div className='quest-form2'>
