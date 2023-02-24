@@ -21,7 +21,9 @@ function Signup(){
   const [family_crest, setFamilyCrest] = useState('');
   const [realm, setRealm] = useState('');
   const [star_sign, setStarSign] = useState(''); 
+  const temp = useSelector(state => state.temp ? state.temp : '')
 
+  if (currentUser && temp) return <Redirect to='/quest' />
   if (currentUser) return <Redirect to='/' />;
 
    const renderErrors=()=> {

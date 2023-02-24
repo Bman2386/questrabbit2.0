@@ -14,7 +14,9 @@ function Login() {
   const [loggingIn, setLoggingIn] = useState(false);
 
   const currentUser = useSelector(state => state.session.user);
+  const temp = useSelector(state => state.temp ? state.temp : '')
 
+  if (currentUser && temp) return <Redirect to='/quest'/>
   if (currentUser) return <Redirect to='/' />;
  
   const renderErrors=()=> {
