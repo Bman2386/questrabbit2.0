@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuests } from '../../store/quest';
 import EditQuest from './edit';
+import CancelQuest from './cancel';
 
 function QuestsPage (){
     const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function QuestsPage (){
     const currentUser = useSelector(state=> state.session.user ? state.session.user : '');
     const [edit, setEdit] = useState(false);
     const [quest, setQuest] = useState('');
+    const [cancel, setCancel] = useState('');
 
     useEffect(() => {
             dispatch(fetchQuests())
@@ -20,6 +22,7 @@ function QuestsPage (){
     if (!quests) return <div>Loading...</div>;
 
     if (edit) return <EditQuest currentUser={currentUser} quest={quest}/>;
+    if (cancel) return <CancelQuest currentUser={currentUser} quest={quest} />;
 
     const categoryShow=(quest)=> {
         if (quest.categoryId === 1){
@@ -106,12 +109,18 @@ function QuestsPage (){
         return <div className='orders4'>{`${startTime}`}</div>;
        };
 
-       const moveToEdit = (id) => {
-            const temp = quests.filter(q => q.id === parseInt(id));
-            const matchedQuest = temp[0];
-            setQuest(matchedQuest);
-            setEdit(true);
+    const moveToEdit = (id) => {
+        const temp = quests.filter(q => q.id === parseInt(id));
+        const matchedQuest = temp[0];
+        setQuest(matchedQuest);
+        setEdit(true);
        };
+    const moveToCancel = (id) => {
+        const temp = quests.filter(q => q.id === parseInt(id));
+        const matchedQuest = temp[0];
+        setQuest(matchedQuest);
+        setCancel(true)
+    } 
     function questShow() {
             if (quests.length > 0){
                 const list = quests.map(quest =>
@@ -152,11 +161,12 @@ function QuestsPage (){
                         value={quest.id}
                         onClick={(e)=> moveToEdit(e.target.value)}
                         >Edit Quest</button>
-                        <Link 
+                        <button 
                         to={`/delete/${quest.id}`}
                         className="btn-5" 
-                        questid={quest.id}
-                        >Cancel Quest</Link>  
+                        value={quest.id}
+                        onClick={e=> moveToCancel(e.target.value)}
+                        >Cancel Quest</button>  
                         </div>
                         
                 </div>
