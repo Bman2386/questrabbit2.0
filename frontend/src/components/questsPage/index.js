@@ -9,9 +9,7 @@ function QuestsPage (){
     const currentUser = useSelector(state=> state.session.user ? state.session.user : '');
 
     useEffect(() => {
-        if (currentUser) {
-            dispatch(fetchQuests(currentUser.id))
-        }
+            dispatch(fetchQuests())
     }, [dispatch]);
 
     if (!currentUser) return <Redirect to='/'/>;

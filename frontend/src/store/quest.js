@@ -72,7 +72,7 @@ const initialState = {};
 const questsReducer = (state=initialState, action) => {
     switch (action.type) {
         case RECEIVE_QUESTS:
-            return Object.assign({}, state, action.quests);
+            return Object.assign({}, action.quests);
         case RECEIVE_QUEST:
             return Object.assign({}, state, action.quest);
         default:
