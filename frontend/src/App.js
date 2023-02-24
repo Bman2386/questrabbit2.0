@@ -10,7 +10,7 @@ import Intermediary from './components/intermediary';
 import Profile from './components/profile';
 import CreateQuest from './components/createQuest';
 import QuestsPage from './components/questsPage';
-
+// import EditQuest from './components/editQuest'
 
 function App(){
    return(
@@ -48,6 +48,11 @@ function App(){
                 <QuestsPage />
                 <Footer />
             </Route>
+            {/* <Route  path='quests/:questId'>
+                <NavBar/>
+                <EditQuest />
+                <Footer />
+            </Route> */}
         </Switch>
     </>
    ) 

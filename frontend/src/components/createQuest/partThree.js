@@ -10,7 +10,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers): []);
     const [mini, setMini] = useState(1);
-    const [date, setDate] = useState(new Date);
+    const [date, setDate] = useState(new Date());
 
     useEffect(()=> {
         dispatch(fetchAdventurers)
@@ -89,6 +89,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                 const temp = startTime.setHours(hour);
                 const startHour = new Date(temp)
                 setStartTime(startHour);
+                return;
             default:
                 return;
         };
@@ -263,7 +264,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
         <div className="quest-container">
             <div className='top-bar'>
                 <Link to='/' >
-                    <img src={QuestRabbit} className="logo2" />
+                    <img src={QuestRabbit} className="logo2" alt='logo' />
                 </Link>
                 <div className='bars'>
                     <ul className='bar1'>

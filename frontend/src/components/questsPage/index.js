@@ -1,12 +1,15 @@
-import React,{ useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuests } from '../../store/quest';
+import EditQuest from './edit';
 
 function QuestsPage (){
     const dispatch = useDispatch();
     const quests = useSelector(state => state.quests ? Object.values(state.quests):[]);
     const currentUser = useSelector(state=> state.session.user ? state.session.user : '');
+    const [edit, setEdit] = useState(false);
+    const [quest, setQuest] = useState('');
 
     useEffect(() => {
             dispatch(fetchQuests())
@@ -15,7 +18,9 @@ function QuestsPage (){
     if (!currentUser) return <Redirect to='/'/>;
 
     if (!quests) return <div>Loading...</div>;
-   
+
+    if (edit) return <EditQuest currentUser={currentUser} quest={quest}/>;
+
     const categoryShow=(quest)=> {
         if (quest.categoryId === 1){
             return 'Fetch';
@@ -37,9 +42,9 @@ function QuestsPage (){
             case 3:
                 return 'Goblin Slayer';
             case 4:
-                return 'Isaac Newton'
+                return 'Isaac Newton';
             default:
-                return 'error'
+                return 'error';
         };
     };
      function timeShow(quest){
@@ -100,6 +105,13 @@ function QuestsPage (){
         const startTime = dateDisplay();
         return <div className='orders4'>{`${startTime}`}</div>;
        };
+
+       const moveToEdit = (id) => {
+            const temp = quests.filter(q => q.id === parseInt(id));
+            const matchedQuest = temp[0];
+            setQuest(matchedQuest);
+            setEdit(true);
+       };
     function questShow() {
             if (quests.length > 0){
                 const list = quests.map(quest =>
@@ -111,7 +123,7 @@ function QuestsPage (){
                             </div>
                         </div>
                         <div className='links2'>
-                            <div className='p'>Retails:</div>
+                            <div className='p'>Details:</div>
                             <div className='orders4'>
                                 "{quest.details}"
                             </div>
@@ -135,11 +147,11 @@ function QuestsPage (){
                             </div>
                         </div>
                         <div className='links2' id='center'>
-                          <Link 
-                        to={`/edit/${quest.id}`}
-                        className="btn-4" 
-                        questid={quest.id}
-                        >Edit Quest</Link>
+                          <button 
+                        className="btn-1" 
+                        value={quest.id}
+                        onClick={(e)=> moveToEdit(e.target.value)}
+                        >Edit Quest</button>
                         <Link 
                         to={`/delete/${quest.id}`}
                         className="btn-5" 

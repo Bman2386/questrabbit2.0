@@ -26,6 +26,12 @@ class Api::QuestsController < ApplicationController
 
     def show
         @quest = Quest.find(params[:id])
+        debugger
+        if @quest
+            render :show
+        else
+            render :json['sorry unable to find quest']
+        end
     end
 
     def update
@@ -34,7 +40,7 @@ class Api::QuestsController < ApplicationController
             render json: ['Sorry could not find your quest :(']
         end
         
-        if @quest.update_attributes(quest_params)
+        if @quest.update(quest_params)
             @quest.save
             render :show 
         else

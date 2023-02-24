@@ -36,6 +36,7 @@
 .btn-5:hover{
     color: black;
     background-color: rgb(201, 196, 196);
+    cursor: pointer;
 }
 
 .box{

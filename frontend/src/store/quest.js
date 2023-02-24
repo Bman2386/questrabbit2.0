@@ -16,7 +16,8 @@ const receiveQuest = quest => ({
 export const fetchQuests = () => async dispatch => {
     const response = await csrfFetch(`api/quests`);
     if (response.ok){
-        const data = await response.json()
+        const data = await response.json();
+        debugger
         dispatch(receiveQuests(data));
     } else {
         throw response;
@@ -27,6 +28,7 @@ export const fetchQuest = (questId) => async dispatch => {
     const response = await csrfFetch(`api/quests/${questId}`);
     if (response.ok) {
         const data = await response.json();
+        debugger
         dispatch(receiveQuest(data));
     } else {
         throw response;
@@ -50,21 +52,27 @@ export const createQuest = (quest) => async dispatch => {
     };
 };
 
-export const updateQuest = (quest) => async dispatch => {
-    const response = await csrfFetch(`api/quests/${quest.id}`, {
-        method: 'PATCH',
+export const updateQuest = (quest) => async (dispatch) => {
+    const {id, quest_name, category_id, details, 
+        adventurer_id, start_time, completed, creator_id} = quest;
+    const response = await csrfFetch(`api/quests/${id}`, {
+        method: "PATCH",
         headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify(quest)
+        body: JSON.stringify({
+            id: id,
+            quest_name: quest_name,
+            category_id: category_id,
+            details: details,
+            adventurer_id: adventurer_id,
+            start_time: start_time,
+            completed: completed,
+            creator_id: creator_id
+        })
     });
-    if (response.ok) {
         const data = await response.json();
         dispatch(receiveQuest(data));
-    } else {
-        throw response;
-    };
 };
 
 const initialState = {};

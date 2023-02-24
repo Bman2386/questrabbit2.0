@@ -1,4 +1,4 @@
-const csrfFetch = async (url, options = {}) => {
+const csrfFetch = async (url, options = {}) => {    
     // set options.method to 'GET' if there is no method
     options.method = options.method || 'GET';
     // set options.headers to an empty object if there are no headers
@@ -12,7 +12,7 @@ const csrfFetch = async (url, options = {}) => {
             options.headers['Content-Type'] || 'application/json';
         options.headers['X-CSRF-Token'] = sessionStorage.getItem('X-CSRF-Token');
     }
-
+    
     // call fetch with the url and the updated options hash
     const res = await fetch(url, options);
 
