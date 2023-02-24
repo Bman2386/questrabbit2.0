@@ -112,7 +112,9 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
         return month;
     }
 
+    
     const questDate = () => {
+        const month = date.getMonth();
         if (mini === 1) {
             return (
                 <div className="cal-container">
