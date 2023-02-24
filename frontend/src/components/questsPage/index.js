@@ -1,17 +1,14 @@
 import React,{ useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdventurers } from '../../store/adventurer';
 import { fetchQuests } from '../../store/quest';
 
 function QuestsPage (){
     const dispatch = useDispatch();
-    const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
     const quests = useSelector(state => state.quests ? Object.values(state.quests):[]);
     const currentUser = useSelector(state=> state.session.user ? state.session.user : '');
 
     useEffect(() => {
-        dispatch(fetchAdventurers);
         if (currentUser) {
             dispatch(fetchQuests(currentUser.id))
         }
@@ -19,16 +16,16 @@ function QuestsPage (){
 
     if (!currentUser) return <Redirect to='/'/>;
 
-    if (!adventurers || !quests) return <div>Loading...</div>;
+    if (!quests) return <div>Loading...</div>;
    
     const categoryShow=(quest)=> {
-        if (quest.category_id === 1){
+        if (quest.categoryId === 1){
             return 'Fetch';
-        } else if (quest.category_id === 2){
+        } else if (quest.categoryId === 2){
             return 'Craft';
-        } else if (quest.category_id === 3){
+        } else if (quest.categoryId === 3){
             return 'Escort';
-        } else if (quest.category_id === 4){
+        } else if (quest.categoryId === 4){
             return 'Slay';
         };
     };
@@ -36,9 +33,16 @@ function QuestsPage (){
     
    function adShow(quest){
         const id = parseInt(quest.adventurerId);
-        const temp = adventurers.filter(ad=> ad.id === id);
-        const name = temp[0];
-        return name;
+        switch (id) {
+            case 2:
+                return 'Hercules';
+            case 3:
+                return 'Goblin Slayer';
+            case 4:
+                return 'Isaac Newton'
+            default:
+                return 'error'
+        };
     };
      function timeShow(quest){
         const dateDisplay = () => {
@@ -65,7 +69,7 @@ function QuestsPage (){
                 "November",
                 "December",
             ];
-            const fullDate = new Date(quest.start_time);
+            const fullDate = new Date(quest.startTime);
             const weekDay = days[fullDate.getDay()];
             const hour = () => {
                 const hours = fullDate.getHours();

@@ -6,7 +6,7 @@ class Api::QuestsController < ApplicationController
 
     def index
         c_id = current_user.id
-        @quests = Quest.where(creator_id: c_id, completed: false).all
+        @quests = Quest.where(creator_id: c_id, completed: false)
         render :index
     end
 
@@ -17,7 +17,6 @@ class Api::QuestsController < ApplicationController
             last_quest = all_quests.last 
             @quest.id = last_quest.id + 1
         end
-        debugger
         if @quest.save!
             render :show
         else
