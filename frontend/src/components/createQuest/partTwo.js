@@ -9,22 +9,22 @@ import hercules from '../../images/hercules.jpg';
 import isaac_newton from '../../images/isaac_newton.jpg';
 import goblin_slayer from '../../images/goblin_slayer.jpg';
 
-function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setReview}){
+function PartTwo({step, setStep, adventurerId, setAdventurerId}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
-    // const reviews = useSelector(state => state.reviews ? Object.values[state.reviews] : []); // seed reviews
+    const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
     const [adv, setAdv] = useState([]);
-    const reviews = [];
     const [isChecked, setIsChecked] = useState(false);
     const [selected, setSelected] = useState('');
+    const [examine, setExamine] = useState(false)
 
     useEffect(() => {
         dispatch(fetchAdventurers());
-        // dispatch(fetchReviews());
+        dispatch(fetchReviews());
     }, [dispatch]);
 
     if (adventurers.length < 1 ) return <div>Loading...</div>;
-    
+
     
     const temp = [...adventurers];
 
@@ -47,12 +47,12 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
         let sorted
         switch (e) {
             case 'reviews':
-                sorted = sortHelper('total_ratings');
+                sorted = sortHelper('totalRatings');
                 setAdv(sorted)
                 setIsChecked(false);
                 return;
             case 'high':
-                sorted = sortHelper('avg_rating');
+                sorted = sortHelper('avgRating');
                 setAdv(sorted)
                 setIsChecked(false);
                 return;
@@ -67,7 +67,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
     };
 
     const sortBy = () => {
-        if (!review) {
+        if (!examine) {
             return (
                 <div className='sorting'>
                     <div className='sort'>Sort By:</div>
@@ -98,7 +98,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
     };
 
     const checkBox = () => {  
-      if (!review) {
+      if (!examine) {
             if (!isChecked) {
                 return (
                     <div className='check-box'>
@@ -185,9 +185,9 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
         };
     };
     const selectAdv=(input)=> {
-        const adventurer = adventurers[input - 1];
-        setSelected(adventurer);
-        setReview(true);
+        const adventurer = adventurers.filter(ad => ad.id === parseInt(input));
+        setSelected(...adventurer);
+        setExamine(true);
     };
 
     const moveToNextStep = (id) => {
@@ -203,8 +203,8 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
                     <div className='hero-details'>
                         <p className="hero-name">{ad.username}</p>
                         <div className="p">{isElite(ad.elite)}</div>
-                        <div className="rating-container">Rating: {rating(ad.avg_rating)}</div>
-                        <p className="p">Total Reviews: {ad.total_ratings}</p>
+                        <div className="rating-container">Rating: {rating(ad.avgRating)}</div>
+                        <p className="p">Total Reviews: {ad.totalRatings}</p>
                         <hr />
                         <p className="p">How I can Help:</p>
                         <p className="p">{ad.pitch}</p>
@@ -218,13 +218,13 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
         const allReviews = () => {
             const allR = () => {
                 if (reviews.length > 0) {
-                    const num = reviews.map(rev => { //filter reviews to only selected adventurer
-                        const arr = [];
-                        if (rev.adventurer_id === selected.id) {
-                            arr.push(rev);
+                    const num = [];
+                    reviews.forEach(rev => { //filter reviews to only selected adventurer
+                        if (rev.adventurerId === selected.id) {
+                            num.push(rev);
                         };
-                        return arr;
                     });
+                    
                     if (num.length > 0 && selected) {
                         const advReviews = num.map(rev => {
                                 return (
@@ -245,6 +245,11 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
             }; 
             return <div className='quest-name'>No Reviews Yet</div>;
             };
+
+        const closeReviews = ()=> {
+            setSelected('');
+            setExamine(false);
+        }
         const adReviews = () => {
             return (
                 <div className='adv-info'>
@@ -255,14 +260,14 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId, review, setRevie
                         <div className="p">{isElite(selected.elite)}</div>
                         <div className='p' id='margin'>{`${selected.pitch}`}</div>
                         <button value={selected.id} className="select2" onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
-                        <button onClick={()=> setSelected('')}>Close Reviews</button>
+                        <button onClick={()=> closeReviews()}>Close Reviews</button>
                     </div>
                     <div className='reviews'>Reviews:</div>
                     {allReviews()}
                 </div>
             );
         };
-        return review ? adReviews() : names
+        return examine ? adReviews() : names
     };
 
     return(

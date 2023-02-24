@@ -13,7 +13,6 @@ function CreateQuest(){
     const [categoryId, setCategoryId] = useState('');
     const [details, setDetails] = useState('');
     const [step, setStep] = useState(1);
-    const [review, setReview] =useState(false);
     const [checked, setChecked] = useState('');
 
     if (!currentUser) return <Redirect to='/intermediary'/>;
@@ -25,8 +24,6 @@ function CreateQuest(){
                     setStep={setStep}
                     adventurerId={adventurerId}
                     setAdventurerId={setAdventurerId}
-                    review={review}
-                    setReview={setReview}
                     checked={checked}
                     setChecked={setChecked}
                 />;
