@@ -8,9 +8,8 @@ function PartOne({step, setStep, questName, setQuestName, details, setDetails, c
         const [mini, setMini] = useState(0);
         const data = useSelector(state => state.temp ? state.temp : '');
 
-    //     if (data && parseInt(data) === NaN) setCategoryId(data);
-    //     if (data && parseInt(data) !== NaN) setDetails(data);
-    // console.log(data)
+        if (data && data.categoryId) setCategoryId(data.categoryId);
+        if (data && data.name) setQuestName(data.name);
     const questStart = () => {
         if (mini === 0) {
             return (

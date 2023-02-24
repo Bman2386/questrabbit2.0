@@ -42,7 +42,7 @@ function Category(){
                             <p className="show-p">Example Description: {category.exDescription}</p>
                             <Link 
                             to='/quest'
-                            className='show-button' onClick={() => dispatch(recieveData(category.id))}>Book a Quest in this Category</Link>
+                            className='show-button' onClick={() => dispatch(recieveData({categoryId: `${category.id}`}))}>Book a Quest in this Category</Link>
                         </div> :  ''
                     }  
         </div> 

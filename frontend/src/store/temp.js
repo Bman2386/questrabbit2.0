@@ -5,7 +5,7 @@ const saveData = (data) => ({
     payload: data
 });
 
-export const recieveData = (data) => dispatch => {
+export const recieveData = (data) => dispatch => {  
     dispatch(saveData(data));
 };
 
@@ -14,7 +14,7 @@ const initialState = {};
 const tempReducer = (state=initialState, action) => {
     switch(action.type){
         case SAVE_DATA:
-            return Object.assign({}, state, action.data);
+            return Object.assign({}, state, action.payload);
         default:
             return state;
     }
