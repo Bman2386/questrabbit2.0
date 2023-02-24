@@ -57,10 +57,11 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
     };
 
     const changeDate = (e, type) => {
-        e.preventDefault();
         switch (type) {
             case 'day':
-                setStartTime(e.target.value);
+                let temp1 = new Date(date).setDate(e);
+                const startDate = new Date(temp1);
+                setStartTime(startDate);
                 setMini(2);
                 return;
             case 'hour':
@@ -84,7 +85,8 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                         hour += 12
                     }
                 }
-                const startHour = startTime.setHours(hour);
+                const temp = startTime.setHours(hour);
+                const startHour = new Date(temp)
                 setStartTime(startHour);
             default:
                 return;
@@ -103,18 +105,35 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                 return "";
             };
         };
-        const month = days.map(day =>
+        const month = days.map((day, idx) =>
             <button
                 className={current(day)}
                 id={current(day)}
+                key={idx}
                 value={startTime}
-                onClick={(e) => changeDate(e, 'day')}>{day}</button>)
+                onClick={() => changeDate(day, 'day')}>{day}</button>)
         return month;
     }
 
-    
-    const questDate = () => {
+    const monthDisplay = ()=> {
         const month = date.getMonth();
+        const months = [
+            "January",
+            "Febuary",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+        ];
+        return months[month];
+    };
+    const questDate = () => {
         if (mini === 1) {
             return (
                 <div className="cal-container">
@@ -123,7 +142,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                         <div className="month">
                             <button onClick={() => subCurrentMonth()}><i className="fa fa-angle-left"></i></button>
                             <div className="date">
-                                <h1>{month}</h1>
+                                <h1>{monthDisplay()}</h1>
                                 <p>{`${date}`}</p>
                             </div>
                             <button onClick={() => addCurrentMonth()}><i className="fa fa-angle-right"></i></button>
