@@ -9,9 +9,7 @@ import Home from './components/home';
 import Intermediary from './components/intermediary';
 import Profile from './components/profile';
 import CreateQuest from './components/createQuest';
-// import QuestPage from './components/page';
-// import EditQuest from './components/edit';
-// import CancelQuest from './components/cancel';
+import QuestsPage from './components/questsPage';
 
 
 function App(){
@@ -45,21 +43,11 @@ function App(){
             <Route path='/quest'>
                 <CreateQuest />
             </Route>
-            {/* <Route path='/edit/:questId'>
+            <Route path='/quests'>
                 <NavBar />
-                <EditQuest />
+                <QuestsPage />
                 <Footer />
-            </Route> */}
-            {/* <Route path='/delete/:questId'>
-                <NavBar />
-                <CancelQuest />
-                <Footer />
-            </Route> */}
-            {/* <Route path='/quests'>
-                <NavBar />
-                <QuestPage />
-                <Footer />
-            </Route> */}
+            </Route>
         </Switch>
     </>
    ) 

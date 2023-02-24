@@ -123,7 +123,16 @@ quest3 = Quest.create({
     completed: true,
     adventurer_id: 4
 })
-
+quest4 = Quest.create({
+    id: 4,
+    quest_name: 'Find the easter eggs in the forest',
+    category_id: 1,
+    details: 'i need help finding the easter eggs hidden in the forest',
+    creator_id: 1,
+    start_time: 'Tue Feb 1 2023 12:00:00 GMT-0500 (Eastern Standard Time)',
+    completed: false,
+    adventurer_id: 4
+})
 review1 = Review.create({
     body: 'Hercules is so strong!',
     rating: '5',

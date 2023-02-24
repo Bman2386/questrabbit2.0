@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import { fetchAdventurers } from '../../store/adventurer';
 import {createQuest} from '../../store/quest';
+import {recieveData} from '../../store/temp';
 
 function PartThree({step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
@@ -237,6 +238,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
             completed: false,
             creator_id: creatorId
         };
+        dispatch(recieveData({}))
         dispatch(createQuest(quest))
     }
     const reviewQuest = () => {

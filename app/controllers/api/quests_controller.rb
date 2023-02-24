@@ -5,13 +5,19 @@ class Api::QuestsController < ApplicationController
     end
 
     def index
-      @quests = Quest.where(creator_id: c_id, completed: false).all
+        c_id = current_user.id
+        @quests = Quest.where(creator_id: c_id, completed: false).all
         render :index
     end
 
     def create
         @quest = Quest.new(quest_params)
-     
+        if !@quest.id
+            all_quests = Quest.all
+            last_quest = all_quests.last 
+            @quest.id = last_quest.id + 1
+        end
+        debugger
         if @quest.save!
             render :show
         else
@@ -49,9 +55,5 @@ class Api::QuestsController < ApplicationController
             :completed,
             :creator_id
         )
-    end
-
-    def c_id 
-        params[:creator_id]
     end
 end

@@ -1,70 +1,46 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React,{ useEffect} from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAdventurers } from '../../store/adventurer';
+import { fetchQuests } from '../../store/quest';
 
+function QuestsPage (){
+    const dispatch = useDispatch();
+    const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
+    const quests = useSelector(state => state.quests ? Object.values(state.quests):[]);
+    const currentUser = useSelector(state=> state.session.user ? state.session.user : '');
 
-class QuestPage extends React.Component {
-    constructor(props){
-        super(props)
-        this.questShow = this.questShow.bind(this);
-        this.categoryShow = this.categoryShow.bind(this);
-        this.adShow = this.adShow.bind(this);
-        this.show = this.show.bind(this);
-        this.timeShow = this.timeShow.bind(this);
-    }
-
-    componentDidMount(){
-        this.props.fetchAdv();
-        this.props.getQuests(this.props.creatorId);
-        
-    }
-
-    categoryShow(quest) {
-        if (quest.extract.category_id === 1){
-            return 'Fetch'
-        } else if (quest.extract.category_id === 2){
-            return 'Craft'
-        } else if (quest.extract.category_id === 3){
-            return 'Escort'
-        } else if (quest.extract.category_id === 4){
-            return 'Slay'
+    useEffect(() => {
+        dispatch(fetchAdventurers);
+        if (currentUser) {
+            dispatch(fetchQuests(currentUser.id))
         }
-    }
+    }, [dispatch]);
+
+    if (!currentUser) return <Redirect to='/'/>;
+
+    if (!adventurers || !quests) return <div>Loading...</div>;
+   
+    const categoryShow=(quest)=> {
+        if (quest.category_id === 1){
+            return 'Fetch';
+        } else if (quest.category_id === 2){
+            return 'Craft';
+        } else if (quest.category_id === 3){
+            return 'Escort';
+        } else if (quest.category_id === 4){
+            return 'Slay';
+        };
+    };
 
     
-    adShow(quest){
-         const advs = this.props.adventurers;
-        if (advs.length === 3 && quest.extract.adventurer_id !== ''){   
-        const firstId = advs[0].id;
-        const ad = advs[quest.extract.adventurer_id - firstId]
-         return ad.username
-        } else {
-            return 'error'
-        }
-    }
-    questShow(){
-        const {quests} = this.props;
-       
-        
-        if (quests && quests.length > 0 && !quests[quests.length -1].extract){
-            const last = quests.pop();
-            
-            const newLast = Object.assign({}, {extract: last});
-            
-            quests.push(newLast);
-        }
-            quests.forEach(quest => {
-                if(quest && quest.extract && quest.extract.completed === true){
-                    let idx = quests.indexOf(quest)
-                quests.slice(1, idx);
-    
-            }
-        })
-
-        return this.show(quests);
-
-    }
-    
-       timeShow(quest){
+   function adShow(quest){
+        const id = parseInt(quest.adventurerId);
+        const temp = adventurers.filter(ad=> ad.id === id);
+        const name = temp[0];
+        return name;
+    };
+     function timeShow(quest){
         const dateDisplay = () => {
             const days = [
                 "Sunday",
@@ -89,7 +65,7 @@ class QuestPage extends React.Component {
                 "November",
                 "December",
             ];
-            const fullDate = new Date(quest.extract.start_time);
+            const fullDate = new Date(quest.start_time);
             const weekDay = days[fullDate.getDay()];
             const hour = () => {
                 const hours = fullDate.getHours();
@@ -100,89 +76,84 @@ class QuestPage extends React.Component {
                }
             } 
             const min = () => {
-                const questMinutes = fullDate.getMinutes()
+                const questMinutes = fullDate.getMinutes();
                 if ( questMinutes === 0 ){
-                    return '00'
+                    return '00';
                 } else {
                     return questMinutes;
-                } 
-             } ;
+                }; 
+             };
              const month = months[fullDate.getMonth()];
              const monthDay = fullDate.getDate();
              const year = fullDate.getFullYear();
              const amPm = () => {
                  if (fullDate.getHours() > 11) {
-                     return 'pm'
+                     return 'pm';
                  } else {
-                     return 'am'
-                 }
-             }
-             return `${weekDay} ${month} ${monthDay} ${year} ${hour()}:${min()}${amPm()}`
-     
-         }
+                     return 'am';
+                 };
+             };
+             return `${weekDay} ${month} ${monthDay} ${year} ${hour()}:${min()}${amPm()}`;
+         };
         const startTime = dateDisplay();
-        
-        return (
-            <div className='orders4'>{`${startTime}`}</div>
-        )
-       }
-    show(quests) {
-        
-            if (quests && quests.length > 0 && quests[0].extract){
+        return <div className='orders4'>{`${startTime}`}</div>;
+       };
+    function questShow() {
+            if (quests.length > 0){
                 const list = quests.map(quest =>
-                    <div key={quest.extract.id} className='quest-name'>
+                    <div key={quest.id} className='quest-name'>
                         <div className='links2'>
                             <div className='p'> Quest Name:</div>
                             <div className='orders4'>
-                                {quest.extract.quest_name}
+                                {quest.questName}
                             </div>
                         </div>
                         <div className='links2'>
                             <div className='p'>Retails:</div>
                             <div className='orders4'>
-                                "{quest.extract.details}"
+                                "{quest.details}"
                             </div>
                         </div>
                         <div className='links2'>
                             <div className='p'>Start Time:</div>
                             <div>
-                               {this.timeShow(quest)} 
+                               {timeShow(quest)} 
                             </div>
                         </div>
                         <div className='links2'>
                             <div className='p'>Category: </div>
                             <div className='orders4'>
-                                {this.categoryShow(quest)}
+                                {categoryShow(quest)}
                             </div>
                         </div>
                         <div className='links2'>
                             <div className='p'>Adventurer:</div>
                             <div className='orders4'>
-                                {this.adShow(quest)}  
+                                {adShow(quest)}  
                             </div>
                         </div>
                         <div className='links2' id='center'>
                           <Link 
-                        to={`/edit/${quest.extract.id}`}
+                        to={`/edit/${quest.id}`}
                         className="btn-4" 
-                        questid={quest.extract.id}
+                        questid={quest.id}
                         >Edit Quest</Link>
                         <Link 
-                        to={`/delete/${quest.extract.id}`}
+                        to={`/delete/${quest.id}`}
                         className="btn-5" 
-                        questid={quest.extract.id}
+                        questid={quest.id}
                         >Cancel Quest</Link>  
                         </div>
                         
                 </div>
-            )
+            );
             return (
                 <div className='show-quests' id='background'>
                     <div className='h1' id='background'>Your Quests</div>
                     {list}
                 </div>
-            ) 
-            } else {
+                );
+            }; 
                return(
                    <div className="quest-name">
                        <h1 className='h1' id='center'>Have something else on your to-do list?</h1>
@@ -190,19 +161,13 @@ class QuestPage extends React.Component {
                        <Link to="/quest"className='button-submit' id='center'>Check It Off Your List</Link>
                    </div>
                    
-               ) 
-            }
-        }
-   
-
-    render(){
-     
+               );
+        };
         return(
             <div>
-                <div className="form2" id='background'>{this.questShow()}</div>
+                <div className="form2" id='background'>{questShow()}</div>
             </div>
-        )
-    }
-}
+        );
+};
 
-export default QuestPage;
+export default QuestsPage;
