@@ -36,6 +36,7 @@ slay = Category.create({
 })
 
 guest = User.create({
+    id: 1,
     username: 'Guest',
     password: 'hunter12',
     adventurer: false,
@@ -49,11 +50,12 @@ guest = User.create({
 })
 
 hercules = User.create({
+    id: 2,
     username: 'Hercules',
     password: 'hunter12',
     adventurer: true,
-    avg_rating: 0,
-    total_ratings: 0,
+    avg_rating: 5,
+    total_ratings: 1,
     elite: false,
     pitch: 'I am the strongest there is!',
     family_crest: 'Zues',
@@ -62,11 +64,12 @@ hercules = User.create({
 })
 
 goblin_slayer = User.create({
+    id: 3,
     username: 'Goblin Slayer',
     password: 'hunter12',
     adventurer: true,
-    avg_rating: 0,
-    total_ratings: 0,
+    avg_rating: 4,
+    total_ratings: 1,
     elite: true,
     pitch: "I'll slay anything, especially goblins",
     family_crest: 'Sword and Shield',
@@ -75,11 +78,12 @@ goblin_slayer = User.create({
 })
 
 isaac_newton = User.create({
+    id: 4,
     username: 'Isaac Newton',
     password: 'hunter12',
     adventurer: true,
-    avg_rating: 0,
-    total_ratings: 0,
+    avg_rating: 3,
+    total_ratings: 2,
     elite: false,
     pitch: 'I can create math for all uses and applications',
     family_crest: 'Owl',
@@ -87,4 +91,64 @@ isaac_newton = User.create({
     star_sign: 'Capricorn'
 })
 
+quest1 = Quest.create({
+    id: 1,
+    quest_name: 'Moving',
+    category_id: 3,
+    details: 'I need help moving from 233 mission lane to 466 mission lane',
+    creator_id: 1,
+    start_time: 'Wed Feb 2 2023 12:00:00 GMT-0500 (Eastern Standard Time)',
+    completed: true,
+    adventurer_id: 2
+})
 
+quest2 = Quest.create({
+    id: 2,
+    quest_name: 'find my wallet',
+    category_id: 1,
+    details: 'I lost my wallet in the dungeon, can you find it?',
+    creator_id: 1,
+    start_time: 'Tue Feb 1 2023 12:00:00 GMT-0500 (Eastern Standard Time)',
+    completed: true,
+    adventurer_id: 3
+})
+
+quest3 = Quest.create({
+    id: 3,
+    quest_name: 'craft a bench',
+    category_id: 2,
+    details: 'I ordered a bench from the amazon, need help assembling',
+    creator_id: 1,
+    start_time: 'Tue Feb 1 2023 12:00:00 GMT-0500 (Eastern Standard Time)',
+    completed: true,
+    adventurer_id: 4
+})
+
+review1 = Review.create({
+    body: 'Hercules is so strong!',
+    rating: '5',
+    adventurer_id: 2,
+    user_id: 1,
+    username: 'Guest'
+})
+review2 = Review.create({
+    body: 'Goblin Slayer is super efficient, but never takes off armor.',
+    rating: '4',
+    adventurer_id: 3,
+    user_id: 1,
+    username: 'Guest'
+})
+review3 = Review.create({
+    body: 'Isaac Newton is incredible!',
+    rating: '5',
+    adventurer_id: 4,
+    user_id: 1,
+    username: 'Guest'
+})
+review4 = Review.create({
+    body: 'I just really didnt like Isaac. He insisted on calculating the falling speed and distance travelled of all the apples.',
+    rating: '1',
+    adventurer_id: 4,
+    user_id: 1,
+    username: 'Guest'
+})
