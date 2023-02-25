@@ -38,7 +38,6 @@ class ApplicationController < ActionController::API
     end
 
     def update_adv_reviews(avg, total, id)
-        debugger
         adv = User.where(id: id)
         adv.update!({avg_rating: avg, total_ratings: total})
     end

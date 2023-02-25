@@ -93,7 +93,6 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         );
     };
     const submit = () => {
-        debugger
         const updatedQuest = {
             id: quest.id,
             completed: true

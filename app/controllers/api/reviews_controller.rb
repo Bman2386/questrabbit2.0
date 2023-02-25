@@ -19,7 +19,6 @@ class Api::ReviewsController < ApplicationController
 
         all_reviews = Review.where(adventurer_id: @review.adventurer_id)
         length = all_reviews.length
-        debugger
         total_reviews = length.to_i + 1
         rating_total = 0
         all_reviews.each do |review|
