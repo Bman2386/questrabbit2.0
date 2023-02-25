@@ -18,15 +18,8 @@ class Api::ReviewsController < ApplicationController
         end
 
         all_reviews = Review.where(adventurer_id: @review.adventurer_id)
-        length = all_reviews.length
-        total_reviews = length.to_i + 1
-        rating_total = 0
-        all_reviews.each do |review|
-            rating_total += review.rating
-        end
-        temp = rating_total/total_reviews
-        avg = temp.round()
-        update_adv_reviews(avg, total_reviews, @review.adventurer_id)
+         
+        update_adv_reviews(all_reviews, @review.adventurer_id)
         if @review.save!
             render :show
         else
