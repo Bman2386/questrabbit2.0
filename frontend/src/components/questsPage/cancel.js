@@ -5,7 +5,7 @@ import { updateQuest } from '../../store/quest';
 import {createReview} from '../../store/review';
 import star from '../../images/star.png'
 
-function CancelQuest({currentUser, quest}){
+function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     const dispatch = useDispatch();
     const [mini, setMini] = useState(1);
     const [rating, setRating] = useState(1);
@@ -85,7 +85,7 @@ function CancelQuest({currentUser, quest}){
                     <p className='p'>Quest Name: {`${quest.questName}`}</p>
                     <p className='p'>Details: {`${quest.details}`}</p>
                     <p className='p'>Category: {categoryShow(quest.categoryId)}</p>
-                    <p className='p'>Start Time: {`${dateDisplay(startTime)}`}</p>
+                    <p className='p'>Start Time: {`${dateDisplay(quest.startTime)}`}</p>
                     <p className='p'>Adventurer: {`${advName(quest.adventurerId)}`}</p>
                     <button onClick={() => setMini(2)} id='margin'>Cancel Quest</button>
                 </div>
@@ -93,19 +93,19 @@ function CancelQuest({currentUser, quest}){
         );
     };
     const submit = () => {
+        debugger
         const updatedQuest = {
             id: quest.id,
-            quest_name: quest.questName,
-            category_id: quest.categoryId,
-            details: quest.details,
-            creator_id: quest.creatorId,
-            start_time: quest.startTime,
-            adventurer_id: quest.adventurerId,
             completed: true
         };
         dispatch(updateQuest(updatedQuest));
         setMini(3);
     };
+
+    const changeToEdit = ()=> {
+        setEdit(true);
+        setCancel(false);
+    }
 
     const warnUser = () => {
         return (
@@ -120,7 +120,7 @@ function CancelQuest({currentUser, quest}){
                     <div id='center'>
                         <div className='orders'>
                             If you just need to change the start-time you can edit
-                            that <Link to={`/edit/${this.state.id}`} className='btn-6'>here.</Link>
+                            that <button onClick={()=> changeToEdit()} className='btn-6'>here.</button>
                         </div>
                     </div>
                     <div className='red' >(This can't be undone)</div>
@@ -171,7 +171,7 @@ function CancelQuest({currentUser, quest}){
         const review = {
             rating: rating,
             body: body,
-            creator_id: currentUser.id,
+            user_id: currentUser.id,
             adventurer_id: quest.adventurerId,
             username: currentUser.username
         };
@@ -180,7 +180,7 @@ function CancelQuest({currentUser, quest}){
     const writeReview = ()=> {
         return(
             <div className='cancel-form'>
-                <label className='h1'>Review for: {`${adv.username}`}</label>
+                <label className='h1'>Review for: {`${advName(quest.adventurerId) }`}</label>
                 <div className='quest-name'>
                     <div className='orders' id='margin'>Rating:</div>
                     <div className='inputs'>

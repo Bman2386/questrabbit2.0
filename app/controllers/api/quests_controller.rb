@@ -26,7 +26,6 @@ class Api::QuestsController < ApplicationController
 
     def show
         @quest = Quest.find(params[:id])
-        debugger
         if @quest
             render :show
         else

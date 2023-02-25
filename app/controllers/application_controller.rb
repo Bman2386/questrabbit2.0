@@ -37,6 +37,13 @@ class ApplicationController < ActionController::API
         @current_user = nil
     end
 
+    def update_adv_reviews(avg, total, id)
+        debugger
+        adv = User.where(id: id)
+        adv.update!({avg_rating: avg, total_ratings: total})
+    end
+
+
     private
 
     def snake_case_params

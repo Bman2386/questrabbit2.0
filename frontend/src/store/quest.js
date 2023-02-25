@@ -17,7 +17,6 @@ export const fetchQuests = () => async dispatch => {
     const response = await csrfFetch(`api/quests`);
     if (response.ok){
         const data = await response.json();
-        debugger
         dispatch(receiveQuests(data));
     } else {
         throw response;
@@ -28,7 +27,6 @@ export const fetchQuest = (questId) => async dispatch => {
     const response = await csrfFetch(`api/quests/${questId}`);
     if (response.ok) {
         const data = await response.json();
-        debugger
         dispatch(receiveQuest(data));
     } else {
         throw response;
