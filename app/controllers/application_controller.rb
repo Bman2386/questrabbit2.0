@@ -41,6 +41,7 @@ class ApplicationController < ActionController::API
         adv = User.where(id: id)
         total = 0
         rating_total = 0
+        debugger
         reviews.each do |review|
             total += 1
             rating_total += review.rating.to_i
@@ -48,6 +49,7 @@ class ApplicationController < ActionController::API
         temp = rating_total/total
         avg = temp.round()
         adv.update!({avg_rating: avg, total_ratings: total})
+        
     end
 
 
