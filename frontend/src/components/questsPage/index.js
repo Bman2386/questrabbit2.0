@@ -163,7 +163,7 @@ function QuestsPage (){
                         >Edit Quest</button>
                         <button 
                         to={`/delete/${quest.id}`}
-                        className="btn-5" 
+                        className="cancel-btn" 
                         value={quest.id}
                         onClick={e=> moveToCancel(e.target.value)}
                         >Cancel Quest</button>  

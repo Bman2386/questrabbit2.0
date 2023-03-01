@@ -33,11 +33,21 @@
     padding: 4px
 }
 
-.btn-5:hover{
+.btn-5:hover .cancel-btn:hover{
     color: black;
     background-color: rgb(201, 196, 196);
     cursor: pointer;
 }
+
+.cancel-btn{
+    color: grey;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    padding: 16px;
+    margin: 16px;
+}
+
 
 .box{
     display: flex;

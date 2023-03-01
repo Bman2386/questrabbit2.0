@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateQuest } from '../../store/quest';
-import {createReview} from '../../store/review';
+import {createReview, fetchReviews} from '../../store/review';
+import {updateAdventurer} from '../../store/adventurer';
 import star from '../../images/star.png'
 
 function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     const dispatch = useDispatch();
+    const reviews = useSelector(state=> state.reviews ? Object.values(state.reviews) : []);
     const [mini, setMini] = useState(1);
     const [rating, setRating] = useState(1);
     const [body, setBody] = useState('');
+
+    useEffect(()=> {
+        dispatch(fetchReviews())
+    })
 
     const categoryShow = (categoryId) => {
         if (categoryId === 1) return 'Fetch';
@@ -166,6 +172,17 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
                 return '0'
         };
     };
+    const reStatAdv = () => {
+        const currentAdv = reviews.filter(review=> quest.adventurerId === review.adventurerId);
+        const totalReviews = currentAdv.length + 1;
+        let scoreTotal = parseInt(rating);
+        for (const r in currentAdv){
+            scoreTotal += parseInt(currentAdv[r].rating);
+        };
+        const avgRating = Math.round(scoreTotal/totalReviews)
+        return {id: quest.adventurerId, avg_rating: avgRating, total_ratings: totalReviews }
+
+    }
     const submitReview = ()=> {
         const review = {
             rating: rating,
@@ -175,6 +192,8 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
             username: currentUser.username
         };
         dispatch(createReview(review));
+        const newStats = reStatAdv();
+        dispatch(updateAdventurer(newStats));
     };
     const writeReview = ()=> {
         return(

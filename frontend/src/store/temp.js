@@ -17,7 +17,7 @@ const tempReducer = (state=initialState, action) => {
             return Object.assign({}, state, action.payload);
         default:
             return state;
-    }
-}
+    };
+};
 
 export default tempReducer;

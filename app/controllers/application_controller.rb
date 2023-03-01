@@ -37,22 +37,6 @@ class ApplicationController < ActionController::API
         @current_user = nil
     end
 
-    def update_adv_reviews(reviews, id)
-        adv = User.where(id: id)
-        total = 0
-        rating_total = 0
-        debugger
-        reviews.each do |review|
-            total += 1
-            rating_total += review.rating.to_i
-        end
-        temp = rating_total/total
-        avg = temp.round()
-        adv.update!({avg_rating: avg, total_ratings: total})
-        
-    end
-
-
     private
 
     def snake_case_params

@@ -55,7 +55,7 @@ const initialState = {};
 const adventurersReducer = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_ADVENTURERS:
-            return Object.assign({}, state, action.adventurers);
+            return action.adventurers;
         case RECEIVE_ADVENTURER:
             return Object.assign({}, state, action.adventurer);
         default:
