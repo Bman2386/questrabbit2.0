@@ -26,7 +26,7 @@ const storeCurrentUser = user => {
     else sessionStorage.removeItem("currentUser");
 }
 
-export const signin = (user) => async (dispatch) => {
+export const signin = (user) => async (dispatch) => { // rename to signup?
     const { username, password, adventurer, avg_rating, total_ratings,
          elite, pitch, family_crest, realm, star_sign } = user;
     const response = await csrfFetch("/api/users", {
