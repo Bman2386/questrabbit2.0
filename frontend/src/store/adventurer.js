@@ -44,7 +44,7 @@ export const updateAdventurer = (adventurer) => async dispatch => {
     });
     if (response.ok){
         const data = await response.json();
-        dispatch(receiveAdventurer(data.adventurer)); // try changing lines 46 & 47 to fetchAdventurers()?
+        dispatch(receiveAdventurer(data.adventurer)); // try changing lines 46 & 47 to calling fetchAdventurers()?
     } else {
         throw response;
     };
