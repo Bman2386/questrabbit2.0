@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import PartOne from './partOne';
@@ -7,6 +7,7 @@ import PartThree from './partThree';
 
 function CreateQuest(){
     const currentUser = useSelector(state => state.session.user ? state.session.user : '');
+    const data = useSelector(state => state.temp ? state.temp : '');
     const [questName, setQuestName] = useState('');
     const [startTime, setStartTime] = useState('');
     const [adventurerId, setAdventurerId] = useState('');
@@ -14,6 +15,12 @@ function CreateQuest(){
     const [details, setDetails] = useState('');
     const [step, setStep] = useState(1);
     const [checked, setChecked] = useState('');
+
+    useEffect(()=> {
+    if (data && data.categoryId) setCategoryId(data.categoryId);
+    if (data && data.nameOfQuest) setQuestName(data.nameOfQuest);
+    },[])
+    
 
     if (!currentUser) return <Redirect to='/intermediary'/>;
 

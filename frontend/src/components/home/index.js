@@ -12,7 +12,7 @@ const Home = () => {
   const name = useRef('');
 
 const setData = () => {
-  dispatch(recieveData({nameOfQuest: name.current}));
+  dispatch(recieveData({nameOfQuest: name.current.value}));
 };
 
 const stars = <img src={star} className='star2'/>;

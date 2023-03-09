@@ -1,15 +1,11 @@
 import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import pencil from '../../images/pencil.png';
 
 function PartOne({step, setStep, questName, setQuestName, details, setDetails, categoryId, setCategoryId}){
         const [mini, setMini] = useState(0);
-        const data = useSelector(state => state.temp ? state.temp : '');
-
-        if (data && data.categoryId) setCategoryId(data.categoryId);
-        if (data && data.name) setQuestName(data.name);
+        
     const questStart = () => {
         if (mini === 0) {
             return (

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import { fetchAdventurers } from '../../store/adventurer';
 import {createQuest} from '../../store/quest';
-import {recieveData} from '../../store/temp';
+import {clearData} from '../../store/temp';
 
 function PartThree({step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
@@ -226,7 +226,8 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
 
     const advShow=(id) => {
         const adv = adventurers.filter(ad => ad.id === parseInt(id));
-        return adv.username;
+        debugger
+        return adv[0].username;
     }
 
     const submit = () => {
@@ -239,7 +240,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
             completed: false,
             creator_id: creatorId
         };
-        dispatch(recieveData({}))
+        dispatch(clearData())
         dispatch(createQuest(quest))
     }
     const reviewQuest = () => {

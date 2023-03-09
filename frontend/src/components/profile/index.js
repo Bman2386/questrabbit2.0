@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {  Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {  updateUser } from '../../store/session';
-import {recieveData, revieveDate} from '../../store/temp';
+import {clearData} from '../../store/temp';
 import { logout } from '../../store/session'
 import map from '../../images/map.png';
 import shield from '../../images/shield.png';
@@ -19,22 +19,14 @@ function ProfileComponent(){
     // for editing
     const [edit, setEdit] = useState(false);
     const [error, setError] = useState('');
-    const [familyCrest, setFamilyCrest] = useState('');
-    const [realm, setRealm] = useState('');
-    const [starSign, setStarSign] = useState('');
-
+    const familyCrest = useRef('');
+    const realm = useRef('');
+    const starSign = useRef('');
     if (!currentUser) return <Redirect to='/' />   
 
    const handleSubmit=(e)=>{
        e.preventDefault();
        e.stopPropagation();
-        const user ={
-            id: currentUser.id,
-            username: name,
-            family_crest: familyCrest,
-            realm: realm,
-            star_sign: starSign
-        };
         if ( !familyCrest || !realm || !starSign){
              setError("Form must be complete");
              return;
@@ -43,12 +35,18 @@ function ProfileComponent(){
             setError("You don't have permission to edit Guest User info");
             return;
         }; 
-        dispatch(updateUser(user));
+        dispatch(updateUser({
+            id: currentUser.id,
+            username: name,
+            family_crest: familyCrest.current.value,
+            realm: realm.current.value,
+            star_sign: starSign.current.value
+        }));
         setEdit(false);
     };
 
     const logoutUser = () => {
-        dispatch(recieveData({data:''}));
+        dispatch(clearData());
         dispatch(logout());
     }
 
@@ -89,24 +87,21 @@ function ProfileComponent(){
                     <label className='p2'>Family Crest:</label>
                     <input 
                     type="text" 
-                    value={familyCrest}
-                    onChange={e=>setFamilyCrest(e.target.value)}
+                    ref={familyCrest}
                     className='input3'
                     placeholder={`${crest}`}/>
                     <div className='red'>{familyCrest ? '' : "Family Crest can't be blank" }</div>
                     <label className='p2'>Realm: </label>
                     <input 
                     type="text" 
-                    value={realm}
-                    onChange={e=> setRealm(e.target.value)}
+                    ref={realm}
                     className='input3'
                     placeholder={`${rlm}`}/>
                    <div className='red'>{realm ? '' : "Realm can't be blank" }</div>
                     <label className='p2'>Star Sign:</label>
                     <input 
                     type="text" 
-                    value={starSign}
-                    onChange={e=>setStarSign(e.target.value)}
+                    ref={starSign}
                     className='input3'
                     placeholder={`${sign}`}/>
                     <div className='red'>{starSign ? '' : "Star Sign can't be blank" }</div>
