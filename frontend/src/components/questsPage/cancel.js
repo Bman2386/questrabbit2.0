@@ -15,7 +15,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
 
     useEffect(()=> {
         dispatch(fetchReviews())
-    })
+    },[dispatch])
 
     const categoryShow = (categoryId) => {
         if (categoryId === 1) return 'Fetch';

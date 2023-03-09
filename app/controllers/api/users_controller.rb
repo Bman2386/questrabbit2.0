@@ -50,6 +50,7 @@ class Api::UsersController < ApplicationController
           :pitch,
           :family_crest,
           :realm,
-          :star_sign)
+          :star_sign,
+          :id)
     end
 end

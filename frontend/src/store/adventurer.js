@@ -43,8 +43,9 @@ export const updateAdventurer = (adventurer) => async dispatch => {
         body: JSON.stringify(adventurer)
     });
     if (response.ok){
+        // fetchAdventurers()
         const data = await response.json();
-        dispatch(receiveAdventurer(data.adventurer)); // try changing lines 46 & 47 to calling fetchAdventurers()?
+        dispatch(receiveAdventurer(data)); // try changing lines 46 & 47 to calling fetchAdventurers()?
     } else {
         throw response;
     };
@@ -55,9 +56,12 @@ const initialState = {};
 const adventurersReducer = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_ADVENTURERS:
-            return action.adventurers;
+            return Object.assign({}, state, action.adventurers);
         case RECEIVE_ADVENTURER:
-            return Object.assign({}, state, action.adventurer);
+            const id = action.adventurer.user.id;
+            state[id] = action.adventurer.user;
+            debugger
+            return Object.assign({}, state);
         default:
             return state;
     };
