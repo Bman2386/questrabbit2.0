@@ -220,7 +220,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
             case '4':
                 return 'Slay';
             default:
-                return 'Need to select Category'
+                return 'Need to select Category';
         };
     };
 
