@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import {recieveData} from '../../store/temp';
 import { useDispatch } from 'react-redux';
@@ -9,11 +9,11 @@ import play from '../../images/play.png';
 const Home = () => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState('');
-  const [name, setName] = useState('');
-
+  const name = useRef('');
+  
 const setData = () => {
   const nameOfQuest = {
-    name: name
+    name: name.current.value
   };
   dispatch(recieveData(nameOfQuest));
 };
@@ -37,8 +37,7 @@ const lastButton = () => {
             type="text"
             placeholder="I need help with..."
             className="hero-search-bar"
-            value={name}
-            onChange={e=> setName(e.target.value)}/>
+            ref={name}/>
             <Link to="/quest" className="button" onClick={()=>setData()}>Get help today</Link>
         </div> 
         <div className='links'>
