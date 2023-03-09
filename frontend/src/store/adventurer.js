@@ -43,9 +43,8 @@ export const updateAdventurer = (adventurer) => async dispatch => {
         body: JSON.stringify(adventurer)
     });
     if (response.ok){
-        // fetchAdventurers()
         const data = await response.json();
-        dispatch(receiveAdventurer(data)); // try changing lines 46 & 47 to calling fetchAdventurers()?
+        dispatch(receiveAdventurer(data)); 
     } else {
         throw response;
     };
@@ -60,7 +59,6 @@ const adventurersReducer = (state = initialState, action) => {
         case RECEIVE_ADVENTURER:
             const id = action.adventurer.user.id;
             state[id] = action.adventurer.user;
-            debugger
             return Object.assign({}, state);
         default:
             return state;
