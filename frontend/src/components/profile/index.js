@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {  Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {  updateUser } from '../../store/session';
+import {recieveData, revieveDate} from '../../store/temp';
 import { logout } from '../../store/session'
 import map from '../../images/map.png';
 import shield from '../../images/shield.png';
@@ -47,7 +48,8 @@ function ProfileComponent(){
     };
 
     const logoutUser = () => {
-        dispatch(logout())
+        dispatch(recieveData({data:''}));
+        dispatch(logout());
     }
 
   const formHandle = () => {

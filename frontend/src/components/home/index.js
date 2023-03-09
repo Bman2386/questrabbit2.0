@@ -10,12 +10,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const [clicked, setClicked] = useState('');
   const name = useRef('');
-  
+
 const setData = () => {
-  const nameOfQuest = {
-    name: name.current.value
-  };
-  dispatch(recieveData(nameOfQuest));
+  dispatch(recieveData({nameOfQuest: name.current}));
 };
 
 const stars = <img src={star} className='star2'/>;

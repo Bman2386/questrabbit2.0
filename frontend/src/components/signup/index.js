@@ -23,7 +23,7 @@ function Signup(){
   const [star_sign, setStarSign] = useState(''); 
   const temp = useSelector(state => state.temp ? state.temp : '')
 
-  if (currentUser && temp) return <Redirect to='/quest' />
+  if (currentUser && (temp.categoryId || temp.nameOfQuest)) return <Redirect to='/quest' />
   if (currentUser) return <Redirect to='/' />;
 
    const renderErrors=()=> {

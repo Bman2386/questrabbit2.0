@@ -9,14 +9,16 @@ import formphoto from '../../images/formphoto.jpg';
 function Login() {
   const dispatch = useDispatch();
   const [username, setUserName] = useState('');
-  const [password, setpassword] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState('');
   const [loggingIn, setLoggingIn] = useState(false);
+
+  
 
   const currentUser = useSelector(state => state.session.user);
   const temp = useSelector(state => state.temp ? state.temp : '')
 
-  if (currentUser && temp) return <Redirect to='/quest'/>
+  if (currentUser && (temp.categoryId || temp.nameOfQuest) ) return <Redirect to='/quest'/>
   if (currentUser) return <Redirect to='/' />;
  
   const renderErrors=()=> {
@@ -66,7 +68,7 @@ function Login() {
       password: 'hunter12'
       };
       setUserName(guest.username);
-      setpassword(guest.password);
+      setPassword(guest.password);
       setLoggingIn(true);
         return dispatch(sessionActions.login(guest));
     }
@@ -82,13 +84,13 @@ function Login() {
           <input
             type="text"
             value={username}
-            onChange={e => setUserName(e.target.value)}
+            onChange={e=>setUserName(e.target.value)}
             placeholder="Username"
           />
           <input
             type="password"
             value={password}
-            onChange={e=>setpassword(e.target.value)}
+            onChange={e=>setPassword(e.target.value)}
             placeholder="Password"
           />
           {loggingIn ? <div>Logging In...</div> : <button onClick={handleSubmit}>Log in</button>}
