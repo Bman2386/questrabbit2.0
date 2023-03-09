@@ -102,6 +102,7 @@ export const restoreSession = () => async dispatch => {
         data = await response.json();
     } catch {
         data = await response.text();
+        debugger
     }
     if (data) storeCurrentUser(data.user);
     if (data) dispatch(setCurrentUser(data.user));

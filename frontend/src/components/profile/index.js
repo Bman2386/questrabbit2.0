@@ -60,13 +60,13 @@ function ProfileComponent(){
                    </div>
                  <hr className='hr'/>
                 <div className='p3'>
-                   <img src={user} className='icon1'></img>   Username: {`${name}`}  
+                   <img src={user} alt='user icon' className='icon1'></img>   Username: {`${name}`}  
                 </div>
                 <div className='p3'>
-                    <img src={shield} className='icon1'/>   Family Crest: {`${crest}`}
+                    <img src={shield} alt='crest icon' className='icon1'/>   Family Crest: {`${crest}`}
                 </div>
                 <div className='p3'>
-                    <img src={map} className='icon1'/>   Realm: {`${rlm}`}
+                    <img src={map} alt='map icon' className='icon1'/>   Realm: {`${rlm}`}
                 </div>
                 <div className='p4'>
                     <div className='icon'>&#x2638;</div>   Star Sign: {`${sign}`}
@@ -121,8 +121,7 @@ function ProfileComponent(){
                     {formHandle()}
                 </div>
             </div>
-            
-        )
-}
+        );
+};
 
 export default ProfileComponent

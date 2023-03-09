@@ -49,7 +49,7 @@ function EditQuest({currentUser, quest}){
                     "Tuesday",
                     "Wednesday",
                     "Thursday",
-                    "Firday",
+                    "Friday",
                     "Saturday"
                 ]
                 const months = [
