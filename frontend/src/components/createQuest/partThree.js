@@ -226,7 +226,6 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
 
     const advShow=(id) => {
         const adv = adventurers.filter(ad => ad.id === parseInt(id));
-        debugger
         return adv[0].username;
     }
 
