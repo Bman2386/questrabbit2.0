@@ -8,9 +8,9 @@ const receiveQuests = quests => ({
     quests
 });
 
-const receiveQuest = quest => ({
+const receiveQuest = data => ({
     type: RECEIVE_QUEST,
-    quest
+    data
 });
 
 export const fetchQuests = () => async dispatch => {
@@ -80,11 +80,11 @@ const questsReducer = (state=initialState, action) => {
         case RECEIVE_QUESTS:
             return Object.assign({}, action.quests);
         case RECEIVE_QUEST:
-            const id = action.quest.quest.id;
-            if (action.quest.quest.completed) {
+            const id = action.data.quest.id;
+            if (action.data.quest.completed) {
                delete state[id];
             } else {
-               state[id] = action.quest.quest; 
+               state[id] = action.data.quest; 
             };
             return Object.assign({}, state);
         default:
