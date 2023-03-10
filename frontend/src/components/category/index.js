@@ -13,8 +13,7 @@ function Category(){
     const location = useLocation();
     const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
     const locationPath = location.pathname;
-    const length = locationPath.length - 1;
-    const categoryId = parseInt(locationPath[length]); //grab the number from the location
+    const categoryId = parseInt(locationPath.at(-1)); //grab the number from the location at last line of url
     
     useEffect(() => {
         dispatch(fetchCategories());
@@ -26,10 +25,10 @@ function Category(){
  
     const category = categories[categoryId - 1]
     const dynamicImage = (id) => {
-        if (id === 1) return <img className="show-image" src={ftch} />
-        if (id === 2) return <img className="show-image" src={craft} />
-        if (id === 3) return <img className="show-image" src={escort} />
-        if (id === 4) return <img className="show-image" src={slay} />
+        if (id === 1) return <img alt='fetch' className="show-image" src={ftch} />
+        if (id === 2) return <img alt='craft' className="show-image" src={craft} />
+        if (id === 3) return <img alt='escort' className="show-image" src={escort} />
+        if (id === 4) return <img alt='slay' className="show-image" src={slay} />
     }
     
     return (    
