@@ -145,7 +145,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                             <button onClick={() => subCurrentMonth()}><i className="fa fa-angle-left"></i></button>
                             <div className="date">
                                 <h1>{monthDisplay()}</h1>
-                                <p>{`${date}`}</p>
+                                <p>{dateShow(date)}</p>
                             </div>
                             <button onClick={() => addCurrentMonth()}><i className="fa fa-angle-right"></i></button>
                         </div>

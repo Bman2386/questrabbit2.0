@@ -31,6 +31,7 @@ function EditQuest({currentUser, quest, edit, setEdit}){
             adventurer_id: quest.adventurerId,
         };
         dispatch(updateQuest(updatedQuest));
+        setEdit(false);
     };
     
     return(
@@ -62,9 +63,9 @@ function EditQuest({currentUser, quest, edit, setEdit}){
                 <p className='p' id='center'>Quest Category: {categoryShow(quest.categoryId)}</p>
                 <p className='p' id='center'>Adventurer: {adventurerShow(quest.adventurerId)}</p>
                 <div id='center' className='links2'>
-                    { questName && details && startTime ? <Link className="btn-4" to="/" onClick={() => submit()}>Submit</Link> :
+                    { questName && details && startTime ? <button className='btn-1' onClick={() => submit()}>Submit</button> :
                     ''}
-                    <Link to='/' className='btn-5'>Cancel</Link>
+                    <button className='cancel-btn' onClick={()=> setEdit(false)}>Cancel</button>
                 </div>
                 <span className='margin-bottom'></span>
             </div>

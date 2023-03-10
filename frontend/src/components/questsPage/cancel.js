@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { updateQuest } from '../../store/quest';
 import {createReview, fetchReviews} from '../../store/review';
@@ -130,6 +129,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         dispatch(createReview(review));
         const newStats = reStatAdv();
         dispatch(updateAdventurer(newStats));
+        setCancel(false);
     };
     const writeReview = ()=> {
         return(
@@ -179,7 +179,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
                         placeholder={`${adventurerShow(quest.adventurerId)} did a great job at...`}
                         onChange={e=> setBody(e.target.value)} />
                 </div>
-                <Link onClick={() => submitReview()} to="/" id="margin" className='btn-4'>Submit Review</Link>
+                <button onClick={() => submitReview()} id="margin" className='btn-4' style={{color: 'white'}}>Submit Review</button>
             </div>
         );
     };

@@ -80,7 +80,13 @@ const questsReducer = (state=initialState, action) => {
         case RECEIVE_QUESTS:
             return Object.assign({}, action.quests);
         case RECEIVE_QUEST:
-            return Object.assign({}, state, action.quest);
+            const id = action.quest.quest.id;
+            if (action.quest.quest.completed) {
+               delete state[id];
+            } else {
+               state[id] = action.quest.quest; 
+            };
+            return Object.assign({}, state);
         default:
             return state;
     };
