@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
+import { categoryShow } from '../../utils/show';
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import pencil from '../../images/pencil.png';
 
@@ -36,21 +37,6 @@ function PartOne({step, setStep, questName, setQuestName, details, setDetails, c
             );
         };
 
-    };
-
-    const catShow = () => {
-        switch (categoryId) {
-            case '1':
-                return 'Fetch';
-            case '2':
-                return 'Craft';
-            case '3':
-                return 'Escort';
-            case '4':
-                return 'Slay';
-            default:
-                break;
-        };
     };
 
     const questCategory = () => {
@@ -107,14 +93,14 @@ function PartOne({step, setStep, questName, setQuestName, details, setDetails, c
                 <div className='quest-name'>
                     <img className='pencil' src={pencil} id='pencil' onClick={() => setMini(1)} />
                     <div className='label'>Category of your Quest:</div>
-                    <div className='orders2'>{`${catShow()}`}</div>
+                    <div className='orders2'>{`${categoryShow(categoryId)}`}</div>
                 </div>
             );
         } else {
             return (
                 <div className='quest-name'>
                     <div className='label'>Category Select</div>
-                    <div className='orders2'>{categoryId ? `${catShow()}` : ''}</div>
+                    <div className='orders2'>{categoryId ? `${categoryShow(categoryId)}` : ''}</div>
                 </div>
             );
         };

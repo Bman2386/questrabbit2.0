@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import {  updateQuest } from '../../store/quest';
+import { categoryShow, adventurerShow } from '../../utils/show';
 
 function EditQuest({currentUser, quest}){
     const dispatch = useDispatch();
@@ -15,32 +16,7 @@ function EditQuest({currentUser, quest}){
         setDetails(quest.details);
         setStartTime(quest.startTime);
     };
-    const categoryShow = () => {
-        if (quest.categoryId === 1) {
-            return 'Fetch';
-        } else if (quest.categoryId === 2) {
-            return 'Craft';
-        } else if (quest.categoryId === 3) {
-            return 'Escort';
-        } else if (quest.categoryId === 4) {
-            return 'Slay';
-        };
-    };
-
-    function adShow() {
-        const id = parseInt(quest.adventurerId);
-        switch (id) {
-            case 2:
-                return 'Hercules';
-            case 3:
-                return 'Goblin Slayer';
-            case 4:
-                return 'Isaac Newton';
-            default:
-                return 'error';
-        };
-    };
-
+   
    function dateShow(){
             const dateDisplay = () => {
                 const days = [
@@ -94,9 +70,8 @@ function EditQuest({currentUser, quest}){
                         return 'am';
                     };
                 };
-                return `${weekDay} ${month} ${monthDay} ${year} ${hour()}:${min()}${amPm()}`
-
-            }
+                return `${weekDay} ${month} ${monthDay} ${year} ${hour()}:${min()}${amPm()}`;
+            };
             const startDate = dateDisplay();
 
             return <div className='p' id='center'>{`${startDate}`}</div>;
@@ -140,8 +115,8 @@ function EditQuest({currentUser, quest}){
                     <input className='label' type='datetime-local' value={startTime} onChange={e => setStartTime(e.target.value)}></input>
                 </div>
                 {dateShow()}
-                <p className='p' id='center'>Quest Category: {categoryShow()}</p>
-                <p className='p' id='center'>Adventurer: {adShow()}</p>
+                <p className='p' id='center'>Quest Category: {categoryShow(quest.categoryId)}</p>
+                <p className='p' id='center'>Adventurer: {adventurerShow(quest.adventurerId)}</p>
                 <div id='center' className='links2'>
                     { questName && details && startTime ? <Link className="btn-4" to="/" onClick={() => submit()}>Submit</Link> :
                     ''}

@@ -5,6 +5,7 @@ import QuestRabbit from '../../images/QuestRabbit.jpg';
 import { fetchAdventurers } from '../../store/adventurer';
 import {createQuest} from '../../store/quest';
 import {clearData} from '../../store/temp';
+import { categoryShow } from '../../utils/show';
 
 function PartThree({step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
@@ -209,21 +210,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                 </div>
             );
     };
-    const categoryShow = (category) => {
-        switch (category) {
-            case '1':
-                return 'Fetch';
-            case '2':
-                return 'Craft';
-            case '3':
-                return 'Escort';
-            case '4':
-                return 'Slay';
-            default:
-                return 'Need to select Category';
-        };
-    };
-
+   
     const advShow=(id) => {
         const adv = adventurers.filter(ad => ad.id === parseInt(id));
         return adv[0].username;

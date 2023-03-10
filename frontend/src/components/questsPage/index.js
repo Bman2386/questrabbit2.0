@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuests } from '../../store/quest';
+import { categoryShow, adventurerShow } from '../../utils/show';
 import EditQuest from './edit';
 import CancelQuest from './cancel';
 
@@ -23,33 +24,7 @@ function QuestsPage (){
 
     if (edit) return <EditQuest currentUser={currentUser} quest={quest}/>;
     if (cancel) return <CancelQuest currentUser={currentUser} quest={quest} edit={edit} setEdit={setEdit} cancel={cancel} setCancel={setCancel}/>;
-
-    const categoryShow=(quest)=> {
-        if (quest.categoryId === 1){
-            return 'Fetch';
-        } else if (quest.categoryId === 2){
-            return 'Craft';
-        } else if (quest.categoryId === 3){
-            return 'Escort';
-        } else if (quest.categoryId === 4){
-            return 'Slay';
-        };
-    };
-
     
-   function adShow(quest){
-        const id = parseInt(quest.adventurerId);
-        switch (id) {
-            case 2:
-                return 'Hercules';
-            case 3:
-                return 'Goblin Slayer';
-            case 4:
-                return 'Isaac Newton';
-            default:
-                return 'error';
-        };
-    };
      function timeShow(quest){
         const dateDisplay = () => {
             const days = [
@@ -146,13 +121,13 @@ function QuestsPage (){
                         <div className='links2'>
                             <div className='p'>Category: </div>
                             <div className='orders4'>
-                                {categoryShow(quest)}
+                                {categoryShow(quest.categoryId)}
                             </div>
                         </div>
                         <div className='links2'>
                             <div className='p'>Adventurer:</div>
                             <div className='orders4'>
-                                {adShow(quest)}  
+                                {adventurerShow(quest.adventurerId)}  
                             </div>
                         </div>
                         <div className='links2' id='center'>

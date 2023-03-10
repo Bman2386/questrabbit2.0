@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateQuest } from '../../store/quest';
 import {createReview, fetchReviews} from '../../store/review';
 import {updateAdventurer} from '../../store/adventurer';
+import { categoryShow, adventurerShow } from '../../utils/show';
 import star from '../../images/star.png'
 
 function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
@@ -17,17 +18,6 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         dispatch(fetchReviews())
     },[dispatch])
 
-    const categoryShow = (categoryId) => {
-        if (categoryId === 1) return 'Fetch';
-        if (categoryId === 2) return 'Craft';
-        if (categoryId === 3) return 'Escort';
-        if (categoryId === 4) return 'Slay';
-    };
-    const advName = (id)=> {
-        if (id === 2) return 'Hercules';
-        if (id === 3) return 'Goblin Slayer';
-        if (id === 4) return 'Isaac Newton';
-    }
     const dateDisplay = (time) => {
         const days = [
             "Sunday",
@@ -92,7 +82,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
                     <p className='p'>Details: {`${quest.details}`}</p>
                     <p className='p'>Category: {categoryShow(quest.categoryId)}</p>
                     <p className='p'>Start Time: {`${dateDisplay(quest.startTime)}`}</p>
-                    <p className='p'>Adventurer: {`${advName(quest.adventurerId)}`}</p>
+                    <p className='p'>Adventurer: {`${adventurerShow(quest.adventurerId)}`}</p>
                     <button onClick={() => setMini(2)} id='margin'>Cancel Quest</button>
                 </div>
             </div>
@@ -198,7 +188,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     const writeReview = ()=> {
         return(
             <div className='cancel-form'>
-                <label className='h1'>Review for: {`${advName(quest.adventurerId) }`}</label>
+                <label className='h1'>Review for: {`${adventurerShow(quest.adventurerId) }`}</label>
                 <div className='quest-name'>
                     <div className='orders' id='margin'>Rating:</div>
                     <div className='inputs'>
@@ -240,7 +230,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
                     <textarea
                         value={body}
                         className='textarea3'
-                        placeholder={`${advName(quest.adventurerId)} did a great job at...`}
+                        placeholder={`${adventurerShow(quest.adventurerId)} did a great job at...`}
                         onChange={e=> setBody(e.target.value)} />
                 </div>
                 <Link onClick={() => submitReview()} to="/" id="margin" className='btn-4'>Submit Review</Link>
