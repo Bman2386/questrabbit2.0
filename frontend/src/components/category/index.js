@@ -23,27 +23,26 @@ function Category(){
         <> Oops, categoryId didn't pass through</>
     );
  
-    const category = categories[categoryId - 1]
+    const category = categories[categoryId - 1];
+
     const dynamicImage = (id) => {
         if (id === 1) return <img alt='fetch' className="show-image" src={ftch} />
         if (id === 2) return <img alt='craft' className="show-image" src={craft} />
         if (id === 3) return <img alt='escort' className="show-image" src={escort} />
         if (id === 4) return <img alt='slay' className="show-image" src={slay} />
-    }
+    };
     
     return (    
         <div className="show-container">
             {dynamicImage(categoryId)}
-                    {
-                        categories && categories.length > 1 ? 
-                        <div className='show-block'>
-                            <h1 className="show-h1">Category Name: {category.categoryName}</h1>
-                            <p className="show-p">Example Description: {category.exDescription}</p>
-                            <Link 
-                            to='/quest'
-                            className='show-button' onClick={() => dispatch(recieveData({categoryId: `${category.id}`}))}>Book a Quest in this Category</Link>
-                        </div> :  ''
-                    }  
+            <div className='show-block'>
+                <h1 className="show-h1">Category Name: {category.categoryName}</h1>
+                <p className="show-p">Example Description: {category.exDescription}</p>
+                <Link 
+                    to='/quest'
+                    className='show-button' 
+                    onClick={() => dispatch(recieveData({categoryId: `${category.id}`}))}>Book a Quest in this Category</Link>
+            </div>
         </div> 
     );
 };        
