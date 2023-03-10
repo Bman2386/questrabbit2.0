@@ -21,9 +21,9 @@ function Signup(){
   const [family_crest, setFamilyCrest] = useState('');
   const [realm, setRealm] = useState('');
   const [star_sign, setStarSign] = useState(''); 
-  const temp = useSelector(state => state.temp ? state.temp : '')
+  const temp = useSelector(state => state.temp ? state.temp : '');
 
-  if (currentUser && (temp.categoryId || temp.nameOfQuest)) return <Redirect to='/quest' />
+  if (currentUser && (temp.categoryId || temp.nameOfQuest)) return <Redirect to='/quest' />;
   if (currentUser) return <Redirect to='/' />;
 
    const renderErrors=()=> {
@@ -37,7 +37,7 @@ function Signup(){
           ))}
         </ul>
       );
-    }
+    };
 
   const handleSubmit = (e) => {
       e.preventDefault();
@@ -49,7 +49,7 @@ function Signup(){
         avg_rating: avg_rating, total_ratings: total_ratings,
         elite: elite, pitch: pitch, 
         family_crest: family_crest, realm: realm, star_sign: star_sign
-      }
+      };
     return dispatch(signin(user))
       .catch(async (res) => {
         let data;
@@ -64,7 +64,7 @@ function Signup(){
         else setErrors([res.statusText]);
         setLoggingIn(false);
       });
-      }
+      };
         return (
             <div className="session-form">
              <img src={formphoto} className="form-photo" />
@@ -104,7 +104,7 @@ function Signup(){
             }
         </form>
       </div>
-        )
-}
+        );
+};
 
 export default Signup;

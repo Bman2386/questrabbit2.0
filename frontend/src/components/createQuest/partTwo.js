@@ -132,17 +132,12 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId}){
     };
 
     const hero = (name) => {
-        switch (name) {
-            case 'Hercules':
-                return <img src={hercules} className='adv-img' />;
-            case 'Goblin Slayer':
-                return <img src={goblin_slayer} className='adv-img' />;
-            case 'Isaac Newton':
-                return <img src={isaac_newton} className='adv-img' />;
-            default:
-                return '';
-        };
+        if (name === 'Hercules') return <img src={hercules} className='adv-img' />;
+        if (name === 'Goblin Slayer') return <img src={goblin_slayer} className='adv-img' />;
+        if (name === 'Isaac Newton') return <img src={isaac_newton} className='adv-img' />;
+        return <div className='error'>Error with name</div>;
     };
+    
     const isElite = (elite) => {
         if (elite === true) {
             return (

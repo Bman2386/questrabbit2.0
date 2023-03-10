@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import * as sessionActions from "../../store/session";
+import {login} from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -44,7 +44,7 @@ function Login() {
     e.stopPropagation();
     setErrors([]);
     setLoggingIn(true);
-    return dispatch(sessionActions.login({ username, password }))
+    return dispatch(login({ username, password }))
       .catch(async (res) => {
         let data;
         try {
@@ -70,7 +70,7 @@ function Login() {
       setUserName(guest.username);
       setPassword(guest.password);
       setLoggingIn(true);
-        return dispatch(sessionActions.login(guest));
+        return dispatch(login(guest));
     }
 
     return (

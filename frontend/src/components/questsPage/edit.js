@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link} from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import {  updateQuest } from '../../store/quest';
-import { categoryShow, adventurerShow } from '../../utils/show';
+import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 
-function EditQuest({currentUser, quest}){
+function EditQuest({currentUser, quest, edit, setEdit}){
+
     const dispatch = useDispatch();
     const [questName, setQuestName] = useState('');
     const [details, setDetails] = useState('');
@@ -17,66 +18,6 @@ function EditQuest({currentUser, quest}){
         setStartTime(quest.startTime);
     };
    
-   function dateShow(){
-            const dateDisplay = () => {
-                const days = [
-                    "Sunday",
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday"
-                ]
-                const months = [
-                    "January",
-                    "Febuary",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December",
-                ];
-                const fullDate = new Date(startTime);
-                const weekDay = days[fullDate.getDay()];
-                const hour = () => {
-                    const hours = fullDate.getHours();
-                    if (hours > 12) {
-                        return (hours - 12);
-                    } else {
-                        return hours;
-                    };
-                };
-                const min = () => {
-                    const questMinutes = fullDate.getMinutes()
-                    if (questMinutes === 0) {
-                        return '00';
-                    } else {
-                        return questMinutes;
-                    };
-                };
-                const month = months[fullDate.getMonth()];
-                const monthDay = fullDate.getDate();
-                const year = fullDate.getFullYear();
-                const amPm = () => {
-                    if (fullDate.getHours() > 11) {
-                        return 'pm';
-                    } else {
-                        return 'am';
-                    };
-                };
-                return `${weekDay} ${month} ${monthDay} ${year} ${hour()}:${min()}${amPm()}`;
-            };
-            const startDate = dateDisplay();
-
-            return <div className='p' id='center'>{`${startDate}`}</div>;
-    };
-
     const submit = () => {
         const time = new Date(startTime);
         const updatedQuest = {
@@ -91,9 +32,12 @@ function EditQuest({currentUser, quest}){
         };
         dispatch(updateQuest(updatedQuest));
     };
-
+    console.log(edit)
     return(
         <div className='quest-form'>
+            <button 
+            className='back-button'
+            onClick={()=> setEdit(false)}>Back</button>
             <div className='edit-quest-container'>
                 <h1 className='h1'>Edit Quest</h1>
                 <hr className='hr' />
@@ -114,7 +58,7 @@ function EditQuest({currentUser, quest}){
                 <div className='label-container'>
                     <input className='label' type='datetime-local' value={startTime} onChange={e => setStartTime(e.target.value)}></input>
                 </div>
-                {dateShow()}
+                <div className='p' id='center'>{dateShow(startTime)}</div>
                 <p className='p' id='center'>Quest Category: {categoryShow(quest.categoryId)}</p>
                 <p className='p' id='center'>Adventurer: {adventurerShow(quest.adventurerId)}</p>
                 <div id='center' className='links2'>

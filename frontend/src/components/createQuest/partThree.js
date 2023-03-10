@@ -5,7 +5,7 @@ import QuestRabbit from '../../images/QuestRabbit.jpg';
 import { fetchAdventurers } from '../../store/adventurer';
 import {createQuest} from '../../store/quest';
 import {clearData} from '../../store/temp';
-import { categoryShow } from '../../utils/show';
+import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 
 function PartThree({step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
@@ -14,9 +14,8 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
     const [date, setDate] = useState(new Date());
 
     useEffect(()=> {
-        dispatch(fetchAdventurers)
-    }, [dispatch])
- 
+        dispatch(fetchAdventurers);
+    }, [dispatch]);
 
     if (adventurers.length === 0) return <div>Loading...</div>;
 
@@ -198,7 +197,7 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                             <option value='PM'>PM</option>
                         </select>
                     </div>
-                    <div className='orders2'>{`${startTime}`}</div>
+                    <div className='orders2'>{dateShow(startTime)}</div>
                     <button id='center' onClick={() => setMini(3)}>Continue</button>
                 </div>
             );
@@ -206,16 +205,11 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
         return (
                 <div className='quest-name'>
                     <i className='fas fa-pen' id='pencil' onClick={() => setMini(2)}></i>
-                    <div className='orders2'>{`${startTime}`}</div>
+                    <div className='orders2'>{dateShow(startTime)}</div>
                 </div>
             );
     };
    
-    const advShow=(id) => {
-        const adv = adventurers.filter(ad => ad.id === parseInt(id));
-        return adv[0].username;
-    }
-
     const submit = () => {
         const quest = {
             quest_name: questName,
@@ -226,8 +220,8 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
             completed: false,
             creator_id: creatorId
         };
-        dispatch(clearData())
-        dispatch(createQuest(quest))
+        dispatch(clearData());
+        dispatch(createQuest(quest));
     }
     const reviewQuest = () => {
         if (mini === 3) {
@@ -238,8 +232,8 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                         <li className="orders">Quest Name: {questName}</li>
                         <li className="orders">Category: {categoryShow(categoryId)}</li>
                         <li className="orders">Details: {details}</li>
-                        <li className="orders">Start Time: {`${startTime}`}</li>
-                        <li className="orders">Adventurer: {advShow(adventurerId)}</li>
+                        <li className="orders">Start Time: {dateShow(startTime)}</li>
+                        <li className="orders">Adventurer: {adventurerShow(adventurerId)}</li>
                     </ul>
                         <Link to='/' className='button-submit' onClick={() => submit()}>Submit</Link> 
                 </div>
@@ -277,7 +271,6 @@ function PartThree({step, creatorId, setStep,startTime, setStartTime, questName,
                 {reviewQuest()}
             </div>
         </div>
-    )
-};
+)};
 
 export default PartThree;

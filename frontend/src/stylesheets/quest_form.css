@@ -535,3 +535,7 @@ hr{
 #sign-up{
     color:white;
 }
+
+.back-button {
+    align-self: flex-start;
+}

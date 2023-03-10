@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateQuest } from '../../store/quest';
 import {createReview, fetchReviews} from '../../store/review';
 import {updateAdventurer} from '../../store/adventurer';
-import { categoryShow, adventurerShow } from '../../utils/show';
+import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 import star from '../../images/star.png'
 
 function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
@@ -18,60 +18,6 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         dispatch(fetchReviews())
     },[dispatch])
 
-    const dateDisplay = (time) => {
-        const days = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Firday",
-            "Saturday"
-        ]
-        const months = [
-            "January",
-            "Febuary",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        ];
-        const fullDate = new Date(time);
-        const weekDay = days[fullDate.getDay()];
-        const hour = () => {
-            const hours = fullDate.getHours();
-            if (hours > 12) {
-                return (hours - 12)
-            } else {
-                return hours
-            }
-        }
-        const min = () => {
-            const questMinutes = fullDate.getMinutes()
-            if (questMinutes === 0) {
-                return '00'
-            } else {
-                return questMinutes;
-            }
-        };
-        const month = months[fullDate.getMonth()];
-        const monthDay = fullDate.getDate();
-        const year = fullDate.getFullYear();
-        const amPm = () => {
-            if (fullDate.getHours() > 11) {
-                return 'pm'
-            } else {
-                return 'am'
-            }
-        }
-        return `${weekDay} ${month} ${monthDay} ${year} ${hour()}:${min()}${amPm()}`;
-    }
     const yourQuest = ()=> {
         return (
             <div className='width2'>
@@ -81,7 +27,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
                     <p className='p'>Quest Name: {`${quest.questName}`}</p>
                     <p className='p'>Details: {`${quest.details}`}</p>
                     <p className='p'>Category: {categoryShow(quest.categoryId)}</p>
-                    <p className='p'>Start Time: {`${dateDisplay(quest.startTime)}`}</p>
+                    <p className='p'>Start Time: {`${dateShow(quest.startTime)}`}</p>
                     <p className='p'>Adventurer: {`${adventurerShow(quest.adventurerId)}`}</p>
                     <button onClick={() => setMini(2)} id='margin'>Cancel Quest</button>
                 </div>
@@ -242,10 +188,13 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         if (mini === 1) return yourQuest();
         if (mini === 2) return warnUser();
         if (mini === 3) return writeReview();
-        return <div>error, something went wrong</div>
+        return <div>error, something went wrong</div>;
     };
     return(
-        <div>{pageSetter()}</div>
+        <div>
+            <button style={{marginTop: '1rem'}} className='back-button' onClick={()=>setCancel(false)}>Back</button>
+            {pageSetter()}
+        </div>
     );
 };
 export default CancelQuest;

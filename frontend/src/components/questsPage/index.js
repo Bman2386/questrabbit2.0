@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuests } from '../../store/quest';
-import { categoryShow, adventurerShow } from '../../utils/show';
+import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 import EditQuest from './edit';
 import CancelQuest from './cancel';
 
@@ -12,7 +12,7 @@ function QuestsPage (){
     const currentUser = useSelector(state=> state.session.user ? state.session.user : '');
     const [edit, setEdit] = useState(false);
     const [quest, setQuest] = useState('');
-    const [cancel, setCancel] = useState('');
+    const [cancel, setCancel] = useState(false);
 
     useEffect(() => {
             dispatch(fetchQuests())
@@ -22,68 +22,9 @@ function QuestsPage (){
 
     if (!quests) return <div>Loading...</div>;
 
-    if (edit) return <EditQuest currentUser={currentUser} quest={quest}/>;
+    if (edit) return <EditQuest currentUser={currentUser} quest={quest} setEdit={setEdit} />;
     if (cancel) return <CancelQuest currentUser={currentUser} quest={quest} edit={edit} setEdit={setEdit} cancel={cancel} setCancel={setCancel}/>;
     
-     function timeShow(quest){
-        const dateDisplay = () => {
-            const days = [
-                "Sunday",
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Firday",
-                "Saturday"
-            ]
-            const months = [
-                "January",
-                "Febuary",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December",
-            ];
-            const fullDate = new Date(quest.startTime);
-            const weekDay = days[fullDate.getDay()];
-            const hour = () => {
-                const hours = fullDate.getHours();
-               if ( hours > 12){
-                   return (hours - 12)
-               } else {
-                   return hours
-               }
-            } 
-            const min = () => {
-                const questMinutes = fullDate.getMinutes();
-                if ( questMinutes === 0 ){
-                    return '00';
-                } else {
-                    return questMinutes;
-                }; 
-             };
-             const month = months[fullDate.getMonth()];
-             const monthDay = fullDate.getDate();
-             const year = fullDate.getFullYear();
-             const amPm = () => {
-                 if (fullDate.getHours() > 11) {
-                     return 'pm';
-                 } else {
-                     return 'am';
-                 };
-             };
-             return `${weekDay} ${month} ${monthDay} ${year} ${hour()}:${min()}${amPm()}`;
-         };
-        const startTime = dateDisplay();
-        return <div className='orders4'>{`${startTime}`}</div>;
-       };
-
     const moveToEdit = (id) => {
         const temp = quests.filter(q => q.id === parseInt(id));
         const matchedQuest = temp[0];
@@ -115,7 +56,7 @@ function QuestsPage (){
                         <div className='links2'>
                             <div className='p'>Start Time:</div>
                             <div>
-                               {timeShow(quest)} 
+                                <div className='orders4'>{dateShow(quest.startTime)}</div> 
                             </div>
                         </div>
                         <div className='links2'>
