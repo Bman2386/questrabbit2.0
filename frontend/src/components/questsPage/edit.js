@@ -32,7 +32,7 @@ function EditQuest({currentUser, quest, edit, setEdit}){
         };
         dispatch(updateQuest(updatedQuest));
     };
-    console.log(edit)
+    
     return(
         <div className='quest-form'>
             <button 
