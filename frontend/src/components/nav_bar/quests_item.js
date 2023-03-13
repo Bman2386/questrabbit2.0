@@ -17,7 +17,7 @@ const Quests = ({categories}) => {
             className="btn"
             key={category.id}
             to={`/categories`}
-            onClick={()=> dispatch(recieveData({category: {categoryId: category.id}}))}
+            onClick={()=> dispatch(recieveData({goTo: category.id}))}
           >{category.categoryName}</Link>
         )}
       </li>  
