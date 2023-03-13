@@ -44,24 +44,15 @@ const renderApplication = () => {
       <Root />
     </React.StrictMode>
   );
-}
+};
 
-async function tokenCheck(){
-  if (
+if (
   sessionStorage.getItem("currentUser") === null ||
   sessionStorage.getItem("X-CSRF-Token") === null
   ) {
- const session = await store.dispatch(sessionActions.restoreSession());
-    if (session.ok){
-      renderApplication();
-    } else {
-      tokenCheck();
-      }
-  } else {
-  renderApplication();
+    store.dispatch(sessionActions.restoreSession());
   };
-};
+renderApplication();
 
-tokenCheck();
 
 

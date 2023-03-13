@@ -29,7 +29,7 @@ function App(){
             <Route path='/intermediary'>
                 <Intermediary />
             </Route>
-            <Route path='/categories/:categoryId'>
+            <Route path='/categories'>
                 <NavBar />
                 <Category />
                 <Footer />

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from '../../store/category';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Quests from './quests_item';
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 
@@ -12,15 +12,17 @@ function NavBar(){
   const currentUser = useSelector(state => state.session.user ? state.session.user : '');
 
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+    if (categories.length === 0){
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories]);
   
  
     if (currentUser) {
       return (
         <div className="nav-bar">
           <Link to='/'>
-            <img src={QuestRabbit} className="logo" />
+            <img src={QuestRabbit} alt='logo' className="logo" />
           </Link>
           {categories.length > 0 ? <Quests categories={categories} />: ''}
           <Link to='/quest'>Book a Quest</Link>
@@ -32,7 +34,7 @@ function NavBar(){
     return (
       <div className="nav-bar">
         <Link to='/'>
-          <img src={QuestRabbit} className="logo"/>
+          <img src={QuestRabbit} alt='logo' className="logo"/>
         </Link>
         {categories ? <Quests categories={categories} /> : ''}
         <Link className="btn" to="/intermediary">Log in</Link>

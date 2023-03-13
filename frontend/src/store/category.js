@@ -16,10 +16,10 @@ const receiveCategory = categoryId => ({
 export const fetchCategories = () => async dispatch => {
     const response = await csrfFetch("api/categories");
     if (response.ok){
-        const data = await response.json();
+       const data = await response.json();
         dispatch(receiveCategories(data));
     } else {
-        throw response;
+        throw response
     };
 };
 

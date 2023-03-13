@@ -1,30 +1,25 @@
-import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";  
-import { fetchCategories } from '../../store/category';
 import { recieveData } from '../../store/temp';
 import slay from '../../images/slay.jpg';
 import craft from '../../images/craft.jpg';
 import escort from '../../images/escort.jpg';
 import ftch from '../../images/ftch.jpg';
+import { fetchCategories } from '../../store/category';
 
 function Category(){
     const dispatch = useDispatch();
-    const location = useLocation();
     const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
-    const locationPath = location.pathname;
-    const categoryId = parseInt(locationPath.at(-1)); //grab the number from the location at last line of url
+    // we need to default to 1, incase user types /categories in url
+    const categoryId = useSelector(state => state.temp && state.temp.category ? state.temp.category.categoryId : 1);
     
-    useEffect(() => {
-        dispatch(fetchCategories());
-    }, [dispatch]);
-    
-    if (!categoryId) return (
-        <> Oops, categoryId didn't pass through</>
-    );
- 
     const category = categories[categoryId - 1];
 
+    if (!category) { // if category is null we know categories didn't get fetched
+        dispatch(fetchCategories());
+        return '';
+    }
     const dynamicImage = (id) => {
         if (id === 1) return <img alt='fetch' className="show-image" src={ftch} />
         if (id === 2) return <img alt='craft' className="show-image" src={craft} />

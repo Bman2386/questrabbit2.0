@@ -97,12 +97,7 @@ export const logout = () => async (dispatch) => {
 export const restoreSession = () => async dispatch => { 
     const response = await csrfFetch("/api/session");
     storeCSRFToken(response);
-    let data 
-    try{
-        data = await response.json();
-    } catch {
-        data = await response.text();
-    }
+    const data = await response.json(); 
     if (data) storeCurrentUser(data.user);
     if (data) dispatch(setCurrentUser(data.user));
     return response;
@@ -120,7 +115,7 @@ const sessionReducer = (state = initialState, action) => {
             return { ...state, user: null };
         default:
             return state;
-    }
+    };
 };
 
 export default sessionReducer;
