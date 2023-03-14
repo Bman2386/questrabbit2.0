@@ -4,7 +4,7 @@ import { updateQuest } from '../../store/quest';
 import {createReview, fetchReviews} from '../../store/review';
 import {updateAdventurer} from '../../store/adventurer';
 import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
-import star from '../../images/star.png'
+import Star from './star';
 
 function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     const dispatch = useDispatch();
@@ -73,40 +73,6 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         );
     };
 
-    const showRating = ()=> {
-        const num = <img src={star} className='star' />
-        const use = Number(rating);
-        switch (use) {
-            case 1:
-                return num;
-            case 2:
-                return (
-                    <div className='rating'>
-                        {num}{num}
-                    </div>
-                );
-            case 3:
-                return (
-                    <div className='rating'>
-                        {num}{num}{num}
-                    </div>
-                );
-            case 4:
-                return (
-                    <div className='rating'>
-                        {num}{num}{num}{num}
-                    </div>
-                );
-            case 5:
-                return (
-                    <div className='rating'>
-                        {num}{num}{num}{num}{num}
-                    </div>
-                );
-            default:
-                return '0'
-        };
-    };
     const reStatAdv = () => {
         const currentAdv = reviews.filter(review=> quest.adventurerId === review.adventurerId);
         const totalReviews = currentAdv.length + 1;
@@ -131,6 +97,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         dispatch(updateAdventurer(newStats));
         setCancel(false);
     };
+    
     const writeReview = ()=> {
         return(
             <div className='cancel-form'>
@@ -138,38 +105,15 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
                 <div className='quest-name'>
                     <div className='orders' id='margin'>Rating:</div>
                     <div className='inputs'>
-                        <input
-                            type="radio"
-                            value={1}
-                            name="1 Star"
-                            checked={rating === "1"}
-                            onChange={e=> setRating(e.target.value)} />
-                        <input
-                            type="radio"
-                            value={2}
-                            name="2 Stars"
-                            checked={rating === "2"}
-                            onChange={e=> setRating(e.target.value)} />
-                        <input
-                            type="radio"
-                            value={3}
-                            name="3 Stars"
-                            checked={rating === "3"}
-                            onChange={e=> setRating(e.target.value)} />
-                        <input
-                            type="radio"
-                            value={4}
-                            name="4 Stars"
-                            checked={rating === "4"}
-                            onChange={e=> setRating(e.target.value)} />
-                        <input
-                            type="radio"
-                            value={5}
-                            name="5 Stars"
-                            checked={rating === "5"}
-                            onChange={e=> setRating(e.target.value)} />
+                        {[1,2,3,4,5].map((value)=> (
+                                <Star
+                                key={value}
+                                filled={value <= rating}
+                                setRating={setRating}
+                                value={value}
+                            />
+                        ))}
                     </div>
-                    <div className='inputs'>{showRating()}</div>
                     <div className='inputs'>{`${rating}`} Stars</div>
                 </div>
                 <div className='div'>

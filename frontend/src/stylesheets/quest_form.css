@@ -227,8 +227,18 @@
 .star{
     height: 1rem;
     width: 1rem;
+   
 }
-
+.hidden-button{
+    background-color: transparent;
+    border: transparent;
+    margin: 0;
+    padding: 0;
+}
+.hidden-button:hover{
+    background-color: transparent;
+    border: transparent;
+}
 .rating{
     margin-left: 1%;
 }
