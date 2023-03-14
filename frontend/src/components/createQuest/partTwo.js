@@ -9,7 +9,7 @@ import hercules from '../../images/hercules.jpg';
 import isaac_newton from '../../images/isaac_newton.jpg';
 import goblin_slayer from '../../images/goblin_slayer.jpg';
 
-function PartTwo({step, setStep, adventurerId, setAdventurerId}){
+function PartTwo({ setStep, setAdventurerId}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
     const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
@@ -132,12 +132,11 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId}){
     };
 
     const hero = (name) => {
-        if (name === 'Hercules') return <img src={hercules} className='adv-img' />;
-        if (name === 'Goblin Slayer') return <img src={goblin_slayer} className='adv-img' />;
-        if (name === 'Isaac Newton') return <img src={isaac_newton} className='adv-img' />;
+        if (name === 'Hercules') return <img src={hercules} alt='hero'className='adv-img' />;
+        if (name === 'Goblin Slayer') return <img src={goblin_slayer} alt='hero' className='adv-img' />;
+        if (name === 'Isaac Newton') return <img src={isaac_newton} alt='hero'className='adv-img' />;
         return <div className='error'>Error with name</div>;
     };
-    
     const isElite = (elite) => {
         if (elite === true) {
             return (
@@ -149,35 +148,15 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId}){
         };
         return'';
     };
-    const rating = rating => {
-        const num = <img src={star} className='star' />
-        const use = Number(rating);
-        switch (use) {
-            case 1:
-                return num;
-            case 2:
-                return<div className='rating'>{num}{num}</div>
-            case 3:
-                return (
-                    <div className='rating'>
-                        {num}{num}{num}
-                    </div>
-                );
-            case 4:
-                return (
-                    <div className='rating'>
-                        {num}{num}{num}{num}
-                    </div>
-                );
-            case 5:
-                return (
-                    <div className='rating'>
-                        {num}{num}{num}{num}{num}
-                    </div>
-                );
-            default:
-                return '';
-        };
+    const rating = (rating=1) => {
+        let num = Number(rating);
+        const stars = [];
+        for (let i = num; i > 0; i-- ) stars.push(i);
+        return(
+            <div className='rating'>
+                {stars.map((idx)=> <img src={star} alt='star' className='star' key={idx}/>)}
+            </div>
+        );
     };
     const selectAdv=(input)=> {
         const adventurer = adventurers.filter(ad => ad.id === parseInt(input));
@@ -269,7 +248,7 @@ function PartTwo({step, setStep, adventurerId, setAdventurerId}){
         <div className="quest-container">
             <div className='top-bar'>
                 <Link to='/' >
-                    <img src={QuestRabbit} className="logo2" />
+                    <img src={QuestRabbit} alt='logo' className="logo2" />
                 </Link>
                 <div className='bars'>
                     <ul className='bar1'>
