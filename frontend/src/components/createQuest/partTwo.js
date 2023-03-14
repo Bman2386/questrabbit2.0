@@ -233,7 +233,7 @@ function PartTwo({ setStep, setAdventurerId}){
                         <div className='p' id='margin'>{`${selected.username}`}</div>
                         <div className="p">{isElite(selected.elite)}</div>
                         <div className='p' id='margin'>{`${selected.pitch}`}</div>
-                        <button value={selected.id} className="select2" onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
+                        <button value={selected.id} className="select2" style={{marginRight:'.5rem'}} onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
                         <button onClick={()=> closeReviews()}>Close Reviews</button>
                     </div>
                     <div className='reviews'>Reviews:</div>
