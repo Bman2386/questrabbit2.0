@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {fetchAdventurers} from '../../store/adventurer';
@@ -16,12 +16,24 @@ function PartTwo({ setStep, setAdventurerId}){
     const [adv, setAdv] = useState([]);
     const [isChecked, setIsChecked] = useState(false);
     const [selected, setSelected] = useState('');
-    const [examine, setExamine] = useState(false)
+    const [examine, setExamine] = useState(false);
+
+    const isAdvFetched = useRef(false); 
+    const isReviewsFetched = useRef(false);
+
+    if (adventurers.length) isAdvFetched.current = true;
+    if (reviews.length) isReviewsFetched.current = true;
 
     useEffect(() => {
-        if (adventurers.length === 0)dispatch(fetchAdventurers());
-        if (reviews.length === 0)dispatch(fetchReviews());
-    }, [dispatch, adventurers, reviews]);
+        if (isAdvFetched.current === false ) {
+            dispatch(fetchAdventurers());
+            isAdvFetched.current = true;
+        }
+        if (isReviewsFetched.current === false) {
+            dispatch(fetchReviews());
+            isReviewsFetched.current = true;
+        }
+    }, [dispatch,adventurers, reviews]);
 
     if (adventurers.length < 1 ) return <div>Loading...</div>;
 
