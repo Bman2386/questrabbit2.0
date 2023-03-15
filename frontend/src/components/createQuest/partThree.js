@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import QuestRabbit from '../../images/QuestRabbit.jpg';
-import { fetchAdventurers } from '../../store/adventurer';
 import {createQuest} from '../../store/quest';
 import {clearData} from '../../store/temp';
 import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 
-function PartThree({step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
+function PartThree({ creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers): []);
     const [mini, setMini] = useState(1);
     const [date, setDate] = useState(new Date());
-
-    useEffect(()=> {
-        dispatch(fetchAdventurers);
-    }, [dispatch]);
 
     if (adventurers.length === 0) return <div>Loading...</div>;
 

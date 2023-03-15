@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useRef} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuests } from '../../store/quest';
@@ -14,8 +14,11 @@ function QuestsPage (){
     const [quest, setQuest] = useState('');
     const [cancel, setCancel] = useState(false);
 
+    const isQuestsFetched = useRef(false);
+    if (quests.length > 0) isQuestsFetched.current = true;
+    
     useEffect(() => {
-            dispatch(fetchQuests());
+        if (isQuestsFetched.current ===false) dispatch(fetchQuests());
     }, [dispatch]);
 
     if (!currentUser) return <Redirect to='/'/>;

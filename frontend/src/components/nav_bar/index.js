@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from '../../store/category';
 import { Link } from 'react-router-dom';
@@ -10,11 +10,14 @@ function NavBar(){
   const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
   const currentUser = useSelector(state => state.session.user ? state.session.user : '');
 
+  const isCategoryFetched = useRef(false);
+  if (categories.length > 0) isCategoryFetched.current(true);
+  
   useEffect(() => {
-    if (categories.length === 0){
+    if (isCategoryFetched.current === false){
       dispatch(fetchCategories());
     }
-  }, [dispatch, categories]);
+  }, [dispatch]);
   
  
     if (currentUser) {

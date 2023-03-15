@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { updateQuest } from '../../store/quest';
 import {createReview, fetchReviews} from '../../store/review';
@@ -13,8 +13,10 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     const [rating, setRating] = useState(1);
     const [body, setBody] = useState('');
 
+    const isReviewsFetched = useRef(false);
+    if (reviews.length > 0) isReviewsFetched.current = true;
     useEffect(()=> {
-        dispatch(fetchReviews())
+        if (isReviewsFetched.current === false) dispatch(fetchReviews());
     },[dispatch])
 
     const yourQuest = ()=> {
