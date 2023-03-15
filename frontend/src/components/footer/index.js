@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import linkedin from '../../images/linkedin.jpg';
 import GitHub from '../../images/GitHub.png';
 
@@ -9,7 +9,7 @@ function Footer() {
                 <a target="_blank" href="https://github.com/Bman2386" className='a'><img src={GitHub} className="linked2"/></a>
                 <a target="_blank" href="https://bman2386.github.io/Brendon.Biagi/" className="creator">By Brendon Biagi</a>
             </div>
-        )
-    }
+        );
+    };
 
-export default Footer
+export default Footer;

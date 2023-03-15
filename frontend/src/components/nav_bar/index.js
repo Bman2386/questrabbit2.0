@@ -6,7 +6,6 @@ import Quests from './quests_item';
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 
 function NavBar(){
-
   const dispatch = useDispatch();
   const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
   const currentUser = useSelector(state => state.session.user ? state.session.user : '');
@@ -42,4 +41,4 @@ function NavBar(){
     );
   };
 
-export default NavBar
+export default NavBar;
