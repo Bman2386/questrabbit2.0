@@ -15,7 +15,7 @@ const setData = () => {
   dispatch(recieveData({nameOfQuest: name.current.value}));
 };
 
-const stars = <img src={star} className='star2'/>;
+const stars = <img src={star} alt='star'className='star2'/>;
 
 const lastButton = () => {
   return (
@@ -25,7 +25,7 @@ const lastButton = () => {
   return (
   <div className="home">
     <div className="hero-img-frame">
-      <img className="hero-image" src={hero} />
+      <img className="hero-image" src={hero} alt='hero'/>
       <form className="splash-form" id="form1">
         <h1>Help when you need it, at your fingertips</h1>
         <p>Get help from hundreds of trusted adventurers for everything from errands to slaying a dragon.</p>
@@ -46,7 +46,7 @@ const lastButton = () => {
       </form>
     </div> 
     <div className='underdog'>
-      <div className='underdog'>{stars}{stars}{stars}{stars}<img src={star} className='star2' id='margin-right'/> 1.1+ Million Reviews</div>
+      <div className='underdog'>{stars}{stars}{stars}{stars}<img src={star} className='star2' alt='star' id='margin-right'/> 1.1+ Million Reviews</div>
       <div className='underdog'>
         <div className='ikea-logo'> 
         <div className='ikea'>IKEA</div>
@@ -60,7 +60,7 @@ const lastButton = () => {
         </div>
       </div>
       <div className='store'>
-        <img src={play} className='go'/>
+        <img src={play} alt='google logo' className='go'/>
         <div className='fake-logo'>
            <div className='small'>GET IT ON</div>
            Floogle Play

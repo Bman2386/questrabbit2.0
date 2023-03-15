@@ -21,7 +21,7 @@ function PartTwo({ setStep, setAdventurerId}){
     useEffect(() => {
         if (adventurers.length === 0)dispatch(fetchAdventurers());
         if (reviews.length === 0)dispatch(fetchReviews());
-    }, [dispatch]);
+    }, [dispatch, adventurers, reviews]);
 
     if (adventurers.length < 1 ) return <div>Loading...</div>;
 
