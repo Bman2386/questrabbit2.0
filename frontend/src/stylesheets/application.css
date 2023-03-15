@@ -44,6 +44,7 @@ button:hover {
 
 input {
     padding: 8px;
+    outline: transparent;
 }
 
 .error {
