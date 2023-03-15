@@ -18,7 +18,10 @@ function QuestsPage (){
     if (quests.length > 0) isQuestsFetched.current = true;
     
     useEffect(() => {
-        if (isQuestsFetched.current ===false) dispatch(fetchQuests());
+        if (isQuestsFetched.current ===false) {
+            dispatch(fetchQuests());
+            isQuestsFetched.current = true;
+        };
     }, [dispatch]);
 
     if (!currentUser) return <Redirect to='/'/>;

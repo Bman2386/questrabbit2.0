@@ -19,7 +19,7 @@ function CreateQuest(){
     useEffect(()=> {
     if (data && data.categoryId) setCategoryId(data.categoryId);
     if (data && data.nameOfQuest) setQuestName(data.nameOfQuest);
-    },[])
+    },[data]);
     
 
     if (!currentUser) return <Redirect to='/intermediary'/>;

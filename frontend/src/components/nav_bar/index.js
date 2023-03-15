@@ -11,12 +11,14 @@ function NavBar(){
   const currentUser = useSelector(state => state.session.user ? state.session.user : '');
 
   const isCategoryFetched = useRef(false);
-  if (categories.length > 0) isCategoryFetched.current(true);
-  
+  if (categories.length > 0) isCategoryFetched.current = true;
+
   useEffect(() => {
-    if (isCategoryFetched.current === false){
+    if (isCategoryFetched.current === false) {
       dispatch(fetchCategories());
+      isCategoryFetched.current = true;
     }
+      ;
   }, [dispatch]);
   
  

@@ -15,8 +15,12 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
 
     const isReviewsFetched = useRef(false);
     if (reviews.length > 0) isReviewsFetched.current = true;
+    
     useEffect(()=> {
-        if (isReviewsFetched.current === false) dispatch(fetchReviews());
+        if (isReviewsFetched.current === false) {
+            dispatch(fetchReviews());
+            isReviewsFetched.current = true;
+        };
     },[dispatch])
 
     const yourQuest = ()=> {
