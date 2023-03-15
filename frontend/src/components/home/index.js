@@ -19,7 +19,8 @@ const stars = <img src={star} alt='star'className='star2'/>;
 
 const lastButton = () => {
   return (
-    <Link className='btn-4' to="/categories/4">Slay</Link>
+    <Link className='btn-4' to="/categories"
+    onClick={()=> dispatch(recieveData({goTo: 4}))}>Slay</Link>
   );
 };
   return (
@@ -38,9 +39,12 @@ const lastButton = () => {
             <Link to="/quest" className="button" onClick={()=>setData()}>Get help today</Link>
         </div> 
         <div className='links'>
-          <Link className='btn-4' to="/categories/1">Fetch</Link>
-          <Link className='btn-4' to="/categories/2">Craft</Link>
-          <Link className='btn-4' to="/categories/3">Escort</Link>
+          <Link className='btn-4' to="/categories" 
+          onClick={()=> dispatch(recieveData({goTo: 1}))}>Fetch</Link>
+          <Link className='btn-4' to="/categories"
+         onClick={()=> dispatch(recieveData({goTo: 2}))}>Craft</Link>
+          <Link className='btn-4' to="/categories"
+          onClick={()=> dispatch(recieveData({goTo: 3}))}>Escort</Link>
         {clicked ? lastButton() : <button className='btn-3' onClick={() =>setClicked('true')}>See more...</button>}
         </div>
       </form>
