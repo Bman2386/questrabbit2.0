@@ -19,8 +19,8 @@ function PartTwo({ setStep, setAdventurerId}){
     const [examine, setExamine] = useState(false)
 
     useEffect(() => {
-        dispatch(fetchAdventurers());
-        dispatch(fetchReviews());
+        if (adventurers.length === 0)dispatch(fetchAdventurers());
+        if (reviews.length === 0)dispatch(fetchReviews());
     }, [dispatch]);
 
     if (adventurers.length < 1 ) return <div>Loading...</div>;
@@ -112,7 +112,7 @@ function PartTwo({ setStep, setAdventurerId}){
                         </div>
                     </div>
                 );
-            } 
+            }; 
             return (
                     <div className='check-box'>
                         <div className='sort'>Adventurer Type</div>
