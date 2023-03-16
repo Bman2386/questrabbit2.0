@@ -5,5 +5,5 @@
 - update css
 - add animation for login/signup
 - test app
-
+- add help modal
 
