@@ -1,12 +1,11 @@
 import React, {lazy, Suspense} from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
-// import Category from './components/category';
+
 const Profile = lazy(()=> import('./components/profile'));
 const CreateQuest = lazy(()=> import('./components/createQuest'));
 const QuestsPage = lazy(()=> import('./components/questsPage'));
 const NavBar = lazy(() => import('./components/nav_bar'));
 const Category = lazy(() => import('./components/category'));
-
 const Footer = lazy(() => import('./components/footer'));
 const Signup = lazy(() => import('./components/signup'));
 const Login = lazy(() => import('./components/login'));
