@@ -3,6 +3,6 @@
 - double check semicolins
 - update css
 - add animation for login/signup
-- test app
+- write tests
 - add help modal
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import QuestRabbit from '../../images/QuestRabbit.jpg';
 import {createQuest} from '../../store/quest';
 import {clearData} from '../../store/temp';
 import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
+import { TopBar } from './topBar';
 
-function PartThree({ creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
+function PartThree({ step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers): []);
     const [mini, setMini] = useState(1);
@@ -238,25 +238,7 @@ function PartThree({ creatorId, setStep,startTime, setStartTime, questName, adve
     };
     return (
         <div className="quest-container">
-            <div className='top-bar'>
-                <Link to='/' >
-                    <img src={QuestRabbit} className="logo2" alt='logo' />
-                </Link>
-                <div className='bars'>
-                    <ul className='bar1'>
-                        <li className='grey-out'>1</li>
-                        <div className='lineN'></div>
-                        <li className='grey-out'>2</li>
-                        <div className='lineN'></div>
-                        <li className='currentN'>3</li>
-                    </ul>
-                    <ul className='bar2'>
-                        <li className='line'>Describe your Quest</li>
-                        <li className='line'>Browse Adventurers</li>
-                        <li className='current'>Choose date {'&'} Time</li>
-                    </ul>
-                </div>
-            </div>
+            <TopBar step={step}/>
             <hr />
             <div className='back'>
                 <button onClick={() => setStep(2)}>Back</button><br />

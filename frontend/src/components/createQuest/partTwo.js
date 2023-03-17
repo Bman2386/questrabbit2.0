@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {fetchAdventurers} from '../../store/adventurer';
 import {fetchReviews} from '../../store/review';
-import QuestRabbit from '../../images/QuestRabbit.jpg';
+import { TopBar } from './topBar';
 import star from '../../images/star.png';
 import hercules from '../../images/hercules.jpg';
 import isaac_newton from '../../images/isaac_newton.jpg';
 import goblin_slayer from '../../images/goblin_slayer.jpg';
 
-function PartTwo({ setStep, setAdventurerId}){
+function PartTwo({ step, setStep, setAdventurerId}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
     const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
@@ -33,7 +32,7 @@ function PartTwo({ setStep, setAdventurerId}){
             dispatch(fetchReviews());
             isReviewsFetched.current = true;
         }
-    }, [dispatch,adventurers, reviews]);
+    }, [dispatch]);
 
     if (adventurers.length < 1 ) return <div>Loading...</div>;
 
@@ -258,25 +257,7 @@ function PartTwo({ setStep, setAdventurerId}){
 
     return(
         <div className="quest-container">
-            <div className='top-bar'>
-                <Link to='/' >
-                    <img src={QuestRabbit} alt='logo' className="logo2" />
-                </Link>
-                <div className='bars'>
-                    <ul className='bar1'>
-                        <li className='grey-out'>1</li>
-                        <div className='lineN'></div>
-                        <li className='currentN'>2</li>
-                        <div className='lineN'></div>
-                        <li className='grey-out'>3</li>
-                    </ul>
-                    <ul className='bar2'>
-                        <li className='line'>Describe your Quest</li>
-                        <li className='current'>Browse Adventurers</li>
-                        <li className='line'>Choose date {'&'} Time</li>
-                    </ul>
-                </div>
-            </div>
+            <TopBar step={step} />
             <hr />
             <div className='back'>
                 <button value={1} onClick={e=> setStep(e.target.value)}>Back</button>
