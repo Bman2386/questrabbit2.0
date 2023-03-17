@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {createQuest} from '../../store/quest';
 import {clearData} from '../../store/temp';
 import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
@@ -8,11 +8,8 @@ import { TopBar } from './topBar';
 
 function PartThree({ step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
-    const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers): []);
     const [mini, setMini] = useState(1);
     const [date, setDate] = useState(new Date());
-
-    if (adventurers.length === 0) return <div>Loading...</div>;
 
     const subCurrentMonth = () => {
         const date1 = new Date(date);

@@ -2,6 +2,7 @@
     color: black;
     width: 90%;
     background-color:  rgb(250, 246, 246);
+    margin-left: 2rem;
 }
 
 .hero-box{
@@ -15,4 +16,5 @@
     color: black;
     background-color: rgb(250, 246, 246);
     margin-top: 8px;
+    margin-left: 5rem;
 }
