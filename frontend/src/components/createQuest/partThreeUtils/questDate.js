@@ -4,37 +4,30 @@ import {MonthDays} from './monthDays';
 
 export function QuestDate({mini, setMini, startTime, date, setDate, setStartTime }){
 
-    const subCurrentMonth = () => {
-        const date1 = new Date(date);
+    const changeMonth = (type)=> {
+        const date1= new Date(date);
         const month = date1.getMonth();
-        date1.setMonth(month - 1);
+        if (type > 0) date1.setMonth(month + 1);
+        if (type < 0) date1.setMonth(month - 1)
         setDate(date1);
     };
-
-    const addCurrentMonth = () => {
-        const date1 = new Date(date);
-        const month = date1.getMonth();
-        date1.setMonth(month + 1);
-        setDate(date1);
-    };
-
+    
     const changeDate = (e, type) => {
+        const temp1 = new Date(date).setDate(e);
+        const date1 = new Date(startTime);
         switch (type) {
             case 'day':
-                let temp1 = new Date(date).setDate(e);
                 const startDate = new Date(temp1);
                 setStartTime(startDate);
                 setMini(2);
                 return;
             case 'hour':
-                let date1 = new Date(startTime);
                 date1.setHours(e.target.value);
                 setStartTime(date1)
                 return;
             case 'minute':
-                let date2 = new Date(startTime);
-                date2.setMinutes(e.target.value);
-                setStartTime(date2);
+                date1.setMinutes(e.target.value);
+                setStartTime(date1);
                 return;
             case 'convert':
                 let hour = startTime.getHours();
@@ -80,12 +73,12 @@ export function QuestDate({mini, setMini, startTime, date, setDate, setStartTime
                 <p className="orders3">Select a date/time to start your quest</p>
                 <div className="calendar">
                     <div className="month">
-                        <button onClick={() => subCurrentMonth()}><i className="fa fa-angle-left"></i></button>
+                        <button onClick={() => changeMonth(-1)}><i className="fa fa-angle-left"></i></button>
                         <div className="date">
                             <h1>{monthDisplay()}</h1>
                             <p>{dateShow(date)}</p>
                         </div>
-                        <button onClick={() => addCurrentMonth()}><i className="fa fa-angle-right"></i></button>
+                        <button onClick={() => changeMonth(1)}><i className="fa fa-angle-right"></i></button>
                     </div>
                     <div className="weekdays">
                         <div>Sun</div>
