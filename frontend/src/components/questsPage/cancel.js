@@ -21,7 +21,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
             dispatch(fetchReviews());
             isReviewsFetched.current = true;
         };
-    },[dispatch])
+    },[dispatch]);
 
     const yourQuest = ()=> {
         return (
@@ -51,7 +51,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     const changeToEdit = ()=> {
         setEdit(true);
         setCancel(false);
-    }
+    };
 
     const warnUser = () => {
         return (
@@ -89,7 +89,7 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
         const avgRating = Math.round(scoreTotal/totalReviews)
         return {id: quest.adventurerId, avg_rating: avgRating, total_ratings: totalReviews }
 
-    }
+    };
     const submitReview = ()=> {
         const review = {
             rating: rating,

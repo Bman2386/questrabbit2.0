@@ -55,10 +55,10 @@ function Signup(){
       };
         return (
             <div className="session-form">
-             <img src={formphoto} className="form-photo" />
+             <img src={formphoto} alt=''className="form-photo" />
         <form className='inter-form'>
         <Link to='/'>
-          <img src={QuestRabbit} className="logo"/>
+          <img src={QuestRabbit} alt='logo' className="logo"/>
         </Link>
         <RenderErrors errors={errors} />
             <input
@@ -88,8 +88,7 @@ function Signup(){
             placeholder="Star Sign ex, Libra"
             />
             {loggingIn ? <div>Logging In...</div> : 
-            <button onClick={handleSubmit}>Create Account</button>
-            }
+            <button onClick={handleSubmit}>Create Account</button>}
         </form>
       </div>
     );

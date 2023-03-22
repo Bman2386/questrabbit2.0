@@ -41,7 +41,7 @@ function Login() {
         else setErrors([res.statusText]);
         setLoggingIn(false);
       });
-  }
+  };
 
     const loginGuest=(e)=> {
       e.preventDefault();
@@ -54,14 +54,14 @@ function Login() {
       setPassword(guest.password);
       setLoggingIn(true);
         return dispatch(login(guest));
-    }
+    };
 
     return (
       <div className="session-form">
-       <img src={formphoto} className="form-photo"/>
+       <img src={formphoto} alt='' className="form-photo"/>
         <form className='inter-form'>
           <Link to='/'>
-          <img src={QuestRabbit} className="logo"/>
+          <img src={QuestRabbit} alt='logo' className="logo"/>
           </Link>
           <RenderErrors errors={errors} />
           <input

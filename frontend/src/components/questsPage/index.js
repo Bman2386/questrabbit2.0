@@ -26,8 +26,6 @@ function QuestsPage (){
 
     if (!currentUser) return <Redirect to='/'/>;
 
-    if (!quests) return <div>Loading...</div>;
-
     if (edit) return <EditQuest currentUser={currentUser} quest={quest} setEdit={setEdit} />;
     if (cancel) return <CancelQuest currentUser={currentUser} quest={quest} edit={edit} setEdit={setEdit} cancel={cancel} setCancel={setCancel}/>;
     
