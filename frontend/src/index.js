@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import configureStore from './store';
 import csrfFetch from './store/csrf';
-import * as sessionActions from './store/session'
+import * as sessionActions from './store/session';
 import './stylesheets/application.css';
 import './stylesheets/account.css';
 import './stylesheets/adv_reviews.css';
@@ -34,8 +34,7 @@ function Root() {
         <App />
       </BrowserRouter>
     </Provider>
-  );
-}
+  )};
 
 const renderApplication = () => {
   const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -43,15 +42,12 @@ const renderApplication = () => {
     <React.StrictMode>
       <Root />
     </React.StrictMode>
-  );
-};
+  )};
 
 if (
   sessionStorage.getItem("currentUser") === null ||
   sessionStorage.getItem("X-CSRF-Token") === null
-  ) {
-    store.dispatch(sessionActions.restoreSession());
-  };
+  ) store.dispatch(sessionActions.restoreSession());
 renderApplication();
 
 
