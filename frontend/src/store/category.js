@@ -19,7 +19,7 @@ export const fetchCategories = () => async dispatch => {
        const data = await response.json();
         dispatch(receiveCategories(data));
     } else {
-        throw response
+        throw response;
     };
 };
 
@@ -31,7 +31,7 @@ export const fetchCategory = (categoryId) => async dispatch => {
     } else {
         throw response;
     };
-}
+};
 
 const initialState = {};
 
