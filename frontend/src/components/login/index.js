@@ -3,6 +3,7 @@ import {login} from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { RenderErrors } from '../../utils/error';
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import formphoto from '../../images/formphoto.jpg';
 
@@ -20,24 +21,6 @@ function Login() {
 
   if (currentUser && (temp.categoryId || temp.nameOfQuest) ) return <Redirect to='/quest'/>
   if (currentUser) return <Redirect to='/' />;
- 
-  const renderErrors=()=> {
-    if (!errors) return '';
-    return(
-      <ul>
-        {errors.map((error, i) => (
-          <li 
-          key={`error-${i}`}
-          className="error"
-          >
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,7 +63,7 @@ function Login() {
           <Link to='/'>
           <img src={QuestRabbit} className="logo"/>
           </Link>
-          {renderErrors()}
+          <RenderErrors errors={errors} />
           <input
             type="text"
             value={username}

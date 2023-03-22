@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import formphoto from '../../images/formphoto.jpg';
+import { RenderErrors } from '../../utils/error';
 
 function Signup(){
   const dispatch = useDispatch();
@@ -26,19 +27,6 @@ function Signup(){
   if (currentUser && (temp.categoryId || temp.nameOfQuest)) return <Redirect to='/quest' />;
   if (currentUser) return <Redirect to='/' />;
 
-   const renderErrors=()=> {
-    if (errors.length === 0) return '';
-      return(
-        <ul>
-          {errors.map((error, i) => (
-            <li key={`error-${i}`} className="error">
-              {error}
-              </li>
-          ))}
-        </ul>
-      );
-    };
-
   const handleSubmit = (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -58,7 +46,7 @@ function Signup(){
           data = await res.clone().json();
         } catch {
           data = await res.text(); // Will hit this case if the server is down
-        }
+        };
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
@@ -72,7 +60,7 @@ function Signup(){
         <Link to='/'>
           <img src={QuestRabbit} className="logo"/>
         </Link>
-        {renderErrors()}
+        <RenderErrors errors={errors} />
             <input
               value={username}
               onChange={e => setUserName(e.target.value)}
@@ -104,7 +92,7 @@ function Signup(){
             }
         </form>
       </div>
-        );
+    );
 };
 
 export default Signup;
