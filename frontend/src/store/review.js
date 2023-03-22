@@ -1,4 +1,4 @@
-import csrfFetch from './csrf'
+import csrfFetch from './csrf';
 
 const RECEIVE_REVIEWS = 'reviews/recieveReviews';
 const RECEIVE_REVIEW = 'reviews/recieveReview';
