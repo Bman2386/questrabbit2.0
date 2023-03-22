@@ -18,7 +18,7 @@ export const dateShow = (date) => {
         "Thursday",
         "Firday",
         "Saturday"
-    ]
+    ];
     const months = [
         "January",
         "Febuary",
@@ -38,11 +38,11 @@ export const dateShow = (date) => {
     const hour = () => {
         const hours = fullDate.getHours();
         if (hours > 12) {
-            return (hours - 12)
+            return (hours - 12);
         } else {
-            return hours
-        }
-    }
+            return hours;
+        };
+    };
     const min = () => {
         const questMinutes = fullDate.getMinutes();
         if (questMinutes === 0) {

@@ -52,7 +52,6 @@ function App(){
         </Switch>
     </Suspense>
     </Router>
-   ); 
-};
+   )};
 
 export default App;
