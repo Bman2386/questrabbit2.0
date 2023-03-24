@@ -11,7 +11,7 @@ function PartTwo({ step, setStep, setAdventurerId}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
     const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
-    const [adv, setAdv] = useState([]);
+    const [adv, setAdv] = useState([]); // we use this array to sort without losing original adventurers
     const [isChecked, setIsChecked] = useState(false);
     const [selected, setSelected] = useState('');
     const [examine, setExamine] = useState(false);
@@ -44,7 +44,7 @@ function PartTwo({ step, setStep, setAdventurerId}){
             setAdv(temp);
             setIsChecked(true);
         } else {
-            setAdv([...adventurers]);
+            setAdv([...adventurers]);// if false reset adv to all adventurers
             setIsChecked(false);
         };
     };
