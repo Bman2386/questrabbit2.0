@@ -5,7 +5,7 @@ export function SortBy({adventurers, examine, setAdv, setIsChecked}){
     const cloneOfAdventurers = [...adventurers];
 
     const sortHelper = (type, arr=cloneOfAdventurers)=> {
-        const first = arr[0];
+        const first = arr[0]; //using recursion to sort adventurers by desired stat
         if (arr.length < 2) return arr;
         const func = (x,y) => {
             if (x>y) return -1;

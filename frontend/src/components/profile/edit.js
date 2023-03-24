@@ -7,7 +7,7 @@ export function EditMenu({ crest, rlm, sign, setEdit, name, currentUser}){
     const dispatch = useDispatch();
     const [error, setError] = useState('');
     const [editItem, setEditItem] = useState('');
-    const [username, setUserName] = useState(name)
+    const [username, setUserName] = useState(name);
     const [familyCrest, setFamilyCrest] = useState(crest); 
     const [realm, setRealm] = useState(rlm);
     const [starSign, setStarSign] = useState(sign);
