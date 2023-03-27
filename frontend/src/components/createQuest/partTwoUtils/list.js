@@ -13,8 +13,8 @@ export function List({ examine, setSelected, setExamine, adv, selectAdv, selecte
     
     if (examine) return (
         <div className='adv-info'>
-            Adventurer info:
             <div className='hero-box'>
+                <div className="h1"> Adventurer info:</div>
                 <div><Hero name={selected.username}/></div>
                 <div className='p' id='margin'>{`${selected.username}`}</div>
                 <IsElite elite={selected.elite}/>

@@ -2,3 +2,39 @@
     margin-left: .5rem;
     margin-right: 1rem;
 }
+.adv-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: black;
+    width: 90%;
+    background-color: rgb(250, 246, 246);
+    margin-left: 2rem;
+}
+
+.hero-box {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 1rem;
+    width: 25%;
+    height: fit-content;
+}
+
+.reviews {
+    color: black;
+    background-color: rgb(250, 246, 246);
+    margin-top: 8px;
+    margin-left: 3rem;
+    width: 50%;
+}
+
+.h2{
+    color: black;
+    background-color: rgb(250, 246, 246);
+    font-weight: bold;
+    font-size: larger;
+}
+
+#review{
+    width: 75%;
+}

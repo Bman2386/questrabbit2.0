@@ -17,9 +17,10 @@ export function AllReviews({ selected }) {
     
     if (reviews.length > 0 && selected) {
         return (
-            <div className='reviews'>Reviews:
+            <div className='reviews'>
+                <div className="h2">Reviews:</div>
                 {reviews.map(rev =>
-                    <div key={rev.id} className='quest-name'>
+                    <div key={rev.id} className='quest-name' id='review'>
                         <div className='p'>{`${rev.username}`}</div>
                         <div className='rating-container'><Rating rating={rev.rating}/></div>
                         <div className='p'>"{`${rev.body}`}"</div>
