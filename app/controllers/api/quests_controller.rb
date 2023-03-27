@@ -51,6 +51,7 @@ class Api::QuestsController < ApplicationController
     private
     def quest_params
         params.require(:quest).permit(
+            :id,
             :quest_name,
             :category_id,
             :details,

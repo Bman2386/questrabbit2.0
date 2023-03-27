@@ -4,7 +4,7 @@ import {Hero} from './hero';
 import { Rating } from "./rating";
 import { IsElite } from "./isElite";
 
-export function List({ examine, setSelected, setExamine, adv, selectAdv, reviews, selected, moveToNextStep }) { 
+export function List({ examine, setSelected, setExamine, adv, selectAdv, selected, moveToNextStep }) { 
 
     const closeReviews = () => {
         setSelected('');
@@ -22,7 +22,7 @@ export function List({ examine, setSelected, setExamine, adv, selectAdv, reviews
                 <button value={selected.id} className="select2" style={{ marginRight: '.5rem' }} onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
                 <button onClick={() => closeReviews()}>Close Reviews</button>
             </div>    
-        <AllReviews reviews={reviews} selected={selected}/>
+        <AllReviews  selected={selected}/>
         </div>
     );
     return(

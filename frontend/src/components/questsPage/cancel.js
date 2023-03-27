@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { updateQuest } from '../../store/quest';
-import {createReview, fetchReviews} from '../../store/review';
+import {createReview, fetchReview} from '../../store/review';
 import {updateAdventurer} from '../../store/adventurer';
 import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 import Star from './star';
 
-function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
+function CancelQuest({currentUser, quest, setEdit, setCancel}){
     const dispatch = useDispatch();
     const reviews = useSelector(state=> state.reviews ? Object.values(state.reviews) : []);
     const [mini, setMini] = useState(1);
@@ -18,10 +18,10 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     
     useEffect(()=> {
         if (isReviewsFetched.current === false) {
-            dispatch(fetchReviews());
+            dispatch(fetchReview(quest.adventurerId));
             isReviewsFetched.current = true;
         };
-    },[dispatch]);
+    },[dispatch, quest.adventurerId]);
 
     const yourQuest = ()=> {
         return (
@@ -80,11 +80,10 @@ function CancelQuest({currentUser, quest, edit, setEdit, cancel, setCancel}){
     };
 
     const reStatAdv = () => {
-        const currentAdv = reviews.filter(review=> quest.adventurerId === review.adventurerId);
-        const totalReviews = currentAdv.length + 1;
+        const totalReviews = reviews.length + 1;
         let scoreTotal = parseInt(rating);
-        for (const r in currentAdv){
-            scoreTotal += parseInt(currentAdv[r].rating);
+        for (const r in reviews){
+            scoreTotal += parseInt(reviews[r].rating);
         };
         const avgRating = Math.round(scoreTotal/totalReviews)
         return {id: quest.adventurerId, avg_rating: avgRating, total_ratings: totalReviews }

@@ -1,14 +1,5 @@
 class Api::ReviewsController < ApplicationController
 
-    def index
-        @reviews = Review.all 
-        render :index
-    end
-
-    def new
-        render :new
-    end
-
     def create
         @review = Review.new(review_params)
         if !@review.id
@@ -18,6 +9,7 @@ class Api::ReviewsController < ApplicationController
         end
 
         if @review.save!
+            @reviews = [@review]
             render :show
         else
             render json: @review.errors.full_messages, status: 401
@@ -25,7 +17,8 @@ class Api::ReviewsController < ApplicationController
     end
 
     def show
-        @review = Review.find(params[:id])
+        @reviews = Review.where(adventurer_id: params[:id])
+        render :show
     end
 
     private

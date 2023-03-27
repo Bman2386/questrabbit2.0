@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import {fetchAdventurers} from '../../store/adventurer';
-import {fetchReviews} from '../../store/review';
+// import {fetchReviews} from '../../store/review';
 import { TopBar } from './topBar';
 import {SortBy} from './partTwoUtils/sortBy';
 import { CheckBox } from './partTwoUtils/checkBox';
@@ -10,27 +10,27 @@ import {List} from './partTwoUtils/list';
 function PartTwo({ step, setStep, setAdventurerId}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
-    const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
+    // const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
     const [adv, setAdv] = useState([]); // we use this array to sort without losing original adventurers
     const [isChecked, setIsChecked] = useState(false);
     const [selected, setSelected] = useState('');
     const [examine, setExamine] = useState(false);
 
     const isAdvFetched = useRef(false); 
-    const isReviewsFetched = useRef(false);
+    // const isReviewsFetched = useRef(false);
 
     if (adventurers.length) isAdvFetched.current = true;
-    if (reviews.length) isReviewsFetched.current = true;
+    // if (reviews.length) isReviewsFetched.current = true;
 
     useEffect(() => {
         if (isAdvFetched.current === false ) {
             dispatch(fetchAdventurers());
             isAdvFetched.current = true;
         }
-        if (isReviewsFetched.current === false) {
-            dispatch(fetchReviews());
-            isReviewsFetched.current = true;
-        }
+        // if (isReviewsFetched.current === false) {
+        //     dispatch(fetchReviews());
+        //     isReviewsFetched.current = true;
+        // }
     }, [dispatch]);
 
     if (adventurers.length < 1 ) return <div>Loading...</div>;
@@ -87,7 +87,6 @@ function PartTwo({ step, setStep, setAdventurerId}){
                         setExamine={setExamine}
                         adv={adv}
                         selectAdv={selectAdv}
-                        reviews={reviews}
                         selected={selected}
                         moveToNextStep={moveToNextStep}
                     />

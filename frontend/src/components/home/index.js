@@ -26,7 +26,7 @@ const lastButton = () => {
   return (
   <div className="home">
     <div className="hero-img-frame">
-      <img className="hero-image" src={hero} alt='hero'/>
+      <img className="hero-image" src={hero} alt='map'/>
       <form className="splash-form" id="form1">
         <h1>Help when you need it, at your fingertips</h1>
         <p>Get help from hundreds of trusted adventurers for everything from errands to slaying a dragon.</p>

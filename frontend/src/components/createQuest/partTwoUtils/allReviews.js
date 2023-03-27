@@ -1,17 +1,24 @@
-import React from "react";
+import React,{useRef} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {fetchReview} from '../../../store/review';
 import { Rating } from "./rating";
 
-export function AllReviews({ reviews, selected }) {
-    const filteredReviews = [];
-    if (reviews.length > 0 && selected) {
-        reviews.forEach(rev => {
-            if (rev.adventurerId === selected.id) filteredReviews.push(rev);
-        });
+export function AllReviews({ selected }) {
+    const dispatch = useDispatch();
+    const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
+    const isFetched = useRef(false);
+
+    if (!selected) return '';
+
+    if (!isFetched.current) {
+        dispatch(fetchReview(selected.id));
+        isFetched.current = true
     };
-    if (filteredReviews.length > 0 && selected) {
+
+    if (reviews.length > 0 && selected) {
         return (
             <div className='reviews'>Reviews:
-                {filteredReviews.map(rev =>
+                {reviews.map(rev =>
                     <div key={rev.id} className='quest-name'>
                         <div className='p'>{`${rev.username}`}</div>
                         <div className='rating-container'><Rating rating={rev.rating}/></div>
