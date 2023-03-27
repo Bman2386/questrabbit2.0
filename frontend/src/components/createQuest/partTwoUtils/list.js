@@ -19,7 +19,7 @@ export function List({ examine, setSelected, setExamine, adv, selectAdv, selecte
                 <div className='p' id='margin'>{`${selected.username}`}</div>
                 <IsElite elite={selected.elite}/>
                 <div className='p' id='margin'>{`${selected.pitch}`}</div>
-                <button value={selected.id} className="select2" style={{ marginRight: '.5rem' }} onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
+                <button value={selected.id} className='select-3' onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
                 <button onClick={() => closeReviews()}>Close Reviews</button>
             </div>    
         <AllReviews  selected={selected}/>

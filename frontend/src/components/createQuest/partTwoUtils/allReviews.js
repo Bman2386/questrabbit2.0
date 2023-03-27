@@ -1,4 +1,4 @@
-import React,{useRef} from "react";
+import React,{useRef, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchReview} from '../../../store/review';
 import { Rating } from "./rating";
@@ -8,13 +8,13 @@ export function AllReviews({ selected }) {
     const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
     const isFetched = useRef(false);
 
-    if (!selected) return '';
-
-    if (!isFetched.current) {
-        dispatch(fetchReview(selected.id));
-        isFetched.current = true
-    };
-
+    useEffect(()=> {
+        if (!isFetched.current) {
+            dispatch(fetchReview(selected.id));
+            isFetched.current = true;
+        };
+    }, [dispatch, selected.id])
+    
     if (reviews.length > 0 && selected) {
         return (
             <div className='reviews'>Reviews:

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import PartOne from './partOne';
 import PartTwo from './partTwo';
 import PartThree from './partThree';
+import  './questForm.css';
 
 function CreateQuest(){
     const currentUser = useSelector(state => state.session.user ? state.session.user : '');
