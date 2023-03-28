@@ -8,14 +8,13 @@ import CancelQuest from './cancel';
 
 function QuestsPage (){
     const dispatch = useDispatch();
-    const quests = useSelector(state =>  Object.values(state.quests)??[]);
+    const quests = useSelector(state =>  Object.values(state.quests) ?? []);
     const currentUser = useSelector(state=> state.session.user ?? '');
     const [edit, setEdit] = useState(false);
     const [quest, setQuest] = useState('');
     const [cancel, setCancel] = useState(false);
 
     const isQuestsFetched = useRef(false);
-    if (quests.length > 0) isQuestsFetched.current = true;
     
     useEffect(() => {
         if (isQuestsFetched.current ===false) {
@@ -102,7 +101,6 @@ function QuestsPage (){
                        <p className='p'>Book your next Quest or manage future to-dos  with Quest Rabbit</p>
                        <Link to="/quest"className='button-submit' id='center'>Check It Off Your List</Link>
                    </div>
-                   
                );
         };
         return(
