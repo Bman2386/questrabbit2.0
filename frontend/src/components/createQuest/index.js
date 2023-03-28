@@ -7,8 +7,8 @@ import PartThree from './partThree';
 import  './questForm.css';
 
 function CreateQuest(){
-    const currentUser = useSelector(state => state.session.user ? state.session.user : '');
-    const data = useSelector(state => state.temp ? state.temp : '');
+    const currentUser = useSelector(state => state.session.user ?? '');
+    const data = useSelector(state => state.temp ?? '');
     const [questName, setQuestName] = useState('');
     const [startTime, setStartTime] = useState('');
     const [adventurerId, setAdventurerId] = useState('');

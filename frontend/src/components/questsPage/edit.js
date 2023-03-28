@@ -3,7 +3,7 @@ import { useDispatch} from "react-redux";
 import {  updateQuest } from '../../store/quest';
 import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 
-function EditQuest({currentUser, quest, edit, setEdit}){
+function EditQuest({currentUser, quest, setEdit}){
 
     const dispatch = useDispatch();
     const [questName, setQuestName] = useState('');

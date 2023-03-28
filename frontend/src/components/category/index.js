@@ -10,7 +10,7 @@ import { fetchCategories } from '../../store/category';
 
 function Category(){
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
+    const categories = useSelector(state => Object.values(state.categories) ?? []);
     // we need to default to 1, incase user types /categories in url
     const categoryId = useSelector(state => state.temp && state.temp.goTo ? state.temp.goTo : 1);
     

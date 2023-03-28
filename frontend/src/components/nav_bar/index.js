@@ -7,8 +7,8 @@ import QuestRabbit from '../../images/QuestRabbit.jpg';
 
 function NavBar(){
   const dispatch = useDispatch();
-  const categories = useSelector(state => state.categories ? Object.values(state.categories) : []);
-  const currentUser = useSelector(state => state.session.user ? state.session.user : '');
+  const categories = useSelector(state => Object.values(state.categories) ?? []);
+  const currentUser = useSelector(state => state.session.user ?? '');
 
   const isCategoryFetched = useRef(false);
   if (categories.length > 0) isCategoryFetched.current = true;

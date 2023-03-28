@@ -5,7 +5,7 @@ import { Rating } from "./rating";
 
 export function AllReviews({ selected }) {
     const dispatch = useDispatch();
-    const reviews = useSelector(state => state.reviews ? Object.values(state.reviews) : []); 
+    const reviews = useSelector(state => Object.values(state.reviews) ?? []); 
     const isFetched = useRef(false);
 
     useEffect(()=> {

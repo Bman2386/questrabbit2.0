@@ -8,7 +8,7 @@ import Star from './star';
 
 function CancelQuest({currentUser, quest, setEdit, setCancel}){
     const dispatch = useDispatch();
-    const reviews = useSelector(state=> state.reviews ? Object.values(state.reviews) : []);
+    const reviews = useSelector(state=> Object.values(state.reviews) ?? []);
     const [mini, setMini] = useState(1);
     const [rating, setRating] = useState(1);
     const [body, setBody] = useState('');

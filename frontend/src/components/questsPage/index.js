@@ -8,8 +8,8 @@ import CancelQuest from './cancel';
 
 function QuestsPage (){
     const dispatch = useDispatch();
-    const quests = useSelector(state => state.quests ? Object.values(state.quests):[]);
-    const currentUser = useSelector(state=> state.session.user ? state.session.user : '');
+    const quests = useSelector(state =>  Object.values(state.quests)??[]);
+    const currentUser = useSelector(state=> state.session.user ?? '');
     const [edit, setEdit] = useState(false);
     const [quest, setQuest] = useState('');
     const [cancel, setCancel] = useState(false);
