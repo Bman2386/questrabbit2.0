@@ -9,7 +9,7 @@ import { ReviewQuest } from './partThreeUtils/reviewQuest';
 function PartThree({ step, creatorId, setStep,startTime, setStartTime, questName, adventurerId, categoryId, details}){
     const dispatch = useDispatch();
     const [mini, setMini] = useState(1);
-    const [date, setDate] = useState(new Date());
+    const [currentDate, setCurrentDate] = useState(new Date());
 
     const submit = () => {
         const quest = {
@@ -37,8 +37,8 @@ function PartThree({ step, creatorId, setStep,startTime, setStartTime, questName
                 mini={mini}
                 setMini={setMini}
                 startTime={startTime}
-                date={date}
-                setDate={setDate}
+                currentDate={currentDate}
+                setCurrentDate={setCurrentDate}
                 setStartTime={setStartTime}
                 />
                 <ReviewQuest 

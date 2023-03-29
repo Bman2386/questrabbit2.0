@@ -2,19 +2,30 @@ import React from "react";
 import {dateShow} from '../../../utils/show';
 import {MonthDays} from './monthDays';
 
-export function QuestDate({mini, setMini, startTime, date, setDate, setStartTime }){
-
+export function QuestDate({mini, setMini, startTime, currentDate, setCurrentDate, setStartTime }){
+    
+    const oldDate= new Date(currentDate);
+    const today = new Date();
+    
     const changeMonth = (type)=> {
-        const date1= new Date(date);
-        const month = date1.getMonth();
-        if (type > 0) date1.setMonth(month + 1);
-        if (type < 0) date1.setMonth(month - 1)
-        setDate(date1);
+        const nextMonth = oldDate.getMonth() + type;
+        oldDate.setMonth(nextMonth);
+        const nextDate = new Date(oldDate);
+        setCurrentDate(nextDate);
     };
     
+
+    const earlyReturnCheck = (tempDate)=> {
+        const currentHour = today.getHours();
+        const addHour = new Date(tempDate).setHours(currentHour + 1); // adding an hour so that users will be able to select today
+        return addHour < today;
+    };
+
     const changeDate = (e, type) => {
-        const temp1 = new Date(date).setDate(e);
+        const temp1 = new Date(currentDate).setDate(e);
+        if (earlyReturnCheck(temp1)) return;
         const date1 = new Date(startTime);
+        
         switch (type) {
             case 'day':
                 const startDate = new Date(temp1);
@@ -50,7 +61,7 @@ export function QuestDate({mini, setMini, startTime, date, setDate, setStartTime
     };
 
     const monthDisplay = () => {
-        const month = date.getMonth();
+        const month = currentDate.getMonth();
         const months = [
             "January",
             "Febuary",
@@ -76,7 +87,7 @@ export function QuestDate({mini, setMini, startTime, date, setDate, setStartTime
                         <button onClick={() => changeMonth(-1)}><i className="fa fa-angle-left"></i></button>
                         <div className="date">
                             <h1>{monthDisplay()}</h1>
-                            <p>{dateShow(date)}</p>
+                            <p>{dateShow(today)}</p>
                         </div>
                         <button onClick={() => changeMonth(1)}><i className="fa fa-angle-right"></i></button>
                     </div>
@@ -90,7 +101,7 @@ export function QuestDate({mini, setMini, startTime, date, setDate, setStartTime
                         <div>Sat</div>
                     </div>
                     <MonthDays 
-                    date={date}
+                    currentDate={currentDate}
                     changeDate={changeDate}
                     startTime={startTime}
                     />

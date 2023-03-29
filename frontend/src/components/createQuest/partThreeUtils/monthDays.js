@@ -1,14 +1,13 @@
 import React from "react";
 
-export function MonthDays({date, changeDate, startTime}){
+export function MonthDays({currentDate, changeDate, startTime}){
 
-    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-    const firstDayIndex = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-    const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
-    const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
+    const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    const firstDayIndex = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+    const prevLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+    const lastDayIndex = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDay();
 
     const nextDays = 7 - lastDayIndex - 1;
-
     const tally = () => {
         const days = [];
         if (firstDayIndex > 1) {
@@ -29,11 +28,12 @@ export function MonthDays({date, changeDate, startTime}){
 
     const days = tally();
     const today = new Date();
-    
+
     const current = (day) => {
-        if (day === today.getDate() && (date.getMonth() === today.getMonth())
-         && (date.getFullYear() === today.getFullYear())) return 'today';
-        if (typeof day === 'string') return 'prev-month';
+        const currentDay = new Date(currentDate).setDate(day);
+        if (day === today.getDate() && (currentDate.getMonth() === today.getMonth())
+         && (currentDate.getFullYear() === today.getFullYear())) return 'today';
+        if (typeof day === 'string' || currentDay < today) return 'prev-month';
          return "";
     };
     return(
