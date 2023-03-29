@@ -2,12 +2,17 @@ import React from "react";
 
 export function MonthDays({currentDate, changeDate, startTime}){
 
+    //last day of current month
     const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    // day of week for 1st day in month
     const firstDayIndex = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+    // last day of previous month
     const prevLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+    // last day of week 
     const lastDayIndex = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDay();
-
+    
     const nextDays = 7 - lastDayIndex - 1;
+   
     const tally = () => {
         const days = [];
         if (firstDayIndex > 1) {
