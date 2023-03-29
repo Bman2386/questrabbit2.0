@@ -1,5 +1,6 @@
 const SAVE_DATA = 'temp/saveData';
 const DELETE_DATA = 'temp/deleteData';
+
 const saveData = (data) => ({
     type: SAVE_DATA,
     payload: data
