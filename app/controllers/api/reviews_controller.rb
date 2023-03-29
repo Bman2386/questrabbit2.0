@@ -1,18 +1,18 @@
 class Api::ReviewsController < ApplicationController
 
     def create
-        @review = Review.new(review_params)
-        if !@review.id
+        review = Review.new(review_params)
+        if !review.id
             all_reviews = Review.all
             last_review = all_reviews.last 
-            @review.id = last_review.id + 1
+            review.id = last_review.id + 1
         end
 
-        if @review.save!
-            @reviews = [@review]
+        if review.save!
+            @reviews = [review]
             render :show
         else
-            render json: @review.errors.full_messages, status: 401
+            render json: review.errors.full_messages, status: 401
         end
     end
 
