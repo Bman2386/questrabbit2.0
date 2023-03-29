@@ -28,9 +28,11 @@ export function MonthDays({date, changeDate, startTime}){
     };
 
     const days = tally();
-    const today = date.getDate();
+    const today = new Date();
+    
     const current = (day) => {
-        if (day === today) return 'today';
+        if (day === today.getDate() && (date.getMonth() === today.getMonth())
+         && (date.getFullYear() === today.getFullYear())) return 'today';
         if (typeof day === 'string') return 'prev-month';
          return "";
     };
