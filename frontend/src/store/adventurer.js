@@ -23,15 +23,6 @@ export const fetchAdventurers = () => async dispatch => {
     };
 };
 
-export const fetchAdventurer = (userId) => async dispatch => { //do we need this function?
-    const response = await csrfFetch(`api/users/${userId}`);
-    if (response.ok){
-        const data = response.json();
-        dispatch(receiveAdventurer(data.adventurer));
-    } else {
-        throw response;
-    };
-};
 
 export const updateAdventurer = (adventurer) => async dispatch => {
     const response = await csrfFetch(`api/users/${adventurer.id}`, {
