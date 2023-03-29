@@ -47,6 +47,7 @@ function PartThree({ step, creatorId, setStep,startTime, setStartTime, questName
                 categoryId={categoryId}
                 startTime={startTime}
                 adventurerId={adventurerId}
+                details={details}
                 submit={submit}
                 />
             </div>
