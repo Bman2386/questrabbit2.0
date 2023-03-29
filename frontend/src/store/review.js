@@ -7,8 +7,8 @@ const receiveReview = review => ({
     review
 });
 
-export const fetchReview = (reviewId) => async dispatch => {
-    const response = await csrfFetch(`api/reviews/${reviewId}`);
+export const fetchReview = (adventurerId) => async dispatch => {
+    const response = await csrfFetch(`api/reviews/${adventurerId}`);
     if (response.ok){
         const data = await response.json();
         dispatch(receiveReview(data));
