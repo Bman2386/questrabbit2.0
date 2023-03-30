@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import QuestRabbit from '../../images/QuestRabbit.jpg';
 import formphoto from '../../images/formphoto.jpg';
 import { RenderErrors } from '../../utils/error';
+import { Loading } from '../../utils/loading';
 
 function Signup(){
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ function Signup(){
       };
         return (
             <div className="session-form">
+            {loggingIn ? <Loading modal={true} /> : ''}
              <img src={formphoto} alt=''className="form-photo" />
         <form className='inter-form'>
         <Link to='/'>
