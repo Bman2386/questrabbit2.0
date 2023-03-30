@@ -1,5 +1,6 @@
 import React, {lazy, Suspense} from "react";
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Loading} from './utils/loading';
 
 const Profile = lazy(()=> import('./components/profile'));
 const CreateQuest = lazy(()=> import('./components/createQuest'));
@@ -15,7 +16,7 @@ const Intermediary = lazy(() => import('./components/intermediary'));
 function App(){
    return(
     <Router>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
         <Switch>
             <Route exact path='/'>
                 <NavBar />
