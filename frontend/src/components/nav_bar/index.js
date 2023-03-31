@@ -4,6 +4,7 @@ import { fetchCategories } from '../../store/category';
 import { Link } from 'react-router-dom';
 import Quests from './quests_item';
 import QuestRabbit from '../../images/QuestRabbit.jpg';
+import './navbar.css';
 
 function NavBar(){
   const dispatch = useDispatch();
@@ -25,13 +26,13 @@ function NavBar(){
     if (currentUser) {
       return (
         <div className="nav-bar">
-          <Link to='/'>
-            <img src={QuestRabbit} alt='logo' className="logo" />
+          <Link className="btn" to='/'>
+            QuestRabbit
           </Link>
           {categories.length > 0 ? <Quests categories={categories} />: ''}
-          <Link to='/quest'>Book a Quest</Link>
-          <Link to='/quests'>My Quests</Link>
-          <Link to='/user'>Account</Link>
+          <Link to='/quest' className="btn">Book a Quest</Link>
+          <Link to='/quests' className="btn">My Quests</Link>
+          <Link to='/user' className="btn">Account</Link>
         </div>
       );
     };  

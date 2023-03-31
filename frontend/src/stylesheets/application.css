@@ -7,7 +7,7 @@ header, footer, nav, ul, li, button, img, input, a {
     margin: 0;
     font-family: inherit;
     border: 0;
-    color: rgb(81, 182, 81);
+    color: rgb(8, 100, 8);
     background-color: white;
     font-size: medium;
     font-family: Arial, sans-serif;
@@ -18,28 +18,28 @@ header, footer, nav, ul, li, button, img, input, a {
 
 button {
     border: none;
-    background-color: rgb(20, 177, 20);
+    background-color: rgb(8, 100, 8);
     color: white;
     border-radius: 2px;
     padding: 8px;
 }
 
 button:hover {
-    background-color: green;
+    background-color: rgb(1, 22, 1);
     color: white;
     cursor: pointer;
 }
 
 .button {
     border: none;
-    background-color: rgb(20, 177, 20);
+    background-color: rgb(8, 100, 8);
     color: white;
     border-radius: 2px;
     padding: 8px;
 }
 
 .button:hover {
-    background-color: green;
+    background-color: rgb(1, 22, 1);
 }
 
 input {
@@ -53,3 +53,9 @@ input {
     text-align: center;
 }
 
+.logo {
+    object-fit: cover;
+    object-position: 100% 40%;
+    height: 50px;
+    width: 150px;
+}
