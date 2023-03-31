@@ -7,9 +7,9 @@ const Quests = ({categories}) => {
   const dispatch = useDispatch();
 
   return (
-    <ul className='dd-container'
-      style={{ position: 'relative'}}> 
-      Quest Types
+    <ul className='dd-container'> 
+      Services
+      <li className='white-bar'></li>
       <li className='container'>
         POPULAR QUESTS
         {categories.map(category =>

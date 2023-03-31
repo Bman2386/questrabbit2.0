@@ -26,23 +26,31 @@ function NavBar(){
     if (currentUser) {
       return (
         <div className="nav-bar">
-          <Link className="btn" to='/'>
-            QuestRabbit
+          <span>
+            <Link className="btn" to='/'>
+            questrabbit
           </Link>
-          {categories.length > 0 ? <Quests categories={categories} />: ''}
+          </span>
+          <span>
+           {categories.length > 0 ? <Quests categories={categories} />: ''}
           <Link to='/quest' className="btn">Book a Quest</Link>
           <Link to='/quests' className="btn">My Quests</Link>
-          <Link to='/user' className="btn">Account</Link>
+          <Link to='/user' className="btn">Account</Link> 
+          </span>
         </div>
       );
     };  
     return (
       <div className="nav-bar">
-        <Link to='/'>
-          <img src={QuestRabbit} alt='logo' className="logo"/>
+        <span>
+          <Link className="btn" to='/'>
+          questrabbit
         </Link>
-        {categories ? <Quests categories={categories} /> : ''}
+        </span>
+        <span>
+          {categories ? <Quests categories={categories} /> : ''}
         <Link className="btn" to="/intermediary">Log in</Link>
+        </span>
       </div>
     );
   };
