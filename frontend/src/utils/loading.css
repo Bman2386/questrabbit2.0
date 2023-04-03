@@ -1,11 +1,11 @@
 .loader {
     margin: 5rem;
-    border: 2rem solid #f3f3f3;
+    border: 0.5rem solid #d2d0d0;
     /* Light grey */
-    border-top: 2rem solid #045184;
+    border-top: 0.5rem solid #021c2e;
     border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
+    width: 3rem;
+    height: 3rem;
     animation: spin .5s linear infinite;
     z-index: 10;
     background-color: transparent;
