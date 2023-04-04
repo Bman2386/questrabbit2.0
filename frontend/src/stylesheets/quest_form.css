@@ -394,6 +394,7 @@ hr{
     align-items: center;
     justify-content: center;
     padding-bottom: 10rem;
+    min-height: 64vh;
 }
 
 #background{
@@ -482,7 +483,8 @@ hr{
 .width2{
     display: flex;
     justify-content: center;
-    padding-top: 5rem;
+    width: 80%;
+    padding-top: 2rem;
     padding-bottom: 5rem;
     background-color: rgb(250, 246, 246);
 }

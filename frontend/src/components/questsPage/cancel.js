@@ -140,7 +140,7 @@ function CancelQuest({currentUser, quest, setEdit, setCancel}){
         return <div>error, something went wrong</div>;
     };
     return(
-        <div>
+        <div className='quest-form'>
             <button style={{marginTop: '1rem'}} className='back-button' onClick={()=>setCancel(false)}>Back</button>
             {pageSetter()}
         </div>
