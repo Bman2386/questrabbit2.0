@@ -1,7 +1,7 @@
 import React from "react";
 
 export function RenderErrors({errors}){
-    if (errors.length === 0) return '';
+    if (errors.length < 1) return '';
     return (
         <ul>
             {errors.map((error, i) => (
