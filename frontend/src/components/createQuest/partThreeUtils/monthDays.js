@@ -41,6 +41,13 @@ export function MonthDays({currentDate, changeDate, startTime}){
         if (typeof day === 'string' || currentDay < today) return 'prev-month';
          return "";
     };
+
+    const sendDateToChangeDate=(day)=> {
+        // Early return if day is not in current month
+        if (typeof day === 'string' ) return;
+        changeDate(day, 'day');
+    };
+
     return(
         <div className="days">
             {days.map((day, idx)=> 
@@ -49,7 +56,7 @@ export function MonthDays({currentDate, changeDate, startTime}){
                     id={current(day)}
                     key={idx}
                     value={startTime}
-                    onClick={() => changeDate(day, 'day')}>{day}</button>
+                    onClick={() => sendDateToChangeDate(day)}>{day}</button>
             )}
         </div>
     )};
