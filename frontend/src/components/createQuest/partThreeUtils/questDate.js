@@ -14,7 +14,7 @@ export function QuestDate({mini, setMini, startTime, currentDate, setCurrentDate
         setCurrentDate(nextDate);
     };
     
-
+    // check day to ensure not in past before setting it in state
     const earlyReturnCheck = (tempDate)=> {
         const currentHour = today.getHours();
         const addHour = new Date(tempDate).setHours(currentHour + 1); // adding an hour so that users will be able to select today
