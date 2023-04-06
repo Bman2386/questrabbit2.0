@@ -3,7 +3,6 @@ import {signin} from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import QuestRabbit from '../../images/QuestRabbit.jpg';
 import formphoto from '../../images/formphoto.jpg';
 import { RenderErrors } from '../../utils/error';
 import { Loading } from '../../utils/loading';
@@ -59,9 +58,9 @@ function Signup(){
             {loggingIn ? <Loading modal={true} /> : ''}
              <img src={formphoto} alt=''className="form-photo" />
         <form className='inter-form'>
-        <Link to='/'>
-          <img src={QuestRabbit} alt='logo' className="logo"/>
-        </Link>
+              <Link to='/' className="btn-logo">
+                questrabbit
+              </Link>
         <RenderErrors errors={errors} />
             <input
               value={username}

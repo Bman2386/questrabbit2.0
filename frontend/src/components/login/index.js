@@ -5,7 +5,6 @@ import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { RenderErrors } from '../../utils/error';
 import {Loading} from '../../utils/loading';
-import QuestRabbit from '../../images/QuestRabbit.jpg';
 import formphoto from '../../images/formphoto.jpg';
 
 function Login() {
@@ -60,8 +59,8 @@ function Login() {
         {loggingIn ? <Loading modal={true} />: ''}
        <img src={formphoto} alt='' className="form-photo"/>
         <form className='inter-form'>
-          <Link to='/'>
-          <img src={QuestRabbit} alt='logo' className="logo"/>
+          <Link to='/' className="btn-logo">
+            questrabbit
           </Link>
           <RenderErrors errors={errors} />
           
