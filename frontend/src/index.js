@@ -12,7 +12,7 @@ import './stylesheets/calendar.css';
 import './stylesheets/category_show.css';
 import './stylesheets/footer.css';
 import './stylesheets/icon.css';
-import './stylesheets/inter_form.css';
+// import './stylesheets/inter_form.css';
 import './stylesheets/quest_form.css';
 import './stylesheets/session_form.css';
 import './stylesheets/splash.css';
