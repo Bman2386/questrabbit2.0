@@ -2,5 +2,8 @@
 - update css
 - update redux store
 - write tests
+    - install rspec & jest
+    - write tests to ensure all backend functions work as expected
+    - write tests to ensure all frontend functions perform as expected
 - add help modal
 - add min loader display time
