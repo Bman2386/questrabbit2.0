@@ -1,5 +1,4 @@
 ## TODO:
-- update css
 - update redux store
 - write tests
     - install rspec & jest
