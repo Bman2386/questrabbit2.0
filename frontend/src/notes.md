@@ -1,4 +1,5 @@
 ## TODO:
+- improve readability/maintainability of code
 - update redux store
 - write tests
     - install rspec & jest
