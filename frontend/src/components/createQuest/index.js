@@ -6,6 +6,7 @@ import PartTwo from './partTwo';
 import PartThree from './partThree';
 import  './questForm.css';
 
+// this is used to create quests and is the parent component of Parts 1 - 3
 function CreateQuest(){
     const currentUser = useSelector(state => state.session.user ?? '');
     const data = useSelector(state => state.temp ?? '');
@@ -17,13 +18,15 @@ function CreateQuest(){
     const [step, setStep] = useState(1);
     const [checked, setChecked] = useState('');
 
-    useEffect(()=> {
+    useEffect(()=> { // this is used on initial load to set categoryId & questName on start if they exis in redux state
     if (data && data.categoryId) setCategoryId(data.categoryId);
     if (data && data.nameOfQuest) setQuestName(data.nameOfQuest);
     },[data]);
 
+    //if user is not logged in, have them signup/login and go back to creating a quest
     if (!currentUser) return <Redirect to='/intermediary'/>;
 
+    // use the 'step' state to determine which part of the form to render
         switch (step) {
             case 2:
                 return <PartTwo 
