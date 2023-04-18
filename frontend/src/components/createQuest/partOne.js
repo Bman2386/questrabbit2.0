@@ -4,7 +4,10 @@ import { QuestCategory } from './partOneUtils/questCategory';
 import { QuestDetails } from './partOneUtils/questDetails';
 import { TopBar } from './topBar';
 
+// the 1st part of creating a quest
 function PartOne({ step, setStep, questName, setQuestName, details, setDetails, categoryId, setCategoryId}){
+    // create a 'mini' state within Part One that determines how much to render to user 
+    // as the user completes the form, more steps are shown
     const [mini, setMini] = useState(0);
         
         return(
