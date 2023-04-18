@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from '../../store/category';
 import { Link } from 'react-router-dom';
 import Quests from './quests_item';
-import QuestRabbit from '../../images/QuestRabbit.jpg';
 import './navbar.css';
 
 function NavBar(){
