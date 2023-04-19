@@ -19,7 +19,7 @@ function Login() {
 
   if (currentUser && (temp.categoryId || temp.nameOfQuest) ) return <Redirect to='/quest'/>
   if (currentUser) return <Redirect to='/' />;
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
