@@ -1,7 +1,9 @@
 import React from "react";
 import pencil from '../../../images/pencil.png';
 
+// QuestDetails allows users to describe their quest in detail, and add any necissary clarifications on their quest
 export function QuestDetails({mini, setMini, details, setDetails}){
+     //mini is the state used in the parent component of the form, determining how much info we display to user
     if (mini === 2) {
         return (
             <div className="quest-name">

@@ -25,9 +25,8 @@ export function QuestCategory({mini, setMini, categoryId, setCategoryId}){
                         
                     )}
                 </div>
-                {categoryId === '' ? '' : <button
-                    id='center'
-                    onClick={() => setMini(2)}>Continue</button>}
+                {categoryId === '' && 
+                <button id='center' onClick={() => setMini(2)}>Continue</button>}
             </div>
         );
     }; 
