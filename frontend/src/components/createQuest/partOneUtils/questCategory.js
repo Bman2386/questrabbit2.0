@@ -2,7 +2,9 @@ import React from "react";
 import { categoryShow } from "../../../utils/show";
 import pencil from '../../../images/pencil.png';
 
+// this is the second step in the 1st page of form, setting the category of work
 export function QuestCategory({mini, setMini, categoryId, setCategoryId}){
+    //mini is the state used in the parent component of the form, determining how much info we display to user
     if (mini === 1) {
         return (
             <div className="quest-name">
