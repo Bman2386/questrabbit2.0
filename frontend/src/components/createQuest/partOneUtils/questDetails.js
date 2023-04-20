@@ -32,6 +32,6 @@ export function QuestDetails({mini, setMini, details, setDetails}){
     return (
         <div className='quest-name'>
             <div className='label'>Quest Details:</div>
-            <div className='orders2'>{details ? `${details}` : ''}</div>
+            <div className='orders2'>{details === '' && `${details}`}</div>
         </div>);
 }
