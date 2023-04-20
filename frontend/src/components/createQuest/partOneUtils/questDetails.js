@@ -18,7 +18,7 @@ export function QuestDetails({mini, setMini, details, setDetails}){
                     className="textarea"
                     onChange={e => setDetails(e.target.value)}
                 />
-                {details === '' && <button id='center' onClick={() => setMini(3)}>Continue</button>}
+                {details !== '' && <button id='center' onClick={() => setMini(3)}>Continue</button>}
             </div>);
     };
     if (mini > 2) {
@@ -32,6 +32,6 @@ export function QuestDetails({mini, setMini, details, setDetails}){
     return (
         <div className='quest-name'>
             <div className='label'>Quest Details:</div>
-            <div className='orders2'>{details === '' && `${details}`}</div>
+            <div className='orders2'>{details !== '' && `${details}`}</div>
         </div>);
-}
+};
