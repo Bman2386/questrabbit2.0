@@ -8,6 +8,7 @@ export function CheckBox({examine, isChecked, filterElite}){
     // filterEliteButton also gives the user the ability to check and uncheck the box
     //by calling the filterElite function
     const filterEliteButton = () => {
+        // isChecked is the boolean state determining which type of box to display to user
         const changeCheck = isChecked ? false : true;
         return (
             <button
@@ -20,7 +21,6 @@ export function CheckBox({examine, isChecked, filterElite}){
     // if examine is true, do not show the checkbox
     //(examine is the state that is used to determine if a user wants to look at a single adventurer)
     if (!examine) {
-        // isChecked is the boolean state determining which type of box to display to user
                 return (
                     <div className='check-box'>
                         <div className='sort'>Adventurer Type</div>
