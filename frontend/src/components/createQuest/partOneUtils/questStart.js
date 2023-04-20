@@ -16,10 +16,7 @@ export function QuestStart({mini, setQuestName, questName, setMini}){
                     className="input"
                 >
                 </input>
-                {questName !== '' && <button
-                    id='center'
-                    onClick={() => setMini(1)}>Continue</button>}
-
+                {questName !== '' && <button id='center' onClick={() => setMini(1)}>Continue</button>}
             </div>
         );
     }; 
