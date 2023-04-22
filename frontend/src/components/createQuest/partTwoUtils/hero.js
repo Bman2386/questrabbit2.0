@@ -4,6 +4,7 @@ import isaac_newton from '../../../images/isaac_newton.jpg';
 import goblin_slayer from '../../../images/goblin_slayer.jpg';
 
 // returns an image of adventurer avatar
+// will need to refactor at scale
 export function Hero({name}){
     if (name === 'Hercules') return <img src={hercules} alt='hero' className='adv-img' />;
     if (name === 'Goblin Slayer') return <img src={goblin_slayer} alt='hero' className='adv-img' />;
