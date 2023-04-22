@@ -3,6 +3,7 @@ import hercules from '../../../images/hercules.jpg';
 import isaac_newton from '../../../images/isaac_newton.jpg';
 import goblin_slayer from '../../../images/goblin_slayer.jpg';
 
+// returns an image of adventurer avatar
 export function Hero({name}){
     if (name === 'Hercules') return <img src={hercules} alt='hero' className='adv-img' />;
     if (name === 'Goblin Slayer') return <img src={goblin_slayer} alt='hero' className='adv-img' />;
