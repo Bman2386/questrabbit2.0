@@ -1,5 +1,6 @@
 import React from "react";
 
+// adds an icon if adventurer is elite
 export function IsElite({elite}){
     if (elite) {
         return (
