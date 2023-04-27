@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import QuestRabbit from '../../images/QuestRabbit.jpg';
 
 export function TopBar({step}){
     const isCurrentStep = (currentN) => {
@@ -14,8 +13,8 @@ export function TopBar({step}){
 
     return(
         <div className='top-bar'>
-            <Link to='/' >
-                <img src={QuestRabbit} alt='logo' className="logo2" />
+            <Link to='/' className="btn-logo">
+                questrabbit
             </Link>
             <div className='bars'>
                 <ul className='bar1'>
