@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import {recieveData} from '../../store/temp';
 import { useDispatch } from 'react-redux';
+import './home.css'
 import hero from '../../images/hero.jpg';
 import star from '../../images/star.png';
 import play from '../../images/play.png';

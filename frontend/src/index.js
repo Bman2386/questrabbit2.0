@@ -14,7 +14,7 @@ import './stylesheets/footer.css';
 import './stylesheets/icon.css';
 import './stylesheets/quest_form.css';
 import './stylesheets/session_form.css';
-import './stylesheets/splash.css';
+
 
 const store = configureStore();
 

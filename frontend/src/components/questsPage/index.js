@@ -5,6 +5,7 @@ import { fetchQuests } from '../../store/quest';
 import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 import EditQuest from './edit';
 import CancelQuest from './cancel';
+import './questPage.css';
 
 function QuestsPage (){
     const dispatch = useDispatch();
