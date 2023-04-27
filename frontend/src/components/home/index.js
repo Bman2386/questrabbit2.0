@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import hero from '../../images/hero.jpg';
 import star from '../../images/star.png';
 import play from '../../images/play.png';
+import apple from '../../images/apple.png';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const lastButton = () => {
       Partnered with IKEA
       </div>
       <div className='store'> 
-        <i className='fab fa-apple' id='apple'></i>
+        <img src={apple} alt='apple logo' id='apple'></img>
         <div className='fake-logo'>
           <div className='small'>Available in the</div> Magic Store
         </div>
