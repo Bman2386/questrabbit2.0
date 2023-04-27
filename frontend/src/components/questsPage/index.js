@@ -1,8 +1,7 @@
 import React,{useState, useEffect, useRef} from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchQuests } from '../../store/quest';
-// import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
 import { QuestShow } from './questShow';
 import EditQuest from './edit';
 import CancelQuest from './cancel';
