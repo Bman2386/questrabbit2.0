@@ -34,12 +34,15 @@
     top: 70%;
     left: 35%;
     border: none;
-    background-color: rgb(11, 132, 11);
+    background-color: rgb(3, 87, 3);
     color: white;
     border-radius: 2px;
     padding: 8px;
 }
 
+.show-button:hover {
+    background-color: black;
+}
 .show-block {
     position: absolute;
     top: 10%;
