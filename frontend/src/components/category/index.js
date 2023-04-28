@@ -7,7 +7,7 @@ import craft from '../../images/craft.jpg';
 import escort from '../../images/escort.jpg';
 import ftch from '../../images/ftch.jpg';
 import { fetchCategories } from '../../store/category';
-
+import './category_show.css';
 
 // dynamicly displays data for each category of quest
 function Category(){ 

@@ -1,0 +1,60 @@
+.show-container {
+    top: 20%;
+    text-align: center;
+    position: relative;
+    height: 150vh;
+}
+
+.show-h1 {
+    position: absolute;
+    background: none;
+    width: 100%;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: xxx-large;
+    font-weight: 575;
+    z-index: 1;
+    color: green;
+}
+
+.show-p {
+    position: absolute;
+    width: 100%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: x-large;
+    z-index: 1;
+    color: green;
+}
+
+.show-button {
+    position: absolute;
+    top: 70%;
+    left: 35%;
+    border: none;
+    background-color: rgb(3, 87, 3);
+    color: white;
+    border-radius: 2px;
+    padding: 8px;
+}
+
+.show-button:hover {
+    background-color: black;
+}
+
+.show-block {
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    height: 15rem;
+    width: 50rem;
+    background-color: white;
+    z-index: 0.1;
+}
+
+.show-image {
+    width: 100%;
+    height: 100%;
+}

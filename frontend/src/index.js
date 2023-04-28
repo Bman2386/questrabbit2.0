@@ -9,7 +9,7 @@ import * as sessionActions from './store/session';
 import './stylesheets/application.css';
 import './stylesheets/account.css';
 import './stylesheets/calendar.css';
-import './stylesheets/category_show.css';
+// import './stylesheets/category_show.css';
 import './stylesheets/footer.css';
 import './stylesheets/icon.css';
 import './stylesheets/quest_form.css';
