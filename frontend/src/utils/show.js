@@ -16,7 +16,7 @@ export const dateShow = (date) => {
         "Tuesday",
         "Wednesday",
         "Thursday",
-        "Firday",
+        "Friday",
         "Saturday"
     ];
     const months = [
