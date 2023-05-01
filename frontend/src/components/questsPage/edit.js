@@ -9,15 +9,28 @@ function EditQuest({currentUser, quest, setEdit}){
     const [questName, setQuestName] = useState('');
     const [details, setDetails] = useState('');
     const [startTime, setStartTime] = useState('');
-
-
+    const [error, setError] = useState('');
+    
     if (!questName || !details || !startTime){
         setQuestName(quest.questName);
         setDetails(quest.details);
         setStartTime(quest.startTime);
     };
    
+
+    const checkValidDate=(time = startTime)=> {
+            if (new Date(time) < new Date()){
+                setError('Invalid startTime, the quest cannot start in the past');
+                return true
+            };
+            if (new Date(time) >= new Date()){
+                setError('');
+            };
+            return false;
+    };
+        
     const submit = () => {
+        if (checkValidDate()) return // return early if there is an error instead of updateing quest
         const time = new Date(startTime);
         const updatedQuest = {
             id: quest.id,
@@ -29,10 +42,16 @@ function EditQuest({currentUser, quest, setEdit}){
             completed: 'false',
             adventurer_id: quest.adventurerId,
         };
+        
         dispatch(updateQuest(updatedQuest));
         setEdit(false);
     };
     
+    const changeDateButton = (time)=> {
+        setStartTime(time);
+        checkValidDate(time);
+    };
+
     return(
         <div className='quest-form'>
             <button 
@@ -56,14 +75,14 @@ function EditQuest({currentUser, quest, setEdit}){
                         className='textarea2' />
                 </div>
                 <div className='label-container'>
-                    <input className='label' type='datetime-local' value={startTime} onChange={e => setStartTime(e.target.value)}></input>
+                    <input className='label' type='datetime-local' value={startTime} onChange={e => changeDateButton(e.target.value)}></input>
                 </div>
                 <div className='p' id='center'>{dateShow(startTime)}</div>
+                <div className='error'>{error}</div>
                 <p className='p' id='center'>Quest Category: {categoryShow(quest.categoryId)}</p>
                 <p className='p' id='center'>Adventurer: {adventurerShow(quest.adventurerId)}</p>
                 <div id='center' className='links2'>
-                    { questName && details && startTime ? <button className='btn-1' onClick={() => submit()}>Submit</button> :
-                    ''}
+                    { (questName && details && startTime) ? <button className='btn-1' onClick={() => submit()}>Submit</button>: ''}
                     <button className='cancel-btn' onClick={()=> setEdit(false)}>Cancel</button>
                 </div>
                 <span className='margin-bottom'></span>
