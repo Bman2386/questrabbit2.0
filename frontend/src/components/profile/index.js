@@ -7,6 +7,7 @@ import { EditMenu } from './edit';
 import map from '../../images/map.png';
 import shield from '../../images/shield.png';
 import user from '../../images/user.png';
+import './profile.css';
 
 function ProfileComponent(){
     const dispatch = useDispatch();

@@ -7,7 +7,6 @@ import configureStore from './store';
 import csrfFetch from './store/csrf';
 import * as sessionActions from './store/session';
 import './stylesheets/application.css';
-import './stylesheets/account.css';
 import './stylesheets/calendar.css';
 import './stylesheets/footer.css';
 import './stylesheets/icon.css';
