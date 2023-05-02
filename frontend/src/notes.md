@@ -1,4 +1,5 @@
 ## TODO:
+- organize css
 - improve readability/maintainability of code
 - update redux store
 - write tests
