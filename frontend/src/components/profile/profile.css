@@ -74,9 +74,10 @@
 }
 
 .p2 {
-    color: grey;
+    color: Black;
     align-self: center;
     margin-bottom: .5rem;
+    font-size: large;
 }
 
 .edit-user {
@@ -119,4 +120,10 @@
     text-align: center;
     padding-right: .2rem;
     margin-top: 1rem;
+}
+
+#btn{
+    width: fit-content;
+    align-self: center;
+    margin-bottom: 1rem;
 }

@@ -39,16 +39,16 @@ export function EditMenu({ crest, rlm, sign, setEdit, name, currentUser}){
                         <div className='error'>{`${error}`}</div>
                         <label className="p2">Username: {username}</label>
                         {editItem === 'username'? <InputField setItem={setUserName} item={username}/>:
-                        <button className="btn-3" onClick={()=> setEditItem('username')}>Change Username</button>}
+                        <button className="btn-4" id='btn' onClick={()=> setEditItem('username')}>Change Username</button>}
                         <label className='p2'>Family Crest: {familyCrest}</label>
                         {editItem === 'Family Crest' ? <InputField setItem ={setFamilyCrest} item={familyCrest}/> : 
-                        <button className='btn-3' onClick={()=> setEditItem('Family Crest')}>Change Family Crest</button>}
+                        <button className='btn-4' id='btn' onClick={()=> setEditItem('Family Crest')}>Change Family Crest</button>}
                         <label className='p2'>Realm: {realm}</label>
                         {editItem === 'Realm' ? <InputField setItem={setRealm} item={realm}/> : 
-                            <button className='btn-3' onClick={()=> setEditItem('Realm')}>Change Realm</button>}
+                            <button className='btn-4' id='btn' onClick={()=> setEditItem('Realm')}>Change Realm</button>}
                         <label className='p2'>Star Sign: {starSign}</label>
                         {editItem === 'Star Sign' ? <InputField setItem={setStarSign} item={starSign}/>:
-                            <button className='btn-3' onClick={()=>setEditItem('Star Sign')}>Change Star Sign</button>}
+                            <button className='btn-4' id='btn' onClick={()=>setEditItem('Star Sign')}>Change Star Sign</button>}
                     </div>
                     <div className='buttons'>
                         <button className='btn-5' onClick={() => setEdit(false)}>Cancel</button>
