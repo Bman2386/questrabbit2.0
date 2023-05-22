@@ -1,4 +1,5 @@
 ## TODO:
+- find fix to bug on startup
 - organize css (each css file should be with component folder, exclept css resets)
 - improve readability/maintainability of code
 - update redux store

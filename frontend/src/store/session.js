@@ -44,6 +44,7 @@ export const signin = (user) => async (dispatch) => { // rename to signup?
             star_sign: star_sign
         })
     });
+    
     const data = await response.json();
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
