@@ -1,7 +1,10 @@
-## TODO:
-- organize css (each css file should be with component folder, exclept css resets)
-- improve readability/maintainability of code
-- update redux store
+# TODO:
+## improve readability/maintainability of code
+     - organize css (each css file should be with component folder, exclept css resets)
+     - ensure functions have explicit names
+     - write more comments explaining how things work
+## Project Maintanence
+- update redux store (current version is not latest & greatest)
 - write tests
     - install rspec & jest
     - write tests to ensure all backend functions work as expected
@@ -11,3 +14,6 @@
 ## @ Scale
 - category and adventurer show will have to be re-worked
 - Quest creation will need infinite scroll when browsing adventurers
+## Timeline
+- need a timeline for when items will be complete
+- need to order what should be done 1st
