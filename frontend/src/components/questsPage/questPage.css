@@ -1,5 +1,4 @@
 .btn-1 {
-    text-decoration: none;
     width: 50%;
     height: 5rem;
     border-radius: 2px;
@@ -13,4 +12,28 @@
 .links2 {
     display: flex;
     margin-top: 2rem;
+}
+
+.cancel-btn{
+    background-color: rgb(170, 170, 170);
+    width: 50%;
+    height: 5rem;
+    border-radius: 2px;
+    padding: 16px;
+    margin: 16px;
+}
+
+.cancel-btn:hover{
+    background-color: black;
+}
+
+.h1 {
+    font-weight: 600;
+    margin: 2rem;
+    text-align: center;
+}
+
+.edit-user{
+    margin: 2rem;
+    margin-bottom: 0;
 }

@@ -61,14 +61,14 @@ function EditQuest({currentUser, quest, setEdit}){
                 <h1 className='h1'>Edit Quest</h1>
                 <hr className='hr' />
                 <div className='edit-user'>
-                    <div className='p2'>Quest Name:</div>
+                    <div className='label'>Quest Name:</div>
                     <input type="text"
                         value={questName}
                         onChange={e => setQuestName(e.target.value)}
-                        className='input3' />
+                        className='input2' />
                 </div>
                 <div className='edit-user'>
-                    <div className='p2'>Details:</div>
+                    <div className='label'>Details:</div>
                     <textarea
                         value={details}
                         onChange={e => setDetails(e.target.value)}

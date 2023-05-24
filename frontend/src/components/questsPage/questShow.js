@@ -47,7 +47,7 @@ export function QuestShow({quests, moveToEdit, moveToCancel}){
                             >Edit Quest</button>
                             <button
                                 to={`/delete/${quest.id}`}
-                                className="cancel-btn"
+                                className="btn-1"
                                 value={quest.id}
                                 onClick={e => moveToCancel(e.target.value)}
                             >Cancel Quest</button>
