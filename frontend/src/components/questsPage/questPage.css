@@ -29,8 +29,9 @@
 
 .h1 {
     font-weight: 600;
-    margin: 2rem;
     text-align: center;
+    font-size: 3rem;
+    margin-bottom: 0;
 }
 
 .edit-user{
