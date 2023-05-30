@@ -5,7 +5,7 @@ import { TopBar } from './topBar';
 import {SortBy} from './partTwoUtils/sortBy';
 import { CheckBox } from './partTwoUtils/checkBox';
 import {List} from './partTwoUtils/list';
-
+import {Loading} from '../../utils/loading';
 function PartTwo({ step, setStep, setAdventurerId}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
@@ -25,7 +25,7 @@ function PartTwo({ step, setStep, setAdventurerId}){
         };
     }, [dispatch]);
 
-    if (adventurers.length < 1 ) return <div>Loading...</div>;
+    if (adventurers.length < 1 ) return <Loading />;
 
     const filterElite = (value)=> {
         if (value){ // if true filter adventurers to elite only
