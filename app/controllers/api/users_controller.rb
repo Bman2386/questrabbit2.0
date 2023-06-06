@@ -5,8 +5,10 @@ class Api::UsersController < ApplicationController
     wrap_parameters include: User.attribute_names + ['password']
 
     def index
-      temp = User.all
-      @users = temp.where(adventurer: true)
+      all_users = User.all
+      #adventurers don't have a seperate class as they are also users, thus we can't change
+      # @users to adventurers without creating a seperate class 
+      @users = all_users.where(adventurer: true)
       render :index
    end
 
