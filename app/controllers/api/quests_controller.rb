@@ -5,8 +5,8 @@ class Api::QuestsController < ApplicationController
     end
 
     def index
-        c_id = current_user.id
-        @quests = Quest.where(creator_id: c_id, completed: false)
+        current_user_id = current_user.id
+        @quests = Quest.where(creator_id: current_user_id, completed: false)
         render :index
     end
 
