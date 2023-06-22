@@ -61,17 +61,24 @@ Things you may want to cover:
     - 3.1.1
 
 * System dependencies
-
+    - node v16.10 or later
+    - rails v7 or later
 * Configuration
 
 * Database creation
-
-* Database initialization
+    - rails db:create
 
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
+    - clone repo
+    - ```$bundle install```
+    - ```$rails db:create```
+    - ```$rails db:migrate```
+    - ```$cd frontend```
+    - ```$ npm install ``` (installs frontend only packages but must be in frontend folder 1st)
+    - from root folder run ```$bin/rails s``` ("s" stands for server)
+    - in new terminal run ```$npm start``` (frontend and backend can't be run from same terminal)
 * ...
