@@ -55,8 +55,6 @@ export function Loading({modal=false}){
 }
 ```
 
-Things you may want to cover:
-
 * Ruby version
     - 3.1.1
 
