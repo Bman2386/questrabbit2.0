@@ -19,7 +19,7 @@ export const rootReducer = combineReducers({
 });
 
 let enhancer;
-
+// if in production don't use logger and devtools
 if (process.env.NODE_ENV === 'production') {
     enhancer = applyMiddleware(thunk);
 } else {
