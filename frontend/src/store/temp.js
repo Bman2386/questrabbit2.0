@@ -17,7 +17,7 @@ export const clearData = () => dispatch => {
     dispatch(deleteData());
 };
 const initialState = {};
-
+// only used to pass data between components without direct messages between components
 const tempReducer = (state=initialState, action) => {
     switch(action.type){
         case SAVE_DATA:
