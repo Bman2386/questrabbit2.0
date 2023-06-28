@@ -1,7 +1,7 @@
 # TODO:
 ## improve readability/maintainability of code
      - organize css (each css file should be with component folder, exclept css resets)
-     - ensure functions have explicit names
+     - ensure functions have explicit names * change mini (in createQuest component to something more descriptive)
      - write more comments explaining how things work
 ## Project Maintanence
 - update redux store (current version is not latest & greatest)

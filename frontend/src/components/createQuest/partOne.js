@@ -9,7 +9,6 @@ function PartOne({ step, setStep, questName, setQuestName, details, setDetails, 
     // create a 'mini' state within Part One that determines how much to render to user 
     // as the user completes the form, more steps are shown
     const [mini, setMini] = useState(0);
-        
         return(
             <div className="quest-container">
                 <TopBar step={step}/>

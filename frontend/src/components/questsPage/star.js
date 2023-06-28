@@ -1,6 +1,7 @@
 import React from "react";
 import star from '../../images/star.png';
 import emptyStar from '../../images/emptyStar.png';
+
 function Star({filled, setRating, value}) {
     if (filled){
        return(
