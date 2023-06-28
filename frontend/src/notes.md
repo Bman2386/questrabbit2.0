@@ -1,6 +1,5 @@
 # TODO:
 ## Create Readme
-    - highlight code snippets of impressive work
     - link back to old version
 ## improve readability/maintainability of code
      - organize css (each css file should be with component folder, exclept css resets)
