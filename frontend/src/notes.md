@@ -1,6 +1,4 @@
 # TODO:
-## Create Readme
-    - link back to old version
 ## improve readability/maintainability of code
      - organize css (each css file should be with component folder, exclept css resets)
      - ensure functions have explicit names
