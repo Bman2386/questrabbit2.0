@@ -1,6 +1,5 @@
 # TODO:
 ## Create Readme
-    - needs to explain what the app is, how it works
     - highlight code snippets of impressive work
     - link back to old version
 ## improve readability/maintainability of code
