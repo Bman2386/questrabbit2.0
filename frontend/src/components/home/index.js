@@ -13,6 +13,7 @@ const Home = () => {
   //clicked is a state that we use to determine if we should expand quest types to the user
   const [clicked, setClicked] = useState('');
   // name is the name of the quest that will be passed to the createQuest component via redux
+  // setting it in state would trigger unnecissary re-renders
   const name = useRef('');
 
 const setData = () => {
