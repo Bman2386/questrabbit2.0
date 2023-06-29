@@ -39,7 +39,7 @@ const renderApplication = () => {
     </React.StrictMode>
   )};
 
-if (
+if ( // this condition is needed to ensure session tokens are generated for the user even if they are not loggedin
   sessionStorage.getItem("currentUser") === null ||
   sessionStorage.getItem("X-CSRF-Token") === null
   ) store.dispatch(sessionActions.restoreSession());
