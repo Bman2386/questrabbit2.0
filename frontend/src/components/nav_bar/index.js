@@ -13,6 +13,7 @@ function NavBar(){
   const isCategoryFetched = useRef(false);
   if (categories.length > 0) isCategoryFetched.current = true;
 
+  // use useEfect to grab categories and use isCategoryFetched to prevent unnecissary re-renders
   useEffect(() => {
     if (isCategoryFetched.current === false) {
       dispatch(fetchCategories());
