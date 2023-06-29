@@ -15,7 +15,7 @@ import './stylesheets/session_form.css';
 
 
 const store = configureStore();
-
+// this will need to get updated as the store function is going to be depricated
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.csrfFetch = csrfFetch;
