@@ -9,9 +9,7 @@ function Intermediary(){
         <div className="session-form">
             <img src={formphoto} alt='background' className="form-photo"/>
             <form className="inter-form" id="form1">
-                <Link to='/' className="btn-logo">
-                    questrabbit
-                </Link>
+                <Link to='/' className="btn-logo">questrabbit</Link>
                 <Link className="btn-1" to="/signup">Sign Up</Link>
                 <Link className="btn-2" to="/login">Log In</Link>
             </form>
