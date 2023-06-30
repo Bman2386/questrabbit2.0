@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { recieveData } from '../../store/temp';
 
-const Quests = ({categories}) => {
+const QuestCategories = ({categories}) => {
   const dispatch = useDispatch();
 
   return (
@@ -25,6 +25,6 @@ const Quests = ({categories}) => {
     );
 };
 
-export default Quests
+export default QuestCategories
 
 

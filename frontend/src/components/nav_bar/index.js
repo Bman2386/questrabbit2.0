@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from '../../store/category';
 import { Link } from 'react-router-dom';
-import Quests from './quests_item';
+import QuestCategories from './quests_item';
 import './navbar.css';
 
 function NavBar(){
@@ -32,7 +32,7 @@ function NavBar(){
           </Link>
           </span>
           <span>
-           {categories.length > 0 ? <Quests categories={categories} />: ''}
+           {categories.length > 0 ? <QuestCategories categories={categories} />: ''}
           <Link to='/quest' className="btn">Book a Quest</Link>
           <Link to='/quests' className="btn">My Quests</Link>
           <Link to='/user' className="btn">Account</Link> 
@@ -48,7 +48,7 @@ function NavBar(){
         </Link>
         </span>
         <span>
-          {categories ? <Quests categories={categories} /> : ''}
+          {categories ? <QuestCategories categories={categories} /> : ''}
         <Link className="btn" to="/intermediary">Log in</Link>
         </span>
       </div>
