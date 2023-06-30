@@ -37,7 +37,6 @@ function Login() {
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
-        setLoggingIn(false);
       });
   };
 

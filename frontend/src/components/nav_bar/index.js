@@ -26,9 +26,7 @@ function NavBar(){
   return (
         <div className="nav-bar">
           <span>
-            <Link className="btn" to='/'>
-            questrabbit
-          </Link>
+            <Link className="btn" to='/'> questrabbit</Link>
           </span>
           <span>
            {categories.length > 0 ? <QuestCategories categories={categories} />: ''}
