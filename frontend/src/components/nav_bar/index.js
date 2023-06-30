@@ -23,8 +23,7 @@ function NavBar(){
   }, [dispatch]);
   
  
-    if (currentUser) {
-      return (
+  return (
         <div className="nav-bar">
           <span>
             <Link className="btn" to='/'>
@@ -33,26 +32,18 @@ function NavBar(){
           </span>
           <span>
            {categories.length > 0 ? <QuestCategories categories={categories} />: ''}
-          <Link to='/quest' className="btn">Book a Quest</Link>
-          <Link to='/quests' className="btn">My Quests</Link>
-          <Link to='/user' className="btn">Account</Link> 
+          { currentUser ? 
+          <div>
+          <Link to='/quest' id='nav-links'className="btn">Book a Quest</Link>
+          <Link to='/quests' id='nav-links' className="btn">My Quests</Link>
+          <Link to='/user' id='nav-links' className="btn">Account</Link>
+          </div> :
+          <Link className="btn" to="/intermediary">Log in</Link>
+           }
           </span>
         </div>
       );
     };  
-    return (
-      <div className="nav-bar">
-        <span>
-          <Link className="btn" to='/'>
-          questrabbit
-        </Link>
-        </span>
-        <span>
-          {categories ? <QuestCategories categories={categories} /> : ''}
-        <Link className="btn" to="/intermediary">Log in</Link>
-        </span>
-      </div>
-    );
-  };
+    
 
 export default NavBar;

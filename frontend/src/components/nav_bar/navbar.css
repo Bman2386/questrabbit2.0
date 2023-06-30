@@ -92,3 +92,10 @@ span >.btn:first-child {
     border-bottom:  white;
     padding: 7px;
 }
+
+#nav-links {
+    color: black;
+    padding-right: 3rem;
+    padding-left: 0;
+
+}
