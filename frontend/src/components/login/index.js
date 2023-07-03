@@ -57,7 +57,7 @@ function Login() {
     return (
       <div className="session-form">
         {loggingIn ? <Loading modal={true} />: ''}
-       <img src={formphoto} alt='' className="form-photo"/>
+       <img src={formphoto} alt='backgroungd-meeting' className="form-photo"/>
         <form className='inter-form'>
           <Link to='/' className="btn-logo">
             questrabbit
@@ -78,12 +78,7 @@ function Login() {
           />
           {loggingIn ? <div>Logging In...</div> : <button onClick={handleSubmit}>Log in</button>}
           {loggingIn ? '':  
-          <button
-            to="/"
-            onClick={loginGuest}
-            className="login-guest" >
-            Demo as Guest
-          </button>} 
+          <button to="/" onClick={loginGuest} className="login-guest" >Demo as Guest</button>} 
       </form>
       </div>
     );
