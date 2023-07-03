@@ -23,10 +23,17 @@ function Category(){
     };
 
     const categoryImage = (id) => {
-        if (id === 1) return <img alt='fetch' className="show-image" src={ftch} />
-        if (id === 2) return <img alt='craft' className="show-image" src={craft} />
-        if (id === 3) return <img alt='escort' className="show-image" src={escort} />
-        if (id === 4) return <img alt='slay' className="show-image" src={slay} />
+        const imageInfoAray = [
+            {name: 'fetch',
+            image: ftch},
+            {name: 'craft',
+            image: craft},
+            {name: 'escort',
+            image: escort},
+            {name: 'slay',
+            image: slay}
+        ];
+        return <img alt={imageInfoAray[id - 1].name} className='show-image' src={imageInfoAray[id - 1].image}/>
     };
     
     const saveCategoryId=(id)=> {
