@@ -7,7 +7,7 @@ import './inter_form.css';
 function Intermediary(){
     return (
         <div className="session-form">
-            <img src={formphoto} alt='background' className="form-photo"/>
+            <img src={formphoto} alt='background-meeting' className="form-photo"/>
             <form className="inter-form" id="form1">
                 <Link to='/' className="btn-logo">questrabbit</Link>
                 <Link className="btn-1" to="/signup">Sign Up</Link>
