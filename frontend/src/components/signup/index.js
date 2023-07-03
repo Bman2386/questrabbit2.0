@@ -56,7 +56,7 @@ function Signup(){
         return (
             <div className="session-form">
             {loggingIn ? <Loading modal={true} /> : ''}
-             <img src={formphoto} alt=''className="form-photo" />
+             <img src={formphoto} alt='background-meeting'className="form-photo" />
         <form className='inter-form'>
               <Link to='/' className="btn-logo">
                 questrabbit
