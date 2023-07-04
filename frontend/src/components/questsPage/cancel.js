@@ -89,6 +89,8 @@ function CancelQuest({currentUser, quest, setEdit, setCancel}){
         return {id: quest.adventurerId, avg_rating: avgRating, total_ratings: totalReviews }
 
     };
+
+    
     const submitReview = ()=> {
         const review = {
             rating: rating,
@@ -128,7 +130,10 @@ function CancelQuest({currentUser, quest, setEdit, setCancel}){
                         placeholder={`${adventurerShow(quest.adventurerId)} did a great job at...`}
                         onChange={e=> setBody(e.target.value)} />
                 </div>
-                <button onClick={() => submitReview()} id="margin" className='btn-4' style={{color: 'white'}}>Submit Review</button>
+                {rating && body ?
+                <button onClick={() => submitReview()} id="margin" className='btn-4' style={{color: 'white'}}>Submit Review</button>:
+                ''}
+                
             </div>
         );
     };
