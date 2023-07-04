@@ -139,10 +139,17 @@ function CancelQuest({currentUser, quest, setEdit, setCancel}){
     };
 
     const pageSetter = ()=> {
-        if (mini === 1) return yourQuest();
-        if (mini === 2) return warnUser();
-        if (mini === 3) return writeReview();
-        return <div>error, something went wrong</div>;
+        // will need to be updated
+        switch (mini) {
+            case 1:
+                return yourQuest();
+            case 2: 
+                return warnUser();
+            case 3: 
+                return writeReview();
+            default:
+                return <div>error, something went wrong</div>;
+        };
     };
     return(
         <div className='quest-form'>
