@@ -31,7 +31,7 @@ function Signup(){
 
   const errorHandle = (error) => {
     const previousErrors = [...errors];
-    previousErrors.push(error)
+    previousErrors.push(error);
     setLoggingIn(false);
     setErrors(previousErrors);
   };

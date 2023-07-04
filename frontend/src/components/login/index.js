@@ -23,7 +23,7 @@ function Login() {
   
    const errorHandle = (error) => {
     const previousErrors = [...errors];
-    previousErrors.push(error)
+    previousErrors.push(error);
     setLoggingIn(false);
     setErrors(previousErrors);
   };
@@ -70,7 +70,6 @@ function Login() {
             questrabbit
           </Link>
           <RenderErrors errors={errors} />
-          
           <input
             type="text"
             value={username}
