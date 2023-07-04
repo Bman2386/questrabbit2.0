@@ -99,6 +99,7 @@ function Signup(){
             />
             {loggingIn ? <div>Logging In...</div> : 
             <button onClick={handleSubmit}>Create Account</button>}
+            <div>Logging In: {loggingIn}</div>
         </form>
       </div>
     );
