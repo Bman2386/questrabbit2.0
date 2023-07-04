@@ -32,8 +32,10 @@ class Api::UsersController < ApplicationController
         if @user && @user.update!(user_params)
           render :show
         elsif !@user
+          #this case should never happen unless something goes wrong on the frontend
           render json: ['Could not locate user'], status: 400
         else
+          
           render json: @user.errors.full_messages, status: 401
         end
     end
