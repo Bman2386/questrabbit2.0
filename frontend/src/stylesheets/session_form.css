@@ -10,12 +10,14 @@ form {
     justify-content: center;    
     border-radius: 3px;
     right: 25%;
+    z-index: 10;
 }
 
 #form1 {
     height: 65vh;
     min-height: fit-content;
 }
+
 
 .inter-form>input {
     margin: 16px;
