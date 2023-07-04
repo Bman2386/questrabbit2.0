@@ -21,6 +21,13 @@ function Login() {
   if (currentUser && (temp.categoryId || temp.nameOfQuest) ) return <Redirect to='/quest'/>
   if (currentUser) return <Redirect to='/' />;
   
+   const errorHandle = (error) => {
+    const previousErrors = [...errors];
+    previousErrors.push(error)
+    setLoggingIn(false);
+    setErrors(previousErrors);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -35,9 +42,9 @@ function Login() {
         } catch {
           data = await res.text(); // Will hit this case if the server is down
         }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
+        if (data?.errors) errorHandle(data.errors);
+        else if (data) errorHandle([data]);
+        else errorHandle([res.statusText]);
       });
   };
 
