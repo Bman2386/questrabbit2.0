@@ -5,7 +5,7 @@ import { createReview } from "../../../store/review";
 import { updateAdventurer } from "../../../store/adventurer";
 import Star from "../star";
 
-export function WarnUser({quest,reviews, setBody,body, currentUser, rating, setRating, setCancel}){
+export function WriteReview({quest,reviews, setBody,body, currentUser, rating, setRating, setCancel}){
     const dispatch = useDispatch();
 
     const submitReview = ()=> {

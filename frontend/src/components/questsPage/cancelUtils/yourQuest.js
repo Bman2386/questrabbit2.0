@@ -5,7 +5,9 @@ import { dateShow } from "../../../utils/show";
 
 export function YourQuest({quest, setMini}){
     return (
-            <div className='width2'>
+        <div className='quest-form'>
+             <button style={{marginTop: '1rem'}} className='back-button' onClick={()=>setCancel(false)}>Back</button>
+             <div className='width2'>
                 <div className='hero-container'>
                     <div className='h1'>Your Quest</div>
                     <hr className='hr' />
@@ -17,5 +19,7 @@ export function YourQuest({quest, setMini}){
                     <button onClick={() => setMini(2)} id='margin'>Cancel Quest</button>
                 </div>
             </div>
+        </div>
+           
         );
 }

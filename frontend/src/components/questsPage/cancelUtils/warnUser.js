@@ -14,7 +14,9 @@ export function WarnUser({changeToEdit, setMini, quest}){
         setMini(3);
     };
     return (
-            <div className='quest-form'>
+        <div className='quest-form'>
+        <button style={{marginTop: '1rem'}} className='back-button' onClick={()=>setCancel(false)}>Back</button>
+        <div className='quest-form'>
                 <div className='quest-name'>
                     <div className='red'>
                         By clicking Confirm you are cancelling your Quest.
@@ -35,5 +37,7 @@ export function WarnUser({changeToEdit, setMini, quest}){
                     </div>
                 </div>
             </div>
+        </div>
+            
         );
 }
