@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { updateQuest } from "../../../store/quest";
 
-export function WarnUser({changeToEdit, setMini, quest}){
+export function WarnUser({changeToEdit, setMini, quest, setCancel}){
     const dispatch = useDispatch();
     
     const submit = () => {

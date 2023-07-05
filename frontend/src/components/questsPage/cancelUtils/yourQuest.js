@@ -3,7 +3,7 @@ import { categoryShow } from "../../../utils/show";
 import { adventurerShow } from "../../../utils/show";
 import { dateShow } from "../../../utils/show";
 
-export function YourQuest({quest, setMini}){
+export function YourQuest({quest, setMini, setCancel}){
     return (
         <div className='quest-form'>
              <button style={{marginTop: '1rem'}} className='back-button' onClick={()=>setCancel(false)}>Back</button>

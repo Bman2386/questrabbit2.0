@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 // import { updateQuest } from '../../store/quest';
+import { fetchReview } from '../../store/review';
 // import {createReview, fetchReview} from '../../store/review';
 // import {updateAdventurer} from '../../store/adventurer';
 // import { categoryShow, adventurerShow, dateShow } from '../../utils/show';
@@ -146,12 +147,14 @@ function CancelQuest({currentUser, quest, setEdit, setCancel}){
                 return <YourQuest 
                 quest={quest}
                 setMini={setMini}
+                setCancel={setCancel}
                 />
             case 2: 
                 return <WarnUser 
                 changeToEdit={changeToEdit}
                 setMini={setMini}
                 quest={quest}
+                setCancel={setCancel}
                 />
             case 3: 
                 return <WriteReview 
