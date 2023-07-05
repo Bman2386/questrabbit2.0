@@ -1,5 +1,6 @@
 # TODO:
 ## improve readability/maintainability of code
+     - fetchReview should be plural (will need to be update accross components & store)
      - organize css (each css file should be with component folder, exclept css resets)
      - ensure functions have explicit names * change mini (in createQuest component to something more descriptive)
      - write more comments explaining how things work
