@@ -9,19 +9,19 @@ import {Loading} from '../../utils/loading';
 function PartTwo({ step, setStep, setAdventurerId}){
     const dispatch = useDispatch();
     const adventurers = useSelector(state => state.adventurers ? Object.values(state.adventurers) : []);
-    const [adv, setAdv] = useState([]); // we use this array to sort without losing original adventurers
+    const [adventurersArray, setAdventurersArray] = useState([]); // we use this array to sort without losing original adventurers
     const [isChecked, setIsChecked] = useState(false);
     const [selected, setSelected] = useState('');
     const [examine, setExamine] = useState(false);
 
-    const isAdvFetched = useRef(false); 
+    const isAdventurersFetched = useRef(false); 
 
-    if (adventurers.length) isAdvFetched.current = true;
+    if (adventurers.length > 1) isAdventurersFetched.current = true;
 
     useEffect(() => {
-        if (isAdvFetched.current === false ) {
+        if (isAdventurersFetched.current === false ) {
             dispatch(fetchAdventurers());
-            isAdvFetched.current = true;
+            isAdventurersFetched.current = true;
         };
     }, [dispatch]);
 
@@ -30,19 +30,19 @@ function PartTwo({ step, setStep, setAdventurerId}){
     const filterElite = (value)=> {
         if (value){ // if true filter adventurers to elite only
             const temp = [];
-            adventurers.forEach(ad => {
-                if (ad.elite) temp.push(ad);
+            adventurers.forEach(adventurer => {
+                if (adventurer.elite) temp.push(adventurer);
             });
-            setAdv(temp);
+           setAdventurersArray(temp);
             setIsChecked(true);
         } else {
-            setAdv([...adventurers]);// if false reset adv to all adventurers
+           setAdventurersArray([...adventurers]);// if false reset adv to all adventurers
             setIsChecked(false);
         };
     };
 
-    const selectAdv=(input)=> {
-        const adventurer = adventurers.filter(ad => ad.id === parseInt(input));
+    const selectAdventurer=(input)=> {
+        const adventurer = adventurers.filter(adventurer => adventurer.id === parseInt(input));
         setSelected(...adventurer);
         setExamine(true);
     };
@@ -51,7 +51,7 @@ function PartTwo({ step, setStep, setAdventurerId}){
         setAdventurerId(id);
         setStep(3);
     };
-    if (adv.length === 0) setAdv([...adventurers]);
+    if (adventurersArray.length === 0) setAdventurersArray([...adventurers]);
 
     return(
         <div className="quest-container">
@@ -62,7 +62,7 @@ function PartTwo({ step, setStep, setAdventurerId}){
                 <SortBy 
                 adventurers={adventurers}
                 examine={examine}
-                setAdv={setAdv}
+                setAdventurersArray={setAdventurersArray}
                 setIsChecked={setIsChecked}
                 />
             </div>
@@ -77,8 +77,8 @@ function PartTwo({ step, setStep, setAdventurerId}){
                         examine={examine}
                         setSelected={setSelected}
                         setExamine={setExamine}
-                        adv={adv}
-                        selectAdv={selectAdv}
+                        adventurersArray={adventurersArray}
+                        selectAdventurer={selectAdventurer}
                         selected={selected}
                         moveToNextStep={moveToNextStep}
                     />
