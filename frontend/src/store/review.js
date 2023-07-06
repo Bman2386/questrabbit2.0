@@ -1,17 +1,17 @@
 import csrfFetch from './csrf';
 
-const RECEIVE_REVIEW = 'reviews/recieveReview';
+const RECEIVE_REVIEWS = 'reviews/recieveReviews';
 
-const receiveReview = review => ({
-    type: RECEIVE_REVIEW,
-    review
+const receiveReviews = reviews => ({
+    type: RECEIVE_REVIEWS,
+    reviews
 });
 
-export const fetchReview = (adventurerId) => async dispatch => {
+export const fetchReviews = (adventurerId) => async dispatch => {
     const response = await csrfFetch(`api/reviews/${adventurerId}`);
     if (response.ok){
         const data = await response.json();
-        dispatch(receiveReview(data));
+        dispatch(receiveReviews(data));
     } else {
         throw response;
     };
@@ -38,8 +38,8 @@ const initialState = {};
 
 const reviewsReducer = (state=initialState, action) => {
     switch (action.type) {
-        case RECEIVE_REVIEW:
-            return Object.assign({}, action.review);
+        case RECEIVE_REVIEWS:
+            return Object.assign({}, action.reviews);
         default:
             return state;
     };
