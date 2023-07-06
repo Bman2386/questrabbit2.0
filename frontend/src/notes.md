@@ -15,6 +15,7 @@
 ## @ Scale
 - category and adventurer show will have to be re-worked
 - Quest creation will need infinite scroll when browsing adventurers
+- use faker gem to generate additional adventurers
 ## Timeline
 - need a timeline for when items will be complete
 - need to order what should be done 1st
