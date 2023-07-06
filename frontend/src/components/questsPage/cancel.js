@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchReview } from '../../store/review';
+import { fetchReviews } from '../../store/review';
 import {WarnUser} from './cancelUtils/warnUser';
 import {WriteReview} from './cancelUtils/writeReview';
 import {YourQuest} from './cancelUtils/yourQuest';
@@ -17,7 +17,7 @@ function CancelQuest({currentUser, quest, setEdit, setCancel}){
     
     useEffect(()=> {
         if (isReviewsFetched.current === false) {
-            dispatch(fetchReview(quest.adventurerId));
+            dispatch(fetchReviews(quest.adventurerId));
             isReviewsFetched.current = true;
         };
     },[dispatch, quest.adventurerId]);
