@@ -69,8 +69,9 @@ const lastButton = () => {
       </div>
       <div className='store'> 
         <img src={apple} alt='apple logo' id='apple'></img>
-        <div className='fake-logo-apple-logo'>
-          <div className='small'>Available in the</div> Magic Store
+        <div className='fake-logo'>
+          <div className='small'>Available in the</div>
+          Magic Store
         </div>
       </div>
       <div className='store'>
