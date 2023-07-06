@@ -28,7 +28,7 @@ export const createReview = (review) => async dispatch => {
     });
     if (response.ok){
         const data = await response.json();
-        dispatch(receiveReview(data));
+        dispatch(receiveReviews(data));
     } else {
         throw response;
     };

@@ -1,6 +1,6 @@
 import React,{useRef, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchReview} from '../../../store/review';
+import {fetchReviews} from '../../../store/review';
 import { Rating } from "./rating";
 
 // All Reviews displays all reviews for an adventurer
@@ -17,7 +17,7 @@ export function AllReviews({ selected }) {
     useEffect(()=> {
        // modern react does call useEffect 2x, so I added an if statement to check if the reviews have been fetched 
         if (!isFetched.current) {
-            dispatch(fetchReview(selected.id));
+            dispatch(fetchReviews(selected.id));
             // setting isFetched to true will happen before the reviews finish fetching
             isFetched.current = true;
         };
