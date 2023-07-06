@@ -2,6 +2,7 @@
 ## improve readability/maintainability of code
      - organize css (each css file should be with component folder, except css resets)
      - ensure functions have explicit names * ex. change mini (in createQuest & questPage components to something more descriptive)
+     - change backend from ex. adv_reviews to adventurer_reviews
      - write more comments explaining how things work
 ## Project Maintanence
 - update redux store (current version is not latest & greatest)
