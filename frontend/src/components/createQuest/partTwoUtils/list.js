@@ -4,7 +4,7 @@ import {Hero} from './hero';
 import { Rating } from "./rating";
 import { IsElite } from "./isElite";
 
-export function List({ examine, setSelected, setExamine, adv, selectAdv, selected, moveToNextStep }) { 
+export function List({ examine, setSelected, setExamine, adventurersArray, selectAdventurer, selected, moveToNextStep }) { 
 
     const closeReviews = () => {
         setSelected('');
@@ -27,22 +27,22 @@ export function List({ examine, setSelected, setExamine, adv, selectAdv, selecte
     );
     return(
         <div className="heros-container">
-         {adv.map(ad =>
-         <div className="hero-container" key={ad.id}>
+         {adventurersArray.map(adventurer =>
+         <div className="hero-container" key={adventurer.id}>
                 <div className='top-hero'>
-                    <Hero name={ad.username}/>
+                    <Hero name={adventurer.username}/>
                     <div className='hero-details'>
-                        <p className="hero-name">{ad.username}</p>
-                        <IsElite elite={ad.elite}/>
-                        <div className="rating-container">Rating: <Rating rating={ad.avgRating}/></div>
-                        <p className="p">Total Reviews: {ad.totalRatings}</p>
+                        <p className="hero-name">{adventurer.username}</p>
+                        <IsElite elite={adventurer.elite}/>
+                        <div className="rating-container">Rating: <Rating rating={adventurer.avgRating}/></div>
+                        <p className="p">Total Reviews: {adventurer.totalRatings}</p>
                         <hr />
                         <p className="p">How I can Help:</p>
-                        <p className="p">{ad.pitch}</p>
+                        <p className="p">{adventurer.pitch}</p>
                     </div>
                 </div>
-                <button value={ad.id} onClick={e => selectAdv(e.target.value)}>See Reviews</button>
-                <button value={ad.id} className="select2" onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
+                <button value={adventurer.id} onClick={e => selectAdventurer(e.target.value)}>See Reviews</button>
+                <button value={adventurer.id} className="select2" onClick={e => moveToNextStep(e.target.value)}>Select and Continue</button>
             </div>)}   
         </div>
     )};
