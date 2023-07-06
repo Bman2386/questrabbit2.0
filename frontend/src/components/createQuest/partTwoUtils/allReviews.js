@@ -28,11 +28,11 @@ export function AllReviews({ selected }) {
         return (
             <div className='reviews'>
                 <div className="h2">Reviews:</div>
-                {reviews.map(rev =>
-                    <div key={rev.id} className='quest-name' id='review'>
-                        <div className='p'>{`${rev.username}`}</div>
-                        <div className='rating-container'><Rating rating={rev.rating}/></div>
-                        <div className='p'>"{`${rev.body}`}"</div>
+                {reviews.map(review =>
+                    <div key={review.id} className='quest-name' id='review'>
+                        <div className='p'>{`${review.username}`}</div>
+                        <div className='rating-container'><Rating rating={review.rating}/></div>
+                        <div className='p'>"{`${review.body}`}"</div>
                     </div>)}
             </div>);
     };
