@@ -20,7 +20,7 @@ function ProfileComponent(){
 
     const [edit, setEdit] = useState(false);
 
-    if (!currentUser) return <Redirect to='/' />   
+    if (!currentUser) return <Redirect to='/' />;   
 
 
     const logoutUser = () => {
@@ -71,4 +71,4 @@ function ProfileComponent(){
         );
 };
 
-export default ProfileComponent
+export default ProfileComponent;
