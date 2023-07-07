@@ -76,7 +76,7 @@ function PartTwo({ step, setStep, setAdventurerId}){
                     <List
                         examine={examine}
                         setSelected={setSelected}
-                        setExamine={setExamine}
+                        setExamine={setExamine} 
                         adventurersArray={adventurersArray}
                         selectAdventurer={selectAdventurer}
                         selected={selected}

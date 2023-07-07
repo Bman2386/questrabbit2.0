@@ -15,7 +15,7 @@ function Login() {
   const [loggingIn, setLoggingIn] = useState(false);
 
   const currentUser = useSelector(state => state.session.user);
-  const temp = useSelector(state => state.temp ?? '')
+  const temp = useSelector(state => state.temp ?? '');
 
     // these redirects are for instances where user wants to create a quest instead of going directly to splash
   if (currentUser && (temp.categoryId || temp.nameOfQuest) ) return <Redirect to='/quest'/>
