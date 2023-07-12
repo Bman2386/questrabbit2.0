@@ -17,5 +17,6 @@
 - Quest creation will need infinite scroll when browsing adventurers
 - use faker gem to generate additional adventurers
 ## Timeline
-- need a timeline for when items will be complete
-- need to order what should be done 1st
+- Improve readability/maintainability {start_time} <--> {end_time} 
+- Project Maintanence  {start_time} <--> {end_time} 
+- Scale {start_time} <--> {end_time} 
