@@ -11,6 +11,7 @@
     - write tests to ensure all frontend functions perform as expected
 - add help modal
 - add min loader display time
+- useEffect is being depricated, find a fix
 ## @ Scale
 - category and adventurer show will have to be re-worked
 - Quest creation will need infinite scroll when browsing adventurers
