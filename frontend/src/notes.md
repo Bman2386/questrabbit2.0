@@ -4,7 +4,7 @@
      - ensure functions have explicit names * ex. change mini (in createQuest & questPage components to something more descriptive)
      - change backend from ex. adv_reviews to adventurer_reviews
 ## Project Maintanence
-- update redux store (current version is not latest & greatest)
+- update redux store (current version is going to be depricated)
 - write tests
     - install rspec & jest
     - write tests to ensure all backend functions work as expected
