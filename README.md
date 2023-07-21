@@ -66,13 +66,11 @@ export function Loading({modal=false}){
     - rails db:create
 
 * How to run the test suite
-    - Note tests will only run locally
-
-* 
+    - Note tests will only run locally (see local deployment instructions below)
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+* Local Deployment Instructions
     - clone repo
     - ```$bundle install```
     - ```$rails db:create```
