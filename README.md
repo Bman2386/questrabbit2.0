@@ -66,6 +66,9 @@ export function Loading({modal=false}){
     - rails db:create
 
 * How to run the test suite
+    - Note tests will only run locally
+
+* 
 
 * Services (job queues, cache servers, search engines, etc.)
 
