@@ -12,7 +12,7 @@
 - add help modal
 - add min loader display time
 - useEffect is being depricated, find a fix
-## @ Scale
+## Scale App
 - category and adventurer show will have to be re-worked
 - Quest creation will need infinite scroll when browsing adventurers
 - use faker gem to generate additional adventurers/reviews
