@@ -61,7 +61,6 @@ export function Loading({modal=false}){
 * System dependencies
     - node v16.10 or later
     - rails v7 or later
-* Configuration
 
 * Database creation
     - rails db:create
