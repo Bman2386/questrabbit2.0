@@ -22,7 +22,6 @@ function ProfileComponent(){
 
     if (!currentUser) return <Redirect to='/' />;   
 
-
     const logoutUser = () => {
         dispatch(clearData());
         dispatch(logout());
