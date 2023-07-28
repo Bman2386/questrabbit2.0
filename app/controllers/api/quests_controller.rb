@@ -1,9 +1,5 @@
 class Api::QuestsController < ApplicationController
 
-    def new
-        render :new
-    end
-
     def index
         current_user_id = current_user.id
         @quests = Quest.where(creator_id: current_user_id, completed: false)
